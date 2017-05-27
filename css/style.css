@@ -1,0 +1,61 @@
+body{
+    font-family:"Impact", Helvetica, sans-serif;
+    font-size:15px;
+    line-height: 1.5;
+    padding:0;
+    margin:0;
+    background-color: #f4f4f4;
+}
+/*global*/
+.container{
+    width:80%;
+    margin:auto;
+    overflow:hidden;
+}
+
+ul{
+    margin:0;
+    padding:0;
+}
+
+/*Header*/
+header{
+    background: #0A0481;
+    color:#ffffff;
+    min-height: 60px;
+    border-bottom:#ffffff 3px solid;
+}
+
+header a{
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: #0A0481;
+    float: left;
+    display: inline;
+    padding: 20px 20px 20px 20px;
+}
+
+header li{
+    float: left;
+    display: inline;
+}
+header a:hover{
+    background:white;
+    color: #000;
+    font-weight:bold;
+}
+a:hover{
+    color:black;
+}
+ 
+header #branding{
+    float: left;
+}
+header #branding h1{
+    margin: 0;
+}
+
+header nav{
+    float: right;
+}

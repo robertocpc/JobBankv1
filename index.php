@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Esis</title>
 </head>
 <body>
     <header>
         <div class="container">
-            <div id="brading">
+            <div id="branding">
                 <h1>ESIS</h1>
             </div>
             <nav>
@@ -32,9 +33,12 @@
             <h1>¿Qué necesita?</h1>
             <form action="search.php">
                 <input type="text" placeholder="Introdusca palabra clave">
-                <button>
+                <button type="submit" class="button_1">Buscar</button>
             </form>
         </div>
     </section>
+    <footer>
+        <p>Miracle Project, Copyright &copy, 2017</p>
+    </footer>
 </body>
 </html>
