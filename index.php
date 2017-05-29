@@ -8,10 +8,10 @@
     <title>Esis</title>
 </head>
 <body>
-    <header>
+    <header>    
         <div class="container">
-            <div id="branding">
-                <h1>ESIS</h1>
+            <div id="branding">  
+                <img src="./img/logo1.png" height="50" width="200">
             </div>
             <nav>
                 <ul>
@@ -22,21 +22,21 @@
             </nav>
         </div>
     </header>
-    <section id="showcase">
-        <div class="container">
+    <div id="showcase">
+        <div class="container sub1">
             <h1>Escuela Profesional de Ingeniería de Informática y Sistemas</h1>
-            <p>Parrafo</p>
+            <p></p>
         </div>
-    </section>
-    <section id="newsletter">
-        <div class="container">
-            <h1>¿Qué necesita?</h1>
-            <form action="search.php">
-                <input type="text" placeholder="Introdusca palabra clave">
-                <button type="submit" class="button_1">Buscar</button>
-            </form>
+        <div id="newsletter">
+            <div class="container">
+                <h1>¿Busca algún profesional..?</h1>
+                <form action="search.php">
+                    <input type="search" placeholder="Introdusca palabra clave">
+                    <input type="submit" class="button_1" value="Buscar"></input>
+                </form>
+            </div>
         </div>
-    </section>
+    </div>
     <footer>
         <p>Miracle Project, Copyright &copy, 2017</p>
     </footer>
