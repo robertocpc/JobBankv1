@@ -23,7 +23,7 @@
                     <div class="indices marco">
                     <li><a href="index.php">Inicio</a></li>
                     <li><a href="./web_login.php">Log in</a></li>
-                    <li><a href="index.php">Blog</a></li>
+                    <li><a href="./session.php">Blog</a></li>
                     </div>
                     <div class="indices marco_logo">
                     <li><a href="./index.php"><img src="./img/fblogo1.png" height="18" width="18"></a></li>

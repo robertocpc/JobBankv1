@@ -124,7 +124,7 @@ header .contacto{
     cursor: pointer;
 }
 #newsletter input[type=submit]:hover{
-    background-color: #21A6AD;
+    background-color: #0177B1;
 }
 
 /*LOG IN*/
@@ -152,7 +152,7 @@ header .contacto{
 }
 #showcase .login input[type=submit]{
     width: 60%;
-    background-color: #4CAF50;
+    background-color: #0287cb;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -161,7 +161,7 @@ header .contacto{
     cursor: pointer;
 }
 #showcase .login input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: #0177B1;
 }
 #showcase .inf{
     text-align: justify;
@@ -171,3 +171,4 @@ header .contacto{
     height: 40%;
     margin-top: 10%;
 }
+
