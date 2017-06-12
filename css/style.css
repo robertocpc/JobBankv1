@@ -173,6 +173,7 @@ header .contacto{
 }
 
 /*SESSION*/
+
 .formulario{
     margin-top: 2%;
     margin-bottom: 3%;
@@ -186,8 +187,21 @@ header .contacto{
 .tab_derecha{
     width:70%;
     float: right;
-    background: white;
+
 }
+.tab_panel{
+    margin-bottom:10px;
+    background: white;
+    padding: 15px;
+}
+.tab_panel img{
+    border: 2px gray solid;
+    border-radius: 50%;
+}
+.tab_panel input[type="file"]{
+    display: none;
+}
+
 /*
 .tab_izquierda li, .tab_izquierda a{
     color: #0287cb;
@@ -210,7 +224,10 @@ header .contacto{
 }
 .tab_izquierda a{
     width:80%;
-}*/
+}
+
+/*MODELO 1*/
+
 .tab_izquierda .efex_button1{
     color: #0287cb;
     text-decoration: none;
@@ -223,7 +240,85 @@ header .contacto{
     background: white; 
     border: none;
 }
+.buttonefex1{
+    color: white;
+    text-decoration: none;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 20px 5px 20px;
+    border-radius: 10%;
+    background: #0287cb; 
+}
+
 .tab_izquierda .efex_button1:hover{
     color: white;
     background: #0287cb;
+}
+.tab_izquierda .selected{
+    color: white;
+    background: #0287cb;
+}
+
+
+/*SESSION MODELO 2*/
+/*
+.panel-inicio{
+    width: 100%;
+    margin-top:2%;
+    background: white;
+    padding: 2%;
+    color: black;
+}
+.panel-inicio .izquierda img{
+    border-radius: 50%;
+    border: 3px gray solid;
+}
+.panel-inicio .font{
+    color: black;
+    font-weight: bold;
+}
+.panel-inicio li{
+    display: inline;
+}
+.panel-inicio ul a{
+    width:10%;
+    margin-left:10%;
+    margin-right: 10%;
+}
+*/
+.tab_panel .tagg{
+    background: #DCD9D9;
+    color: gray;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: 1px gray solid;
+    padding: 5px;
+    margin: 0;
+}
+.padd{
+    padding: 15px;
+    padding-bottom: 15px;
+}
+.tab_panel .tagtext{
+    background: white;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding: 5px;
+    margin: 0;
+    margin-left: -5px;
+    border: 1px gray solid;
+}
+.tabizq{
+    width:50%;
+    float: left;
+    margin-bottom:15px;
+}
+.tabder{
+    width: 50%;
+    float:left;
+    margin-bottom:15px;
+}
+.tab_panel .field{
+    width: auto;
 }
