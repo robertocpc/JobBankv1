@@ -35,7 +35,7 @@
     <div id="showcase">
         <div class="container">
             <div class="login access">
-                <form action="./index.php">
+                <form action="./account/p-login.php" method="post">
                     <div>
                         <input name="username" type="text" placeholder="Codigo">
                     </div>

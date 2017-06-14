@@ -141,7 +141,7 @@ header .contacto{
     padding: 10px;
 }
 
-#showcase input[type=text]{
+#showcase input[type=text], #showcase input[type=password]{
     width: 60%;
     padding: 12px 20px;
     margin: 8px 0;
