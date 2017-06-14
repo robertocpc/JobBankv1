@@ -47,7 +47,7 @@ include './header.php';
                             <label class="tagg">Nombre:</label>
                             <label class="tagtext">Roberto Carlos</label>
                         </div>
-                        <div class="tabder">    
+                        <div class="tabizq">    
                             <label class="tagg">Apellido:</label>
                             <label class="tagtext">Pongo Condori</label> 
                         </div>
@@ -55,10 +55,11 @@ include './header.php';
                             <label class="tagg">Email:</label>
                             <label class="tagtext">roberto.crlp@hotmail.com</label>
                         </div>
-                        <div class="tabder">
-                            <label class="tagg">Email:</label>
-                            <label class="tagtext">roberto.crlp@hotmail.com</label>
+                        <div class="tabizq">
+                            <label class="tagg">Tipo de Documento:</label>
+                            <label class="tagtext">74442854</label>
                         </div>
+                        <a class="buttonefex1" href="./edit-profile.php">Modificar</a>
                     </div>
                 </div>
             </div>

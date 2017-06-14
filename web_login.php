@@ -37,10 +37,10 @@
             <div class="login access">
                 <form action="./index.php">
                     <div>
-                        <input type="text" placeholder="Codigo">
+                        <input name="username" type="text" placeholder="Codigo">
                     </div>
                     <div>
-                        <input type="text" placeholder="Contraseña">
+                        <input name="password" type="password" placeholder="Contraseña">
                     </div>
                     <div>
                         <input type="submit" value="Ingresar">
