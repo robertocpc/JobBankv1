@@ -21,10 +21,15 @@ else { // User exists
         $egre = $tblegr->fetch_assoc();
         $password = $mysqli->escape_string(password_hash($_POST['password'], PASSWORD_BCRYPT));
          if ( password_verify($_POST['password'], password_hash($egre['psw_alumno'], PASSWORD_BCRYPT))) {
-            $_SESSION['register']=true;
-            $_SESSION['logged_in'] = true;
+            $_SESSION['registered']=true;
             $_SESSION['user']=$egre['col_nombre'];
             $_SESSION['pass']=$egre['psw_alumno'];
+            $_SESSION['cod']=$egre['cod_alumno'];
+            $_SESSION['ape']=$egre['col_apellido'];
+            $_SESSION['email']=$egre['col_email'];
+            $_SESSION['telf']=$egre['col_telf'];
+            $_SESSION['message']="Parte if 1";
+            $_SESSION['window']=1;
             header("location: ../index.php");
         }
         else{
@@ -37,11 +42,14 @@ else { // User exists
         
         $_SESSION['cod'] = $user['cod_alumno'];
         $_SESSION['user']=$user['col_nombre'];
+        $_SESSION['ape']=$user['col_apellido'];
         $_SESSION['psw'] = password_hash($user['psw_alumno'],PASSWORD_BCRYPT);
         $password = $mysqli->escape_string(password_hash($_POST['password'], PASSWORD_BCRYPT));
-        $_SESSION['pass']=$password;        
+        $_SESSION['pass']=$password;
         // This is how we'll know the user is logged in
         $_SESSION['logged_in'] = true;
+        $_SESSION['message']="Parte if 2";
+        $_SESSION['window']=1;
         header("location: ../index.php");
     }
     else {

@@ -56,8 +56,8 @@ include './header.php';
                             <label class="tagtext">roberto.crlp@hotmail.com</label>
                         </div>
                         <div class="tabizq">
-                            <label class="tagg">Tipo de Documento:</label>
-                            <label class="tagtext">74442854</label>
+                            <label class="tagg">Telefono:</label>
+                            <label class="tagtext">990024953</label>
                         </div>
                         <a class="buttonefex1" href="./edit-profile.php">Modificar</a>
                     </div>

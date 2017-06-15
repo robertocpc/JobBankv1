@@ -1,4 +1,5 @@
 <?php
+session_start();
 include './header.php';
 ?>
         <div class="container">
@@ -25,7 +26,8 @@ include './header.php';
                             <div class="tabizq">
                                 <label for="username">
                                     <span class="tagg">Nombre:</span>
-                                    <input id="username" type="text" class="tagtext" placeholder="Roberto Carlos" required>
+                                    <?php 
+                                    echo "<input id='username' type='text' class='tagtext' placeholder='".$_SESSION['user']."' required>";?>
                                     <ul class="input-requirements">
                                         <li>Debe contener almenos 2 caracteres</li>
                                         <li>Debe contener solo caracteres alfanuméricos</li>
@@ -36,7 +38,7 @@ include './header.php';
                             <div class="tabizq">
                                 <label for="apellido">    
                                     <span class="tagg">Apellido:</span>
-                                    <input id="apellido" type="text" class="tagtext" placeholder="Pongo Condori" required>
+                                    <?php echo"<input id='apellido' type='text' class='tagtext' placeholder='".$_SESSION['ape']."' required>"?>
                                     <ul class="input-requirements">
                                         <li>Debe contener almenos 2 caracteres</li>
                                         <li>Debe contener solo caracteres alfanuméricos</li>
@@ -46,7 +48,7 @@ include './header.php';
                             <div class="tabizq">
                                 <label for="email">
                                     <span class="tagg">Email:</span>
-                                    <input id="email" type="text" class="tagtext" placeholder="roberto.crlp@hotmail.com" required>
+                                    <?php echo "<input id='email' type='text' class='tagtext' placeholder='".$_SESSION['email']."' required>";?>
                                     <ul class="input-requirements">
                                         <li>Debe seguir este formato: name@email.dom</li>
                                     </ul>
@@ -55,7 +57,7 @@ include './header.php';
                             <div class="tabizq">
                                 <label for="telefono">
                                     <span class="tagg">Teléfono:</span>
-                                    <input id="telefono" type="text" class="tagtext" placeholder="990024953" required>
+                                    <?php echo "<input id='telefono' type='text' class='tagtext' placeholder='".$_SESSION['telf']."' required>";?>
                                     <ul class="input-requirements">
                                         <li>Debe tener entre 3015 dígitos</li>
                                         <li>Solo se aceptan caracteres numéricos</li>
