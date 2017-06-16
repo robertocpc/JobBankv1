@@ -9,6 +9,11 @@ $apellido = $mysqli->escape_string($_POST['apellido']);
 $email = $mysqli->escape_string($_POST['email']);
 $telefono = $mysqli->escape_string($_POST['telefono']);
 
+$_SESSION['cod']=$nombre;
+$_SESSION['ape']=$apellido;
+$_SESSION['email']=$email;
+$_SESSION['telf']=$telefono;
+
 $result = $mysqli->query("SELECT * FROM tbl_egresado WHERE cod_alumno='$_SESSION[cod]'");
 $user = $result->fetch_assoc();
 if ( $result->num_rows == 0 ){ // User doesn't exist
