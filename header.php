@@ -25,16 +25,17 @@ session_start();
                     <ul>
                         <div class="indices marco">
                             <?php
+                                echo $_SESSION['message'];
                                 if(isset($_SESSION['logged_in'])){
                                     echo "<li><a href='index.php'>Inicio</a></li>
-                                    <li><a href='./session.php'>Blog</a></li>
-                                    <li><a href='./session.php'>".$_SESSION['user']."</a></li>
+                                    <li><a href='./blog.php'>Blog</a></li>
+                                    <li><a href='./session-index.php'>".$_SESSION['user']."</a></li>
                                     <li><a href='./account/p-logout.php'>Log out</a></li>";
                                 }
                                 else{
                                     echo "<li><a href='index.php'>Inicio</a></li>
                                     <li><a href='./web_login.php'>Log in</a></li>
-                                    <li><a href='./session.php'>Blog</a></li>";
+                                    <li><a href='./blog.php'>Blog</a></li>";
                                 }
                             ?>
                         </div>

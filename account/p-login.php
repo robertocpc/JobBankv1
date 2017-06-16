@@ -3,6 +3,12 @@
 /* User login process, checks if user exists and password is correct */
 session_start();
 include '../db.php';
+$host = 'localhost';
+$user = 'root';
+$pass = '4kegezvc';
+$db = 'ISWork';
+$mysqli = new mysqli($host,$user,$pass,$db) or die($mysqli->error);
+
 
 // Escape email to protect against SQL injections
 $username = $mysqli->escape_string($_POST['username']);
@@ -15,7 +21,7 @@ if ( $result->num_rows == 0 ){ // User doesn't exist
 }
 else { // User exists
     $user = $result->fetch_assoc();
-    $tblegr = $mysqli->query("SELECT * FROM tbl_egresado WHERE codigo='$username'");
+    $tblegr = $mysqli->query("SELECT * FROM tbl_egresado WHERE cod_alumno='$username'");
     if($tblegr->num_rows>0)
     {
         $egre = $tblegr->fetch_assoc();
@@ -27,9 +33,11 @@ else { // User exists
             $_SESSION['cod']=$egre['cod_alumno'];
             $_SESSION['ape']=$egre['col_apellido'];
             $_SESSION['email']=$egre['col_email'];
+            $_SESSION['logged_in'] = true;
             $_SESSION['telf']=$egre['col_telf'];
             $_SESSION['message']="Parte if 1";
             $_SESSION['window']=1;
+
             header("location: ../index.php");
         }
         else{
@@ -43,13 +51,16 @@ else { // User exists
         $_SESSION['cod'] = $user['cod_alumno'];
         $_SESSION['user']=$user['col_nombre'];
         $_SESSION['ape']=$user['col_apellido'];
+        $_SESSION['email']=$user['col_email'];
+        $_SESSION['telf']=$user['col_telf'];
         $_SESSION['psw'] = password_hash($user['psw_alumno'],PASSWORD_BCRYPT);
         $password = $mysqli->escape_string(password_hash($_POST['password'], PASSWORD_BCRYPT));
-        $_SESSION['pass']=$password;
+        $_SESSION['pass']=$_POST['password'];
         // This is how we'll know the user is logged in
         $_SESSION['logged_in'] = true;
         $_SESSION['message']="Parte if 2";
         $_SESSION['window']=1;
+        $mysqli->query("INSERT INTO tbl_egresado (cod_alumno,psw_alumno) VALUES('$_SESSION[cod]','$_SESSION[pass]')");
         header("location: ../index.php");
     }
     else {

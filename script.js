@@ -152,7 +152,7 @@ var telefonoValidityChecks = [
 	},
     {
 		isInvalid: function(input) {
-			return !input.value.match(/[0-9]/g)
+			return !input.value.match(/[0-9]/g);
 		},
 		invalidityMessage: 'Solo se aceptan caracteres numéricos',
 		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(2)')
