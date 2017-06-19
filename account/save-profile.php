@@ -9,7 +9,7 @@ $apellido = $mysqli->escape_string($_POST['apellido']);
 $email = $mysqli->escape_string($_POST['email']);
 $telefono = $mysqli->escape_string($_POST['telefono']);
 
-$_SESSION['cod']=$nombre;
+$_SESSION['user']=$nombre;
 $_SESSION['ape']=$apellido;
 $_SESSION['email']=$email;
 $_SESSION['telf']=$telefono;

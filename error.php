@@ -1,6 +1,7 @@
 <?php
 session_start();
-echo "Hola Mundo";
-echo $_SESSION['message'];
-session_destroy();
+include './header.php';
 ?>
+    <div class="container">
+        <?php echo"<h3>".$_SESSION['message']."</h3>";?>
+    </div>

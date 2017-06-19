@@ -1,19 +1,31 @@
-body{
+.theme1{
     font-family:"Arial", Helvetica, sans-serif;
     font-size:15px;
     line-height: 1.5;
     padding:0;
     margin:0;
     background-color: #f4f4f4;
-        background-image: url("../img/img4.jpg");
+    background-image: url("../img/img4.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.theme2{
+    font-family:"Arial", Helvetica, sans-serif;
+    font-size:15px;
+    line-height: 1.5;
+    padding:0;
+    margin:0;
+    background-color: #f4f4f4;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /*global*/
 .container{
     width:80%;
     margin:auto;
-    overflow:hidden;
+    
 }
 
 ul{
@@ -60,6 +72,9 @@ header #branding{
 header #branding h1{
     margin: 0;
 }
+#showcase h3{
+    color: white;
+}
 
 header nav{
     float: right;
@@ -76,8 +91,10 @@ header p{
     padding: 0 10px 0 10px;
 }
 header .contacto{
-    margin-top: 2%;
+    margin-top: 12px;
     font-size: 12px;
+    margin-bottom: 10px;
+    float: right;
 }
 
 #showcase{
@@ -85,7 +102,7 @@ header .contacto{
     text-align:center;
 
  }
- #showcase h1,p{
+ #showcase h1,p,h3,h4{
      color: white;
  }
 #showcase .sub1{
@@ -193,14 +210,24 @@ header .contacto{
     margin-bottom:10px;
     background: white;
     padding: 15px;
+    width: 100%;
+    height: auto;
+    float: left;
 }
 .tab_panel img{
     border: 2px gray solid;
-    border-radius: 50%;
+    
 }
 .tab_panel input[type="file"]{
     display: none;
 }
+.alignleft{ 
+    width: 45%;
+    margin: 0;
+    float: left;
+    padding: 10px;
+}
+
 
 /*
 .tab_izquierda li, .tab_izquierda a{
@@ -213,7 +240,11 @@ header .contacto{
     width: 80%;
     
     -webkit-appearance: button;
-    -moz-appearance: button;
+    -webkit-margin: ;
+    -moz-margin: ;
+    -ms-margin: ;
+    -o-margin: ;
+    margin: ;-appearance: button;
 }
 .tab_izquierda a:hover{
     color: white;
@@ -248,7 +279,14 @@ header .contacto{
     font-weight: bold;
     padding: 5px 20px 5px 20px;
     border-radius: 6px;
-    background: #0287cb; 
+    background: #0287cb;
+    border: none; 
+}
+.edit{
+    text-align: left;
+    font-size: 15px;
+    padding: 5px 20px 5px 20px;
+    margin-left: -30px;
 }
 
 .tab_izquierda .efex_button1:hover{
@@ -261,32 +299,6 @@ header .contacto{
 }
 
 
-/*SESSION MODELO 2*/
-/*
-.panel-inicio{
-    width: 100%;
-    margin-top:2%;
-    background: white;
-    padding: 2%;
-    color: black;
-}
-.panel-inicio .izquierda img{
-    border-radius: 50%;
-    border: 3px gray solid;
-}
-.panel-inicio .font{
-    color: black;
-    font-weight: bold;
-}
-.panel-inicio li{
-    display: inline;
-}
-.panel-inicio ul a{
-    width:10%;
-    margin-left:10%;
-    margin-right: 10%;
-}
-*/
 .tab_panel .tagg{
     background: #DCD9D9;
     color: gray;
@@ -296,10 +308,7 @@ header .contacto{
     padding: 5px;
     margin: 0;
 }
-.padd{
-    padding: 15px;
-    padding-bottom: 15px;
-}
+
 .tab_panel .tagtext{
     background: white;
     border-top-right-radius: 6px;
@@ -312,11 +321,29 @@ header .contacto{
 .tabizq{
     margin-bottom:15px;
 }
-.tab_panel a{
-    position: relative;
+.tab_panel .alignleft a{
+    float: right;
+    border: none;
+    text-decoration: none;
+    color: gray;
+    padding-bottom: 2px;
+    margin:0;
+}
+.tab_panel .alignleft li{
+    display: inline;
+}
+.tab_panel .alignleft img{
+    border: none;
 }
 
 
+.tab_panel form label{
+    background-image: url("../imglogo/camera.png");
+    background-repeat: no-repeat;
+}
+.shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 input:not([type="submit"]):valid {
   border-color: #2ecc71;
@@ -360,3 +387,8 @@ input:not([type="submit"]):active + .input-requirements {
     color: white;
     font-weight: bold;
 }
+
+/*WORKEXP*/
+
+
+

@@ -10,7 +10,11 @@ session_start();
         
         <title>Esis</title>
     </head>
-    <body>
+    <?php if($_SESSION['windows']==5){
+                echo "<body class='theme1'>"; }
+        else{
+            echo "<body class='theme2'>";}
+    ?>
         <header>    
             <div class="container">
                 <div id="branding">  
@@ -25,7 +29,7 @@ session_start();
                     <ul>
                         <div class="indices marco">
                             <?php
-                                echo $_SESSION['message'];
+                                
                                 if(isset($_SESSION['logged_in'])){
                                     echo "<li><a href='index.php'>Inicio</a></li>
                                     <li><a href='./blog.php'>Blog</a></li>
