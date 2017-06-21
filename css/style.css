@@ -17,6 +17,7 @@
     padding:0;
     margin:0;
     background-color: #f4f4f4;
+    background-image: url("../img/img4.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -222,10 +223,20 @@ header .contacto{
     display: none;
 }
 .alignleft{ 
-    width: 45%;
+    width: 65%;
     margin: 0;
     float: left;
     padding: 10px;
+}
+.tab_panel .pic{
+    width:25%;
+}
+.alignleft  span{
+    width: 120px;
+    float: left;
+}
+.alignleft .sinput{
+    width: 200px;
 }
 
 
@@ -282,11 +293,16 @@ header .contacto{
     background: #0287cb;
     border: none; 
 }
+.buttonefex1:hover{
+    color: white;
+    background: #0177B1;
+}
 .edit{
-    text-align: left;
+    text-align: center;
     font-size: 15px;
     padding: 5px 20px 5px 20px;
-    margin-left: -30px;
+    margin-left: -20px;
+    background: white;
 }
 
 .tab_izquierda .efex_button1:hover{
@@ -335,9 +351,13 @@ header .contacto{
 .tab_panel .alignleft img{
     border: none;
 }
+.tabizq label span{
+    float: left;
+    width: 100px;
+}
 
 
-.tab_panel form label{
+.tab_panel .alignleft form label{
     background-image: url("../imglogo/camera.png");
     background-repeat: no-repeat;
 }
@@ -345,17 +365,33 @@ header .contacto{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-input:not([type="submit"]):valid {
-  border-color: #2ecc71;
+.edit-profile input:not([type="submit"]):valid {
+  border-bottom-color: #2ecc71;
 }
-input:not([type="submit"]) + .input-requirements {
+.edit-profile input:not([type="submit"]):invalid {
+  border-bottom-color: #e74c3c;
+  box-shadow: none;
+  outline: none;
+}
+.edit-profile input:not([type="submit"]):required{
+    
+    box-shadow: none;
+    outline:none;
+}
+.edit-profile input:not([type="submit"]) + .input-requirements {
   overflow: hidden;
   max-height: 0;
   transition: max-height 1s ease-out;  
 }
-input:not([type="submit"]):hover + .input-requirements,
-input:not([type="submit"]):focus + .input-requirements,
-input:not([type="submit"]):active + .input-requirements {
+.edit-profile input:not([type="submit"]):hover,
+.edit-profile input:not([type="submit"]):focus,
+.edit-profile input:not([type="submit"]):active{
+    outline: none;
+}
+
+.edit-profile input:not([type="submit"]):hover + .input-requirements,
+.edit-profile input:not([type="submit"]):focus + .input-requirements,
+.edit-profile input:not([type="submit"]):active + .input-requirements {
   max-height: 1000px; /* any large number (bigger then the .input-requirements list) */
   transition: max-height 1s ease-in;
 }
@@ -389,6 +425,56 @@ input:not([type="submit"]):active + .input-requirements {
 }
 
 /*WORKEXP*/
+.title{
+    font-size: 16px;
+    font-weight: bold;
+}
+.stag{
+    color: #5c5c5c;
+    font-weight: bold;
+}
+.workexp  span{
+    width: 200px;
+    float: left;
+}
+.workexp .ssinput{
+    margin-bottom: 15px;
+}
+.sinput{
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 2px gray solid;
+}
 
+.sinput:focus{
+    margin-bottom: 20px;
+    outline: none;
+    border-bottom: 2px gray solid;
+}
+.sinput:hover{
+    border-bottom: 2px black solid;
+}
+.workexp .slist{
+    width:100%;
+    color: #5c5c5c;
+}
 
+.right{
+    float: left;
+    width:18%;
+    margin-right: 20px;
+}
+.left{
+    float: left;
+    width:70%;
+}
+.right li{
+    display: inline;
+}
 
+.workexp img{
+    border: none;
+}
+p{
+    color: black;
+}

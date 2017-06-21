@@ -90,12 +90,32 @@ CustomValidation.prototype = {
 var wecargoValidityChecks = [
 	{
 		isInvalid: function(input) {
-			return false;
+			return input.value.length < 3 | input.value.length > 70;;
 		},
 		invalidityMessage: 'Necesita al menos de 2 caracteres ',
 		element: document.querySelector('label[for="wecargo"] .input-requirements li:nth-child(1)')
 	}
 ];
+var weempresaValidityChecks = [
+	{
+		isInvalid: function(input) {
+			return input.value.length < 3 | input.value.length > 70;;
+		},
+		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		element: document.querySelector('label[for="weempresa"] .input-requirements li:nth-child(1)')
+	}
+];
+var wedireccionValidityChecks = [
+	{
+		isInvalid: function(input) {
+			return input.value.length < 3 | input.value.length > 70;;
+		},
+		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		element: document.querySelector('label[for="wedireccion"] .input-requirements li:nth-child(1)')
+	}
+];
+
+
 var usernameValidityChecks = [
 	{
 		isInvalid: function(input) {
@@ -227,37 +247,23 @@ var passwordRepeatValidityChecks = [
 
 ---------------------------- */
 var wecargoInput = document.getElementById('wecargo');
+var weempresaInput = document.getElementById('weempresa');
+var wedireccionInput = document.getElementById('wedireccion');
 var apellidoInput = document.getElementById('apellido');
-var usernameInput = document.getElementById('username');
-var emailInput = document.getElementById('email');
-var telefonoInput = document.getElementById('telefono');
-var passwordInput = document.getElementById('password');
-var passwordRepeatInput = document.getElementById('password_repeat');
+
+wecargoInput.CustomValidation = new CustomValidation(wecargoInput);
+wecargoInput.CustomValidation.validityChecks = wecargoValidityChecks;
+
+weempresaInput.CustomValidation = new CustomValidation(weempresaInput);
+weempresaInput.CustomValidation.validityChecks = weempresaValidityChecks;
+
+wedireccionInput.CustomValidation = new CustomValidation(wedireccionInput);
+wedireccionInput.CustomValidation.validityChecks = wedireccionValidityChecks;
 
 
 
 apellidoInput.CustomValidation = new CustomValidation(apellidoInput);
 apellidoInput.CustomValidation.validityChecks = apellidoValidityChecks;
-
-
-
-usernameInput.CustomValidation = new CustomValidation(usernameInput);
-usernameInput.CustomValidation.validityChecks = usernameValidityChecks;
-
-emailInput.CustomValidation = new CustomValidation(emailInput);
-emailInput.CustomValidation.validityChecks = emailValidityChecks;
-
-telefonoInput.CustomValidation = new CustomValidation(telefonoInput);
-telefonoInput.CustomValidation.validityChecks = telefonoValidityChecks;
-
-passwordInput.CustomValidation = new CustomValidation(passwordInput);
-passwordInput.CustomValidation.validityChecks = passwordValidityChecks;
-
-passwordRepeatInput.CustomValidation = new CustomValidation(passwordRepeatInput);
-passwordRepeatInput.CustomValidation.validityChecks = passwordRepeatValidityChecks;
-
-wecargoInput.CustomValidation = new CustomValidation(wecargoInput);
-wecargoInput.CustomValidation.validityChecks = wecargoValidityChecks;
 
 
 
@@ -269,10 +275,14 @@ wecargoInput.CustomValidation.validityChecks = wecargoValidityChecks;
 ---------------------------- */
 
 var inputs = document.querySelectorAll('input:not([type="submit"])');
+var ianio = document.getElementById('ianio');
+var selectedValue = selects.options[selects.selectedIndex].value;// will gives u 2
 
+document.write(ianio[1]);
+document.getElementById("demo").innerHTML = selectedValue;
 
 var submit = document.querySelector('input[type="submit"');
-var form = document.getElementById('registration');
+var form = document.getElementById('regworkexp');
 
 
 function validate() {
