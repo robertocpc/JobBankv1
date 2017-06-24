@@ -38,7 +38,7 @@ else { // User exists
             $_SESSION['message']="Parte if 1";
             $_SESSION['window']=1;
 
-            header("location: ../index.php");
+            header("location: ../session-index.php");
         }
         else{
             $_SESSION['message']="Ha ingresado una contraseña incorrecta, intente denuevo..";
@@ -61,7 +61,7 @@ else { // User exists
         $_SESSION['message']="Parte if 2";
         $_SESSION['window']=1;
         $mysqli->query("INSERT INTO tbl_egresado (cod_alumno,psw_alumno) VALUES('$_SESSION[cod]','$_SESSION[pass]')");
-        header("location: ../index.php");
+        header("location: ../session-index.php");
     }
     else {
         $_SESSION['message'] = "Has ingresado una contraseña incorrecta, intenta denuevo..";

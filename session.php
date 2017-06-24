@@ -16,7 +16,7 @@ include './header.php';
                 <div class="tab_derecha">
                     <div class="tab_panel shadow">
                         <div class="alignleft pic edit-profile">
-                            <form id="imagen" enctype="multipart/form-data" method="post">                           
+                            <form action="./account/upload-image.php" id="uploadform" enctype="multipart/form-data" method="post">                           
                                 <?php
                                     $result=$mysqli->query("SELECT * FROM tbl_egresado WHERE cod_alumno='$_SESSION[cod]'");
                                     $user = $result->fetch_assoc();
@@ -27,14 +27,14 @@ include './header.php';
                                         echo "<img src='./img/profimage.png' height='160px'>";
                                     }
                                 ?>
-                                <label class="edit">
-                                    <input id="imagenn" class="file" type="file" name="image" required>
+                                <label class="edit" for="fileinput">
+                                    <input id="fileinput" class="file" type="file" name="image" onchange="show(this)" required>
                                     <ul class="input-requirements">
                                         <li>Debe contener almenos 2 caracteres</li>
                                     </ul>
 
                                 </label><br>
-                                <input class="buttonefex1" type="submit" name="submit" value="subir" onclick="showFileSize()">
+                                <input class="buttonefex1" type="submit" name="submit" value="subir">
                             </form>
                         </div>
                         <div class="alignleft">
@@ -59,27 +59,24 @@ include './header.php';
             </div>
         </div>
     </body>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript">
 
 
-function myFunction() {
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
-}
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
 
-function showFileSize() {
+    function showFileSize() {
     var input, file;
 
-    // (Can't use `typeof FileReader === "function"` because apparently
-    // it comes back as "object" on some browsers. So just see if it's there
-    // at all.)
     if (!window.FileReader) {
-        bodyAppend("p", "The file API isn't supported on this browser yet.");
+        alert("The file API isn't supported on this browser yet.");
         return;
     }
 
-    input = document.getElementById('imagenn');
+    input = document.getElementById('fileinput');
     if (!input) {
         bodyAppend("p", "Um, couldn't find the fileinput element.");
     }
@@ -90,11 +87,18 @@ function showFileSize() {
         bodyAppend("p", "Please select a file before clicking 'Load'");
     }
     else {
-        file = input.files[0];
-        bodyAppend("p", "File " + file.name + " is " + file.size + " bytes in size");
+         
+
+        file = input.files[0]; console.log(file);
+        //bodyAppend("p", "File " + file.name + " is " + file.size + " bytes in size");
+        if(file.size>1000){
+            bodyAppend("p","Es demasiado");
+        }
+        else{
+            bodyAppend("p","Suficiente");
+        }
     }
 }
-
 function bodyAppend(tagName, innerHTML) {
     var elm;
 
@@ -102,5 +106,34 @@ function bodyAppend(tagName, innerHTML) {
     elm.innerHTML = innerHTML;
     document.body.appendChild(elm);
 }
+function show(input) {
+        debugger;
+        var validExtensions = ['jpg','png','jpeg']; //array of valid extensions
+        var fileName = input.files[0].name;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+        var sign;
+
+        
+
+        if ($.inArray(fileNameExt, validExtensions) == -1) {
+            input.type = ''
+            input.type = 'file'
+            $('#user_img').attr('src',"");
+            alert("Only these file types are accepted : "+validExtensions.join(', '));
+        }
+        else
+        {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#user_img').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+            showFileSize();
+        }
+        }
+    }
+
+
 </script>
 </html>

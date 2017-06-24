@@ -86,108 +86,81 @@ CustomValidation.prototype = {
 		3. element - The element that states the requirement
 
 ---------------------------- */
+function showFileSize() {
+    var input, file;
 
-var wecargoValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 3 | input.value.length > 70;;
-		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
-		element: document.querySelector('label[for="wecargo"] .input-requirements li:nth-child(1)')
-	}
-];
-var weempresaValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 3 | input.value.length > 70;;
-		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
-		element: document.querySelector('label[for="weempresa"] .input-requirements li:nth-child(1)')
-	}
-];
-var wedireccionValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 3 | input.value.length > 70;;
-		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
-		element: document.querySelector('label[for="wedireccion"] .input-requirements li:nth-child(1)')
-	}
-];
+    if (!window.FileReader) {
+        alert("The file API isn't supported on this browser yet.");
+        return;
+    }
 
+    input = document.getElementById('fileinput');
+    if (!input) {
+        bodyAppend("p", "Um, couldn't find the fileinput element.");
+    }
+    else if (!input.files) {
+        bodyAppend("p", "This browser doesn't seem to support the `files` property of file inputs.");
+    }
+    else if (!input.files[0]) {
+        bodyAppend("p", "Please select a file before clicking 'Load'");
+    }
+    else {
+         
 
-var usernameValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 2 | input.value.length > 35;
-		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^A-Za-z ]/g);
-			return illegalCharacters ? true : false;
-		},
-		invalidityMessage: 'Solo los caracteres alfabéticos estan permitidos',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(2)')
-	}
-];
-var apellidoValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 2 | input.value.length > 35;
-		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres',
-		element: document.querySelector('label[for="apellido"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^A-Za-z ]/g);
-			return illegalCharacters ? true : false;
-		},
-		invalidityMessage: 'Solo los caracteres alfabéticos estan permitidos',
-		element: document.querySelector('label[for="apellido"] .input-requirements li:nth-child(2)')
-	}
-];
-
-var emailValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return validateForm();
-		},
-		invalidityMessage: 'No es un email válido',
-		element: document.querySelector('label[for="email"] .input-requirements li:nth-child(1)')
-	}
-];
-
-function validateForm() {
-    var x = document.forms["registration"]["email"].value;
-    var atpos = x.indexOf("@");
-    var dotpos = x.lastIndexOf(".");
-    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-        //alert("Not a valid e-mail address");
-        return true;
+        file = input.files[0]; console.log(file);
+        //bodyAppend("p", "File " + file.name + " is " + file.size + " bytes in size");
+        if(file.size>1000){
+            bodyAppend("p","Es demasiado");
+        }
+        else{
+            bodyAppend("p","Suficiente");
+        }
     }
 }
+function bodyAppend(tagName, innerHTML) {
+    var elm;
 
-var telefonoValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 3 | input.value.length > 15;
-		},
-		invalidityMessage: 'Tiene que tener entre 3-15 digitos',
-		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(1)')
-	},
+    elm = document.createElement(tagName);
+    elm.innerHTML = innerHTML;
+    document.body.appendChild(elm);
+}
+function show(input) {
+        debugger;
+        var validExtensions = ['jpg','png','jpeg']; //array of valid extensions
+        var fileName = input.files[0].name;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+        if ($.inArray(fileNameExt, validExtensions) == -1) {
+            input.type = ''
+            input.type = 'file'
+            $('#user_img').attr('src',"");
+            alert("Only these file types are accepted : "+validExtensions.join(', '));
+        }
+        else
+        {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#user_img').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+            return true;
+            //showFileSize();
+        }
+        }
+    }
+
+
+var imagenValidityChecks = [
+	
     {
 		isInvalid: function(input) {
-			var iillegalCharacters = input.value.match(/[^0-9]/g);
-			return iillegalCharacters ? true : false;
+            return show(input);
 		},
-		invalidityMessage: 'Solo se aceptan caracteres numéricos',
-		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(2)')
-	}
+		invalidityMessage: 'Necesita al menos de 2 caracteres sdassds',
+		element: document.querySelector('label[for="fileinput"] .input-requirements li:nth-child(1)')
+	},
 ];
+
 
 
 var passwordValidityChecks = [
@@ -246,24 +219,13 @@ var passwordRepeatValidityChecks = [
 	Also sets which array of validity checks to use for that input
 
 ---------------------------- */
-var wecargoInput = document.getElementById('wecargo');
-var weempresaInput = document.getElementById('weempresa');
-var wedireccionInput = document.getElementById('wedireccion');
-var apellidoInput = document.getElementById('apellido');
-
-wecargoInput.CustomValidation = new CustomValidation(wecargoInput);
-wecargoInput.CustomValidation.validityChecks = wecargoValidityChecks;
-
-weempresaInput.CustomValidation = new CustomValidation(weempresaInput);
-weempresaInput.CustomValidation.validityChecks = weempresaValidityChecks;
-
-wedireccionInput.CustomValidation = new CustomValidation(wedireccionInput);
-wedireccionInput.CustomValidation.validityChecks = wedireccionValidityChecks;
+var imagenInput = document.getElementById('fileinput');
 
 
+imagenInput.CustomValidation = new CustomValidation(imagenInput);
+imagenInput.CustomValidation.validityChecks = imagenValidityChecks;
 
-apellidoInput.CustomValidation = new CustomValidation(apellidoInput);
-apellidoInput.CustomValidation.validityChecks = apellidoValidityChecks;
+
 
 
 
