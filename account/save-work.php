@@ -11,10 +11,19 @@ $imes = $mysqli->escape_string($_POST['imes']);
 $fanio = $mysqli->escape_string($_POST['fanio']);
 $fmes = $mysqli->escape_string($_POST['fmes']);
 
+$orderdate=$mysqli->escape_string($_POST['fecha']);
 
+$orderdate = explode('/', $orderdate);
+echo $month = $orderdate[0];
+echo $day   = $orderdate[1];
+echo $year  = $orderdate[2];
+
+
+/*
 $mysqli->query("INSERT INTO tbl_workexp(cod_alumno,col_cargo,col_empresa,col_direccion,col_imes,col_ianio,col_fmes,col_fanio)
 VALUES('$_SESSION[cod]','$cargo','$empresa','$direccion','$imes','$ianio','$fmes','$fanio')");
 
 
 
     header("location: ../work.php");
+*/

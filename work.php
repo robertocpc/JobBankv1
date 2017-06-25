@@ -21,8 +21,7 @@ include './header.php';
                             <label class="title">Añadir Experiencia Laboral : </label><br>
                             <label for="wecargo">
                                 <span class="stag">Cargo:  </span>
-                                <input id="wecargo" name="wecargo" 
-                                class="sinput" type="text" name="cargo" required>
+                                <input id="wecargo"class="sinput" type="text" name="cargo" required>
                                 <ul class="input-requirements">
                                     <li>Debe contener almenos 2 caracteres</li>
                                 </ul>
@@ -30,14 +29,14 @@ include './header.php';
                             </label>
                             <label for="weempresa">
                                 <span class="stag">Empresa/Institución:  </span>
-                                <input id="weempresa" name="weempresa" class="sinput" type="text" name="empresa" required>
+                                <input id="weempresa" class="sinput" type="text" name="empresa" required>
                                 <ul class="input-requirements">
                                     <li>Debe contener almenos 2 caracteres</li>
                                 </ul>
                             </label>
                             <label for="wedireccion">
                                 <span class="stag">Dirección:  </span>
-                                <input id="wedireccion" name="direccion" class="sinput" type="text" name="direccion" required>
+                                <input id="wedireccion" class="sinput" type="text" name="direccion" required>
                                 <ul class="input-requirements">
                                     <li>Debe contener almenos 2 caracteres</li>
                                 </ul>
@@ -98,7 +97,23 @@ include './header.php';
                                 }
                             ?>
                             </select><br>
-                            <input class="buttonefex1" type="submit" value="Guardar Cambios">
+                            <label for="box">
+                                <span class="stag">Fecha </span>
+                                <input id="box" name="fecha" type="date" class="sinput datepicker" required>
+                                <ul class="input-requirements">
+                                    <li>Debe contener almenos 2 caracteres</li>
+                                </ul>
+                                <input type="hidden" id="day" name="day" value="" />
+                                <input type="hidden" id="month" name="month" value="" />
+                                <input type="hidden" id="year" name="year" value="" /> 
+                            </label><br>
+                            
+                            <label for="box2">
+                                <span class="stag">Fecha </span>
+                                <input id="box2" name="desde" type="date" class="sinput" >
+                            </label><br>
+
+                            <input class="buttonefex1" type="submit" name="submit" value="Guardar Cambios">
                         </form>
 
                     </div>
@@ -134,13 +149,52 @@ include './header.php';
             </div>
         </div>
     </body>
-    <script src="./scriptw.js"></script>
-    <script 
 
-    document.getElementsByName('ianio')[0].onchange = function() {
-     if (this.value=='blank') alert('Select something !');
+    <script>
+        $("#box").datepicker({
+        onSelect: function(dateText) {
+            var tempArray = dateText.spit('/'); // not sure if you are using - or /
+            var day = $tempArray[0];
+            var month = $tempArray[1];
+            var year = $tempArray[2];
+            // add that to the hidden values
+        $("#day").attr("value", day); // set the day value
+        $("#month").attr("value", month); // month
+        $("#year").attr("value", year); // year
+        }
+        document.write(day);
+        });
+    </script>
+
+    <script src="./scriptw.js"></script>
+    <link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" 
+    type="text/css"> 
+<script src="./codebase/dhtmlxcalendar.js"></script>
+<script src="./scriptdate.js"></script>
+    <script> 
+
+    
+
+
+var d = myCalendar.getDate(true);
+document.write(d); // "2013-03-01"
+
+function verss(){
+    alert("funcioanaa");
+var input = document.getElementById( 'box' ).value;
+var d = new Date( input );
+
+if ( !!d.valueOf() ) { // Valid date
+    year = d.getFullYear();
+    month = d.getMonth();
+    day = d.getDate();
+    document.write("funcioanaa");
+} else { /* Invalid date */ }
 }
-    ></script>
+
+
+    
+    </script>
    
 
 </html>

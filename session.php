@@ -16,24 +16,22 @@ include './header.php';
                 <div class="tab_derecha">
                     <div class="tab_panel shadow">
                         <div class="alignleft pic edit-profile">
-                            <form action="./account/upload-image.php" id="uploadform" enctype="multipart/form-data" method="post">                           
+                            <form name="uploadform" action="./account/upload-image.php" id="uploadform" enctype="multipart/form-data" method="post">                           
                                 <?php
                                     $result=$mysqli->query("SELECT * FROM tbl_egresado WHERE cod_alumno='$_SESSION[cod]'");
                                     $user = $result->fetch_assoc();
                                     if(isset($user['col_imgperfil'])){
-                                        echo "<img src='data:image/jpg;base64,".base64_encode($user['col_imgperfil'])."' height='160px'>";
+                                        echo "<img src='data:image/jpg;base64,".base64_encode($user['col_imgperfil'])."' height='200px' width='190px'>";
                                     }
                                     else{
                                         echo "<img src='./img/profimage.png' height='160px'>";
                                     }
                                 ?>
-                                <label class="edit" for="fileinput">
-                                    <input id="fileinput" class="file" type="file" name="image" onchange="show(this)" required>
-                                    <ul class="input-requirements">
-                                        <li>Debe contener almenos 2 caracteres</li>
-                                    </ul>
+                                <label class="edit" for="fileinput" title="Solo se admite imagenes .jpg .png">
+                                    <input id="fileinput" class="file" type="file" name="image" required>
+                                    
 
-                                </label><br>
+                                </label>
                                 <input class="buttonefex1" type="submit" name="submit" value="subir">
                             </form>
                         </div>
@@ -59,7 +57,10 @@ include './header.php';
             </div>
         </div>
     </body>
+    <script src="./scriptsession.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
 
 
@@ -68,7 +69,7 @@ include './header.php';
         popup.classList.toggle("show");
     }
 
-    function showFileSize() {
+    function showFileSizes() {
     var input, file;
 
     if (!window.FileReader) {
@@ -112,7 +113,10 @@ function show(input) {
         var fileName = input.files[0].name;
         var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
         var sign;
-
+        var input = document.getElementById('fileinput');
+        file = input.files[0]; console.log(file);
+        //bodyAppend("p", "File " + file.name + " is " + file.size + " bytes in size");
+       
         
 
         if ($.inArray(fileNameExt, validExtensions) == -1) {
@@ -132,6 +136,14 @@ function show(input) {
             showFileSize();
         }
         }
+
+         if(file.size>1000){
+            alert("Es d)emasiado");
+        }
+        else{
+            bodyAppend("p","Suficiente");
+        }
+
     }
 
 

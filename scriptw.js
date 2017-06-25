@@ -116,126 +116,59 @@ var wedireccionValidityChecks = [
 ];
 
 
-var usernameValidityChecks = [
+var startdateValidityChecks = [
 	{
 		isInvalid: function(input) {
-			return input.value.length < 2 | input.value.length > 35;
+			return checkDate(input);
 		},
 		invalidityMessage: 'Necesita al menos de 2 caracteres ',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^A-Za-z ]/g);
-			return illegalCharacters ? true : false;
-		},
-		invalidityMessage: 'Solo los caracteres alfabéticos estan permitidos',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(2)')
-	}
-];
-var apellidoValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 2 | input.value.length > 35;
-		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres',
-		element: document.querySelector('label[for="apellido"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^A-Za-z ]/g);
-			return illegalCharacters ? true : false;
-		},
-		invalidityMessage: 'Solo los caracteres alfabéticos estan permitidos',
-		element: document.querySelector('label[for="apellido"] .input-requirements li:nth-child(2)')
+		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
 	}
 ];
 
-var emailValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return validateForm();
-		},
-		invalidityMessage: 'No es un email válido',
-		element: document.querySelector('label[for="email"] .input-requirements li:nth-child(1)')
-	}
-];
+  function checkDate(field)
+  {
+    var allowBlank = true;
+    var minYear = 1902;
+    var maxYear = (new Date()).getFullYear();
 
-function validateForm() {
-    var x = document.forms["registration"]["email"].value;
-    var atpos = x.indexOf("@");
-    var dotpos = x.lastIndexOf(".");
-    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-        //alert("Not a valid e-mail address");
-        return true;
+    var errorMsg = "";
+	var days=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+
+    // regular expression to match required date format
+    re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+
+    if(field.value != '') {
+      if(regs = field.value.match(re)) {
+		var maxday=days[regs[2]-1];
+
+                    if(regs[2]==2){
+                        if(regs[3]%4==0){
+                            maxday=maxday+1;                                
+                        }
+                    }
+        if(regs[1] < 1 || regs[1]>maxday) {
+          return true;//errorMsg = "Invalid value for day: " + regs[1];
+        } else if(regs[2] < 1 || regs[2] > 12) {
+          return true;//errorMsg = "Invalid value for month: " + regs[2];
+        } else if(regs[3] < minYear || regs[3] > maxYear) {
+          return true;//errorMsg = "Invalid value for year: " + regs[3] + " - must be between " + minYear + " and " + maxYear;
+        }
+      } else {
+        return true;//errorMsg = "Invalid date format: " + field.value;
+      }
+    } else if(!allowBlank) {
+      return true;//errorMsg = "Empty date not allowed!";
     }
-}
+	/*
+    if(errorMsg != "") {
+      alert(errorMsg);
+      field.focus();
+      return false;
+    }*/
 
-var telefonoValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 3 | input.value.length > 15;
-		},
-		invalidityMessage: 'Tiene que tener entre 3-15 digitos',
-		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(1)')
-	},
-    {
-		isInvalid: function(input) {
-			var iillegalCharacters = input.value.match(/[^0-9]/g);
-			return iillegalCharacters ? true : false;
-		},
-		invalidityMessage: 'Solo se aceptan caracteres numéricos',
-		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(2)')
-	}
-];
-
-
-var passwordValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 8 | input.value.length > 100;
-		},
-		invalidityMessage: 'This input needs to be between 8 and 100 characters',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			return !input.value.match(/[0-9]/g);
-		},
-		invalidityMessage: 'At least 1 number is required',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(2)')
-	},
-	{
-		isInvalid: function(input) {
-			return !input.value.match(/[a-z]/g);
-		},
-		invalidityMessage: 'At least 1 lowercase letter is required',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(3)')
-	},
-	{
-		isInvalid: function(input) {
-			return !input.value.match(/[A-Z]/g);
-		},
-		invalidityMessage: 'At least 1 uppercase letter is required',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(4)')
-	},
-	{
-		isInvalid: function(input) {
-			return !input.value.match(/[\!\@\#\$\%\^\&\*]/g);
-		},
-		invalidityMessage: 'You need one of the required special characters',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(5)')
-	}
-];
-
-var passwordRepeatValidityChecks = [
-	{
-		isInvalid: function() {
-			return passwordRepeatInput.value != passwordInput.value;
-		},
-		invalidityMessage: 'This password needs to match the first one'
-	}
-];
+    return false;
+  }
 
 
 /* ----------------------------
@@ -249,7 +182,7 @@ var passwordRepeatValidityChecks = [
 var wecargoInput = document.getElementById('wecargo');
 var weempresaInput = document.getElementById('weempresa');
 var wedireccionInput = document.getElementById('wedireccion');
-var apellidoInput = document.getElementById('apellido');
+var startdateInput = document.getElementById('box');
 
 wecargoInput.CustomValidation = new CustomValidation(wecargoInput);
 wecargoInput.CustomValidation.validityChecks = wecargoValidityChecks;
@@ -262,8 +195,8 @@ wedireccionInput.CustomValidation.validityChecks = wedireccionValidityChecks;
 
 
 
-apellidoInput.CustomValidation = new CustomValidation(apellidoInput);
-apellidoInput.CustomValidation.validityChecks = apellidoValidityChecks;
+startdateInput.CustomValidation = new CustomValidation(startdateInput);
+startdateInput.CustomValidation.validityChecks = startdateValidityChecks;
 
 
 
@@ -275,11 +208,8 @@ apellidoInput.CustomValidation.validityChecks = apellidoValidityChecks;
 ---------------------------- */
 
 var inputs = document.querySelectorAll('input:not([type="submit"])');
-var ianio = document.getElementById('ianio');
-var selectedValue = selects.options[selects.selectedIndex].value;// will gives u 2
 
-document.write(ianio[1]);
-document.getElementById("demo").innerHTML = selectedValue;
+
 
 var submit = document.querySelector('input[type="submit"');
 var form = document.getElementById('regworkexp');
