@@ -123,20 +123,77 @@ var startdateValidityChecks = [
 		},
 		invalidityMessage: 'Necesita al menos de 2 caracteres ',
 		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
+	},
+	{
+		isInvalid: function(input) {
+			return true;
+		},
+		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
 	}
 ];
 
+var finaldateValidityChecks = [
+	{
+		isInvalid: function(input) {
+			return checkDate(input);
+		},
+		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		element: document.querySelector('label[for="box2"] .input-requirements li:nth-child(1)')
+	},
+	{
+		isInvalid: function(input) {
+			return verifydate(input);
+		},
+		invalidityMessage: 'La fecha final no debe ser inferior a la fecha de inicio',
+		element: document.querySelector('label[for="box2"] .input-requirements li:nth-child(1)')
+	}
+];
+
+
+	function verifydate(field){
+		var input=document.getElementById('box').value;
+		re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+		regd = input.match(re);
+		regs = field.value.match(re);
+		if(input!=''){
+			return compare(regd,regs);
+		}
+		else{
+			return false;
+		}
+		
+	}
   function checkDate(field)
   {
     var allowBlank = true;
     var minYear = 1902;
     var maxYear = (new Date()).getFullYear();
 
+
     var errorMsg = "";
 	var days=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
 
     // regular expression to match required date format
     re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+		dd = '0'+dd
+	} 
+
+	if(mm<10) {
+		mm = '0'+mm
+	} 
+
+	today = dd + '/' + mm + '/' + yyyy;
+
+	regd = today.match(re);
+	
 
     if(field.value != '') {
       if(regs = field.value.match(re)) {
@@ -147,11 +204,11 @@ var startdateValidityChecks = [
                             maxday=maxday+1;                                
                         }
                     }
-        if(regs[1] < 1 || regs[1]>maxday) {
+        if(regs[3] < minYear || regs[3] > maxYear)  {
           return true;//errorMsg = "Invalid value for day: " + regs[1];
         } else if(regs[2] < 1 || regs[2] > 12) {
           return true;//errorMsg = "Invalid value for month: " + regs[2];
-        } else if(regs[3] < minYear || regs[3] > maxYear) {
+        } else if(regs[1] < 1 || regs[1]>maxday) {
           return true;//errorMsg = "Invalid value for year: " + regs[3] + " - must be between " + minYear + " and " + maxYear;
         }
       } else {
@@ -166,8 +223,39 @@ var startdateValidityChecks = [
       field.focus();
       return false;
     }*/
+	return compare(regs,regd);
+	
+	
+  }
 
-    return false;
+  function compare(regs,regd){
+	if(regs[3]<=regd[3]){
+		if(regs[3]==regd[3]){
+			if(regs[2]<=regd[2]){
+				if(regs[2]==regd[2]){
+					if(regs[1]<=regd[1]){
+						return false;
+						
+					}
+					else{
+						return true;
+					}
+				}
+				else{
+					return false;
+				}
+			}
+			else{
+				return true;
+			}
+		}
+		else{
+			return false;
+		}
+	}
+	else{
+		return true;
+	}
   }
 
 
@@ -183,6 +271,7 @@ var wecargoInput = document.getElementById('wecargo');
 var weempresaInput = document.getElementById('weempresa');
 var wedireccionInput = document.getElementById('wedireccion');
 var startdateInput = document.getElementById('box');
+var finaldateInput = document.getElementById('box2');
 
 wecargoInput.CustomValidation = new CustomValidation(wecargoInput);
 wecargoInput.CustomValidation.validityChecks = wecargoValidityChecks;
@@ -193,7 +282,8 @@ weempresaInput.CustomValidation.validityChecks = weempresaValidityChecks;
 wedireccionInput.CustomValidation = new CustomValidation(wedireccionInput);
 wedireccionInput.CustomValidation.validityChecks = wedireccionValidityChecks;
 
-
+finaldateInput.CustomValidation = new CustomValidation(finaldateInput);
+finaldateInput.CustomValidation.validityChecks = finaldateValidityChecks;
 
 startdateInput.CustomValidation = new CustomValidation(startdateInput);
 startdateInput.CustomValidation.validityChecks = startdateValidityChecks;
@@ -220,6 +310,7 @@ function validate() {
 		inputs[i].CustomValidation.checkInput();
 	}
 }
+
 
 submit.addEventListener('click', validate);
 

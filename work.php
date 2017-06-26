@@ -41,77 +41,34 @@ include './header.php';
                                     <li>Debe contener almenos 2 caracteres</li>
                                 </ul>
                             </label>
-                            <p id="demo"></p>
-                            <label>
-                                <span class="stag">Desde: <?php $mydate=getdate(date("U"));
-                                $year=$mydate[year]; $month=date('m', strtotime('0 month'));?></span>
-                            </label>
-                            <select  id="ianio" class="ssinput" name="ianio" placeholder="Mes">
-                                <?php
-                                
-                                $res=mysqli_query($mysqli,"select * from tbl_anio");
-                                echo "<option value='' disabled selected>Año</option>";
-                                while($row=mysqli_fetch_array($res))
-                                {
-                                    ?>
-                                    <option value="<?php echo $row["cod_anio"];?>"><?php echo $row["col_anio"]; ?></option>
-                                    <?php
-                                }
-                            ?>
-                            </select>
-                            <select class="ssinput" name="imes" placeholder="Mes">
-                                <?php
-                                $res=mysqli_query($mysqli,"select * from tbl_meses");
-                                echo "<option value='' disabled selected>Mes</option>";
-                                while($row=mysqli_fetch_array($res))
-                                {
-                                    ?>
-                                    <option value="<?php echo $row["cod_meses"];?>"><?php echo $row["col_meses"]; ?></option>
-                                    <?php
-                                }
-                            ?>
-                            </select><br>
-                            <label><span class="stag">Hasta: </span></label>
-                            <select class="ssinput" name="fanio" placeholder="Mes">
-                                <?php
-                                
-                                $res=mysqli_query($mysqli,"select * from tbl_anio");
-                                echo "<option value='' disabled selected>Año</option>";
-                                while($row=mysqli_fetch_array($res))
-                                {
-                                    ?>
-                                    <option value="<?php echo $row["cod_anio"];?>"><?php echo $row["col_anio"]; ?></option>
-                                    <?php
-                                }
-                            ?>
-                            </select>
-                            <select class="ssinput" name="fmes" placeholder="Mes">
-                                <?php
-                                $res=mysqli_query($mysqli,"select * from tbl_meses");
-                                echo "<option value='' disabled selected>Mes</option>";
-                                while($row=mysqli_fetch_array($res))
-                                {
-                                    ?>
-                                    <option value="<?php echo $row["cod_meses"];?>"><?php echo $row["col_meses"]; ?></option>
-                                    <?php
-                                }
-                            ?>
-                            </select><br>
+                            
+                           
                             <label for="box">
-                                <span class="stag">Fecha </span>
-                                <input id="box" name="fecha" type="date" class="sinput datepicker" required>
+                                <span class="stag">Desde </span>
+                                <input id="box" name="fecha" type="date" class="sinput datepicker" onclick="pruebas()"  required >
                                 <ul class="input-requirements">
                                     <li>Debe contener almenos 2 caracteres</li>
                                 </ul>
-                                <input type="hidden" id="day" name="day" value="" />
-                                <input type="hidden" id="month" name="month" value="" />
-                                <input type="hidden" id="year" name="year" value="" /> 
-                            </label><br>
+                            </label>
+
+                            <span>Actualmente trabajo aqui: </span>
+                            <label class="switch">
+                            <input type="checkbox" onchange="yesnoCheck()" id="yesCheck">
+                            <div class="slider round"></div>
+                            </label><br><br>
                             
-                            <label for="box2">
-                                <span class="stag">Fecha </span>
-                                <input id="box2" name="desde" type="date" class="sinput" >
-                            </label><br>
+                            <label for="box2" id="hidde">
+                                <span class="stag">Hasta </span>
+                                <input id="box2" name="fecha2" type="date" class="sinput datepicker" required>
+                                <ul class="input-requirements">
+                                    <li>Debe contener almenos 2 caracteres</li>
+                                    <li>Debe contener almenos 2 caracteres</li>
+                                </ul>
+                            </label>
+                            
+                                <br>
+                            
+                            
 
                             <input class="buttonefex1" type="submit" name="submit" value="Guardar Cambios">
                         </form>
@@ -151,19 +108,33 @@ include './header.php';
     </body>
 
     <script>
-        $("#box").datepicker({
-        onSelect: function(dateText) {
-            var tempArray = dateText.spit('/'); // not sure if you are using - or /
-            var day = $tempArray[0];
-            var month = $tempArray[1];
-            var year = $tempArray[2];
-            // add that to the hidden values
-        $("#day").attr("value", day); // set the day value
-        $("#month").attr("value", month); // month
-        $("#year").attr("value", year); // year
-        }
-        document.write(day);
-        });
+
+     
+
+var d = myCalendar.getDate(true);
+alert(d); // "2013-03-01"
+
+       
+
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('hidde').style.display = 'none';
+        document.getElementById('box2').value = d;
+    }
+    else {
+    document.getElementById('hidde').style.display = '';
+    document.getElementById('box2').value = '';
+    }
+}
+
+function pruebass()
+{
+    var d = myCalendar.getDate(true);
+    input[0].CustomValidation.checkInput();
+    alert(d);
+
+}
+
     </script>
 
     <script src="./scriptw.js"></script>
@@ -171,30 +142,6 @@ include './header.php';
     type="text/css"> 
 <script src="./codebase/dhtmlxcalendar.js"></script>
 <script src="./scriptdate.js"></script>
-    <script> 
-
-    
-
-
-var d = myCalendar.getDate(true);
-document.write(d); // "2013-03-01"
-
-function verss(){
-    alert("funcioanaa");
-var input = document.getElementById( 'box' ).value;
-var d = new Date( input );
-
-if ( !!d.valueOf() ) { // Valid date
-    year = d.getFullYear();
-    month = d.getMonth();
-    day = d.getDate();
-    document.write("funcioanaa");
-} else { /* Invalid date */ }
-}
-
-
-    
-    </script>
    
 
 </html>

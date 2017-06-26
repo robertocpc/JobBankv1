@@ -6,24 +6,30 @@ include '../db.php';
 $cargo = $mysqli->escape_string($_POST['cargo']);
 $empresa = $mysqli->escape_string($_POST['empresa']);
 $direccion = $mysqli->escape_string($_POST['direccion']);
-$ianio = $mysqli->escape_string($_POST['ianio']);
-$imes = $mysqli->escape_string($_POST['imes']);
-$fanio = $mysqli->escape_string($_POST['fanio']);
-$fmes = $mysqli->escape_string($_POST['fmes']);
-
-$orderdate=$mysqli->escape_string($_POST['fecha']);
-
-$orderdate = explode('/', $orderdate);
-echo $month = $orderdate[0];
-echo $day   = $orderdate[1];
-echo $year  = $orderdate[2];
 
 
-/*
-$mysqli->query("INSERT INTO tbl_workexp(cod_alumno,col_cargo,col_empresa,col_direccion,col_imes,col_ianio,col_fmes,col_fanio)
-VALUES('$_SESSION[cod]','$cargo','$empresa','$direccion','$imes','$ianio','$fmes','$fanio')");
+$sorderdate=$mysqli->escape_string($_POST['fecha']);
+
+$sorderdate = explode('/', $sorderdate);
+$smonth = $sorderdate[1];
+$sday   = $sorderdate[0];
+$syear  = $sorderdate[2];
+
+
+$forderdate=$mysqli->escape_string($_POST['fecha2']);
+
+$forderdate = explode('/', $forderdate);
+$fmonth = $forderdate[1];
+$fday   = $forderdate[0];
+$fyear  = $forderdate[2];
+
+
+
+
+$mysqli->query("INSERT INTO tbl_workexp(cod_alumno,col_cargo,col_empresa,col_direccion,col_idia,
+col_imes,col_ianio,col_fdia,col_fmes,col_fanio)
+VALUES('$_SESSION[cod]','$cargo','$empresa','$direccion','$sday','$smonth','$syear','$fday','$fmonth','$fyear')");
 
 
 
     header("location: ../work.php");
-*/
