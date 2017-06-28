@@ -5,7 +5,13 @@ include './header.php';
 ?>
     <div id="showcase">
         <div class="container sub1">
+
+            <h1 id="titulo">BOLSA DE TRABAJO</h1>
+            
             <h1>Escuela Profesional de Ingeniería en Informática y Sistemas</h1>
+
+            
+
             <center><h3>Universidad Nacional Jorge Basadre Grohmann</h3></center>
             <p></p>
         </div>

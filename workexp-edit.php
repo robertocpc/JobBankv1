@@ -7,6 +7,7 @@ include './header.php';
     $result = $mysqli->query("SELECT * FROM tbl_workexp WHERE cod_workexp='$id'");
     $user = $result->fetch_assoc();
 ?>
+
         <div class="container">
         
             <div class="formulario">
@@ -14,91 +15,133 @@ include './header.php';
                 <div class="tab_izquierda shadow">
                     <button onclick="location.href = './session.php';" class="efex_button1">Información Personal</button><br>
                     <button onclick="location.href = './index.php';" class="efex_button1">Capacitaciones</button><br>
-                    <button onclick="location.href = './index.php';" class="efex_button1">Especializaciones</button><br>
+                    <button onclick="location.href = './addesp.php';" class="efex_button1">Especializaciones</button><br>
                     <button onclick="location.href = './work.php';" class="efex_button1 selected">Experiencia Laboral</button><br>
                             
                     <button onclick="location.href = './index.php';" class="efex_button1">Bolsa de Trabajo</button>
                 </div>
                 <div class="tab_derecha">
-                    <div class="tab_panel shadow workexp">
-                        <form action="./account/edit-work.php" method="post">
+                    <div class="tab_panel shadow workexp edit-profile">
+                        
+                        <form  onload="doOnLoad();" name="regworkexp" id="regworkexp" action="./account/edit-work.php" method="post">
                             <label class="title">Añadir Experiencia Laboral : </label><br>
-                            <label><span class="stag">Cargo:  </span></label><input class="sinput" type="text" name="cargo" value="<?php echo $user['col_cargo']; ?>"><br>
-                            <label><span class="stag">Empresa/Institución:  </span><input class="sinput" type="text" name="empresa" value="<?php echo $user['col_empresa']; ?>"></label><br>
-                            <label><span class="stag">Dirección:  </span><input class="sinput" type="text" name="direccion" value="<?php echo $user['col_direccion']; ?>"></label><br>
-                            <label><span class="stag">Desde: <?php $mydate=getdate(date("U"));
-    $year=$mydate[year]; $month=date('m', strtotime('0 month'));?></span></label>
-                            <select  class="ssinput" name="ianio" placeholder="Mes">
-                                <?php
-                                
-                                $res=mysqli_query($mysqli,"select * from tbl_anio");
-                                $ianio = $mysqli->query("SELECT * FROM tbl_anio WHERE cod_anio='$user[col_ianio]'");
-                                $row1 = $ianio->fetch_assoc();
-                                echo "<option value='".$user['col_ianio']."' selected>".$row1['col_anio']."</option>";
-                                while($row=mysqli_fetch_array($res))
-                                {
-                                    ?>
-                                    <option value="<?php echo $row["cod_anio"];?>"><?php echo $row["col_anio"]; ?></option>
-                                    <?php
-                                }
-                            ?>
-                            </select>
-                            <select class="ssinput" name="imes" placeholder="Mes">
-                                <?php
-                                $imes = $mysqli->query("SELECT * FROM tbl_meses WHERE cod_meses='$user[col_imes]'");
-                                $row2 = $imes->fetch_assoc();
-                                echo "<option value='".$user['col_imes']."' selected>".$row2['col_meses']."</option>";
-                                
-                                
-                                $res=mysqli_query($mysqli,"select * from tbl_meses");
-                                
-                                while($row=mysqli_fetch_array($res))
-                                {
-                                    ?>
-                                    <option value="<?php echo $row["cod_meses"];?>"><?php echo $row["col_meses"]; ?></option>
-                                    <?php
-                                }
-                            ?>
-                            </select><br>
-                            <label><span class="stag">Hasta: </span></label>
-                            <select class="ssinput" name="fanio" placeholder="Mes">
-                                <?php
-                                
-                                $res=mysqli_query($mysqli,"select * from tbl_anio");
-                                $ianio = $mysqli->query("SELECT * FROM tbl_anio WHERE cod_anio='$user[col_fanio]'");
-                                $row3 = $ianio->fetch_assoc();
-                                echo "<option value='".$user['col_fanio']."' selected>".$row3['col_anio']."</option>";
-                                while($row=mysqli_fetch_array($res))
-                                {
-                                    ?>
-                                    <option value="<?php echo $row["cod_anio"];?>"><?php echo $row["col_anio"]; ?></option>
-                                    <?php
-                                }
-                            ?>
-                            </select>
-                            <select class="ssinput" name="fmes" placeholder="Mes">
-                                <?php
-                                $imes = $mysqli->query("SELECT * FROM tbl_meses WHERE cod_meses='$user[col_fmes]'");
-                                $row4 = $imes->fetch_assoc();
-                                echo "<option value='".$user['col_fmes']."' selected>".$row4['col_meses']."</option>";
-                                                               
-                                $res=mysqli_query($mysqli,"select * from tbl_meses");
-                                while($row=mysqli_fetch_array($res))
-                                {
-                                    ?>
-                                    <option value="<?php echo $row["cod_meses"];?>"><?php echo $row["col_meses"]; ?></option>
-                                    <?php
-                                }
-                            ?>
-                            </select><br>
-                            <input class="buttonefex1" type="submit" value="Guardar Cambios">
+                            <label for="wecargo">
+                                <span class="stag">Cargo:  </span>
+                                <input id="wecargo"class="sinput" type="text" name="cargo" value="<?php echo $user['col_cargo']?>" required>
+                                <ul class="input-requirements">
+                                    <li>Debe contener almenos 2 caracteres</li>
+                                </ul>
+                        
+                            </label>
+                            <label for="weempresa">
+                                <span class="stag">Empresa/Institución:  </span>
+                                <input id="weempresa" class="sinput" type="text" name="empresa" value="<?php echo $user['col_empresa']?>" required>
+                                <ul class="input-requirements">
+                                    <li>Debe contener almenos 2 caracteres</li>
+                                </ul>
+                            </label>
+                            <label for="wedireccion">
+                                <span class="stag">Dirección:  </span>
+                                <input id="wedireccion" class="sinput" type="text" name="direccion" value="<?php echo $user['col_direccion']?>" required>
+                                <ul class="input-requirements">
+                                    <li>Debe contener almenos 2 caracteres</li>
+                                </ul>
+                            </label>
+                            
+                           
+                            <label for="box">
+                                <span class="stag">Desde </span>
+                                <input id="box" name="fecha" type="text" 
+                                class="sinput datepicker" value="<?php if($user['col_idia']<10)
+                                {echo "0".$user['col_idia'];}
+                                else{echo $user['col_idia'];}echo "/";if($user['col_imes']<10)
+                                {echo "0".$user['col_imes'];}
+                                else{echo $user['col_imes'];}echo "/".$user['col_ianio'];?>"  required >
+                                <ul class="input-requirements">
+                                    <li>Debe contener almenos 2 caracteres</li>
+                                </ul>
+                            </label>
+
+                            <span>Actualmente trabajo aqui: </span>
+                            <label class="switch">
+                            <input type="checkbox"  name="checkwork" onchange="yesnoCheck()" id="yesCheck">
+                            <div class="slider round"></div>
+                            </label><br><br>
+                            
+                            <label for="box2" id="hidde">
+                                <span class="stag">Hasta </span>
+                                <input id="box2" name="fecha2" type="date" 
+                                class="sinput datepicker" value="<?php  if($user['col_actualtrab']!=1){if($user['col_fdia']<10)
+                                {echo "0".$user['col_fdia'];}
+                                else{echo $user['col_fdia'];}echo "/";if($user['col_fmes']<10)
+                                {echo "0".$user['col_fmes'];}
+                                else{echo $user['col_fmes'];}echo "/".$user['col_fanio'];}else{$currentDateTime = date('d/m/Y');echo $currentDateTime;}?>" required>
+                                <ul class="input-requirements">
+                                    <li>Debe contener almenos 2 caracteres</li>
+                                    <li>Debe contener almenos 2 caracteres</li>
+                                </ul>
+                            </label>
+                            
+                                <br>
+
+
+                            <input class="buttonefex1" type="submit" name="submit" value="Guardar Cambios">
                         </form>
+
                     </div>
-                   
                 </div>
             </div>
         </div>
     </body>
+
+    <script>
+
+   
+var d = myCalendar.getDate(true);
+alert(d); // "2013-03-01"
+
+       
+
+function yesnoCheck() {
+    var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+		dd = '0'+dd
+	} 
+
+	if(mm<10) {
+		mm = '0'+mm
+	} 
+
+	today = dd + '/' + mm + '/' + yyyy;
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('hidde').style.display = 'none';
+        document.getElementById('box2').value = today;
+    }
+    else {
+    document.getElementById('hidde').style.display = '';
+    document.getElementById('box2').value = '';
+    }
+}
+
+function pruebass()
+{
+    var d = myCalendar.getDate(true);
+
+    alert(d);
+
+}
+
+    </script>
+
+    <script src="./scriptw.js"></script>
+    <link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" 
+    type="text/css"> 
+<script src="./codebase/dhtmlxcalendar.js"></script>
+<script src="./scriptdate.js"></script>
    
 
 </html>

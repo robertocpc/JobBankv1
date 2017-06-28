@@ -6,7 +6,7 @@ include '../db.php';
 $cargo = $mysqli->escape_string($_POST['cargo']);
 $empresa = $mysqli->escape_string($_POST['empresa']);
 $direccion = $mysqli->escape_string($_POST['direccion']);
-
+$checkwork = $mysqli->escape_string($_POST['checkwork']);
 
 $sorderdate=$mysqli->escape_string($_POST['fecha']);
 
@@ -23,12 +23,15 @@ $fmonth = $forderdate[1];
 $fday   = $forderdate[0];
 $fyear  = $forderdate[2];
 
-
+if($checkwork==true)
+    $curwork=1;
+else
+    $curwork=0; 
 
 
 $mysqli->query("INSERT INTO tbl_workexp(cod_alumno,col_cargo,col_empresa,col_direccion,col_idia,
-col_imes,col_ianio,col_fdia,col_fmes,col_fanio)
-VALUES('$_SESSION[cod]','$cargo','$empresa','$direccion','$sday','$smonth','$syear','$fday','$fmonth','$fyear')");
+col_imes,col_ianio,col_actualtrab, col_fdia,col_fmes,col_fanio)
+VALUES('$_SESSION[cod]','$cargo','$empresa','$direccion','$sday','$smonth','$syear','$curwork','$fday','$fmonth','$fyear')");
 
 
 

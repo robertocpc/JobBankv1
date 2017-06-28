@@ -8,6 +8,7 @@
 
 ---------------------------- */
 
+
 function CustomValidation(input) {
 	this.invalidities = [];
 	this.validityChecks = [];
@@ -63,6 +64,9 @@ CustomValidation.prototype = {
 	registerListener: function() { //register the listener here
 
 		var CustomValidation = this;
+		var startdateInput = document.getElementById('box');
+
+		
 
 		this.inputNode.addEventListener('keyup', function() {
 			CustomValidation.checkInput();
@@ -72,6 +76,8 @@ CustomValidation.prototype = {
 	}
 
 };
+
+
 
 
 
@@ -123,13 +129,6 @@ var startdateValidityChecks = [
 		},
 		invalidityMessage: 'Necesita al menos de 2 caracteres ',
 		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			return true;
-		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
-		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
 	}
 ];
 
@@ -154,6 +153,7 @@ var finaldateValidityChecks = [
 	function verifydate(field){
 		var input=document.getElementById('box').value;
 		re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+		//alert("verifyfield");
 		regd = input.match(re);
 		regs = field.value.match(re);
 		if(input!=''){
@@ -169,7 +169,7 @@ var finaldateValidityChecks = [
     var allowBlank = true;
     var minYear = 1902;
     var maxYear = (new Date()).getFullYear();
-
+	//alert("checkdata");
 
     var errorMsg = "";
 	var days=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
@@ -299,9 +299,10 @@ startdateInput.CustomValidation.validityChecks = startdateValidityChecks;
 
 var inputs = document.querySelectorAll('input:not([type="submit"])');
 
+var datein = document.querySelector('input[name="fecha"]');
+var datefn = document.querySelector('input[name="fecha2"]');
 
-
-var submit = document.querySelector('input[type="submit"');
+var submit = document.querySelector('input[type="submit"]');
 var form = document.getElementById('regworkexp');
 
 
@@ -311,7 +312,62 @@ function validate() {
 	}
 }
 
+datein.CustomValidation.checkInput();
+
+//datein.addEventListener('onClick',validate);	
+
+datein.addEventListener('onClick', function() {
+			datein.CustomValidation.checkInput();
+		});
+
+datefn.addEventListener('onClick', function() {
+			datefn.CustomValidation.checkInput();
+		});
 
 submit.addEventListener('click', validate);
 
 form.addEventListener('submit', validate);
+
+var myCalendar;
+		function doOnLoad() {
+			myCalendar = new dhtmlXCalendarObject("box2");
+            myCalendar.setDateFormat("%d/%m/%Y");
+            var dd = myCalendar.getFormatedDate();
+			myCalendar.attachEvent("onClick", function(d){
+				//var element = document.querySelector('label[for="box2"] li:nth-child(1)');
+                //var elementt = document.getElementById('box2');
+                dd = myCalendar.getFormatedDate(null,d);
+				datefn.CustomValidation.checkInput();
+                //element.classList.remove('valid');
+                //element.classList.add('invalid');
+                //var message = "holaa";
+                //elementt.setCustomValidity(dd);
+                
+                //alert(dd);
+                
+                /*var elementt = document.querySelector('input[type="date"]');
+                elementt.classList.remove('valid');
+                elementt.classList.add('invalid');*/
+                //alert("funciona");
+			});
+			myCalendar1 = new dhtmlXCalendarObject("box");
+            myCalendar1.setDateFormat("%d/%m/%Y");
+            var dd1 = myCalendar1.getFormatedDate();
+			myCalendar1.attachEvent("onClick", function(d){
+				//var element = document.querySelector('label[for="box2"] li:nth-child(1)');
+                //var elementt = document.getElementById('box2');
+                dd1 = myCalendar1.getFormatedDate(null,d);
+				datein.CustomValidation.checkInput();
+                //element.classList.remove('valid');
+                //element.classList.add('invalid');
+                //var message = "holaa";
+                //elementt.setCustomValidity(dd);
+                
+                //alert(dd);
+                
+                /*var elementt = document.querySelector('input[type="date"]');
+                elementt.classList.remove('valid');
+                elementt.classList.add('invalid');*/
+                //alert("funciona");
+			});
+		}

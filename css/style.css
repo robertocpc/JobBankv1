@@ -457,7 +457,7 @@ header .contacto{
 }
 
 .right{
-    float: left;
+    float: right;
     width:18%;
     margin-right: 20px;
 }
@@ -534,3 +534,15 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+/*UBICACION DE BOTON AÑADIR*/
+
+.slist .addbt{
+    float: right;
+    margin-right: 10px;
+}
+
+/*NOMBRE DE PROYECTO*/
+#titulo{
+    font-size: 45px;
+    font-weight: bold;
+}

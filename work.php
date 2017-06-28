@@ -9,73 +9,18 @@ include './header.php';
                 <div class="tab_izquierda shadow">
                     <button onclick="location.href = './session.php';" class="efex_button1">Información Personal</button><br>
                     <button onclick="location.href = './index.php';" class="efex_button1">Capacitaciones</button><br>
-                    <button onclick="location.href = './index.php';" class="efex_button1">Especializaciones</button><br>
+                    <button onclick="location.href = './listestudio.php';" class="efex_button1">Especializaciones</button><br>
                     <button onclick="location.href = './work.php';" class="efex_button1 selected">Experiencia Laboral</button><br>
                             
                     <button onclick="location.href = './index.php';" class="efex_button1">Bolsa de Trabajo</button>
                 </div>
                 <div class="tab_derecha">
-                    <div class="tab_panel shadow workexp edit-profile">
-                        
-                        <form  name="regworkexp" id="regworkexp" action="./account/save-work.php" method="post">
-                            <label class="title">Añadir Experiencia Laboral : </label><br>
-                            <label for="wecargo">
-                                <span class="stag">Cargo:  </span>
-                                <input id="wecargo"class="sinput" type="text" name="cargo" required>
-                                <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
-                                </ul>
-                        
-                            </label>
-                            <label for="weempresa">
-                                <span class="stag">Empresa/Institución:  </span>
-                                <input id="weempresa" class="sinput" type="text" name="empresa" required>
-                                <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
-                                </ul>
-                            </label>
-                            <label for="wedireccion">
-                                <span class="stag">Dirección:  </span>
-                                <input id="wedireccion" class="sinput" type="text" name="direccion" required>
-                                <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
-                                </ul>
-                            </label>
-                            
-                           
-                            <label for="box">
-                                <span class="stag">Desde </span>
-                                <input id="box" name="fecha" type="date" class="sinput datepicker" onclick="pruebas()"  required >
-                                <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
-                                </ul>
-                            </label>
-
-                            <span>Actualmente trabajo aqui: </span>
-                            <label class="switch">
-                            <input type="checkbox" onchange="yesnoCheck()" id="yesCheck">
-                            <div class="slider round"></div>
-                            </label><br><br>
-                            
-                            <label for="box2" id="hidde">
-                                <span class="stag">Hasta </span>
-                                <input id="box2" name="fecha2" type="date" class="sinput datepicker" required>
-                                <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
-                                    <li>Debe contener almenos 2 caracteres</li>
-                                </ul>
-                            </label>
-                            
-                                <br>
-                            
-                            
-
-                            <input class="buttonefex1" type="submit" name="submit" value="Guardar Cambios">
-                        </form>
-
-                    </div>
+                    
                     <div class="tab_panel workexp shadow slist">
-                        <label class="title">Listado :</label><br><br>
+                        <label class="title">Listado :</label>
+                        <a href="./addwork.php" class="buttonefex1 addbt"><img src="./imglogo/add.png" height="11px">  Añadir</a>
+                        <a href="./print-pdf.php?id=<?php echo $_SESSION['cod'];?>" class="buttonefex1 addbt"> Generar PDF</a>
+                        <br><br>
                         <?php
                         
                             $i=1;
@@ -92,7 +37,17 @@ include './header.php';
                             while( $row = $sql->fetch_assoc())
                                 {
                                 echo "<div class='left'><label><span class='slist'>".$i++." Cargo:  ".$row['col_cargo']."</span></label><br>
-                                <label><span class='slist'>   Empresa:  ".$row['col_empresa']."</span></label><br><br></div>
+                                <label><span class='slist'>   Empresa:  ".$row['col_empresa']."</span></label>
+                                <label><span class='slist'>   Desde:  ";if($row['col_idia']<10)
+                                {echo "0".$row['col_idia'];}
+                                else{echo $row['col_idia'];}echo "/";if($row['col_imes']<10)
+                                {echo "0".$row['col_imes'];}
+                                else{echo $row['col_imes'];}echo "/".$row['col_ianio'];echo "   hasta:   ";
+                                if($row['col_actualtrab']!=1){if($row['col_fdia']<10)
+                                {echo "0".$row['col_fdia'];}
+                                else{echo $row['col_fdia'];}echo "/";if($row['col_fmes']<10)
+                                {echo "0".$row['col_fmes'];}
+                                else{echo $row['col_fmes'];}echo "/".$row['col_fanio'];}else{$currentDateTime = date('d/m/Y');echo "  la actualidad";}echo "  </span></label><br><br><br></div>
                                 <div class='right'>
                                 <li><a class='workexp-eliminar' href='./workexp-edit.php?id=".$row['cod_workexp']."'><img src='./imglogo/edit-interface-sign.png' height='19px'></a></li>
                                 <li><a class='workexp-eliminar' href='./account/workexp-delete.php?id=".$row['cod_workexp']."'><img src='./imglogo/delete.png' height='19px'></a></li>
@@ -109,17 +64,30 @@ include './header.php';
 
     <script>
 
-     
-
+   
 var d = myCalendar.getDate(true);
 alert(d); // "2013-03-01"
 
        
 
 function yesnoCheck() {
+    var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+		dd = '0'+dd
+	} 
+
+	if(mm<10) {
+		mm = '0'+mm
+	} 
+
+	today = dd + '/' + mm + '/' + yyyy;
     if (document.getElementById('yesCheck').checked) {
         document.getElementById('hidde').style.display = 'none';
-        document.getElementById('box2').value = d;
+        document.getElementById('box2').value = today;
     }
     else {
     document.getElementById('hidde').style.display = '';
@@ -130,7 +98,7 @@ function yesnoCheck() {
 function pruebass()
 {
     var d = myCalendar.getDate(true);
-    input[0].CustomValidation.checkInput();
+
     alert(d);
 
 }

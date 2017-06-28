@@ -9,7 +9,7 @@ include './header.php';
                 <div class="tab_izquierda shadow">
                     <button onclick="location.href = './session.php';" class="efex_button1 selected">Información Personal</button><br>
                     <button onclick="location.href = './index.php';" class="efex_button1">Capacitaciones</button><br>
-                    <button onclick="location.href = './index.php';" class="efex_button1">Especializaciones</button><br>
+                    <button onclick="location.href = './listestudio.php';" class="efex_button1">Especializaciones</button><br>
                     <button onclick="location.href = './work.php';" class="efex_button1">Experiencia Laboral</button><br>
                     <button onclick="location.href = './index.php';" class="efex_button1">Bolsa de Trabajo</button>
                 </div>

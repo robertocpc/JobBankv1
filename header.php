@@ -6,14 +6,15 @@ session_start();
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
         <link rel="stylesheet" href="./css/style.css">
         
         <title>Esis</title>
     </head>
     <?php if($_SESSION['windows']==5){
-                echo "<body class='theme1'>"; }
+                echo "<body onload='doOnLoad();' class='theme1'>"; }
         else{
-            echo "<body class='theme2'>";}
+            echo "<body onload='doOnLoad();' class='theme2'>";}
     ?>
         <header>    
             <div class="container">
