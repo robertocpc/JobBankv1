@@ -3,12 +3,6 @@
 /* User login process, checks if user exists and password is correct */
 session_start();
 include '../db.php';
-$host = 'localhost';
-$user = 'root';
-$pass = '4kegezvc';
-$db = 'ISWork';
-$mysqli = new mysqli($host,$user,$pass,$db) or die($mysqli->error);
-
 
 // Escape email to protect against SQL injections
 $username = $mysqli->escape_string($_POST['username']);

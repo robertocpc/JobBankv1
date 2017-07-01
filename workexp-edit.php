@@ -1,25 +1,15 @@
 <?php
-include './db.php';
-include './header.php';
+session_start();
+$_SESSION['page']=4;
+require './log_header.php';
 
     $id=$_REQUEST['id'];
     $_SESSION['workexpid']=$id;
     $result = $mysqli->query("SELECT * FROM tbl_workexp WHERE cod_workexp='$id'");
     $user = $result->fetch_assoc();
-?>
 
-        <div class="container">
-        
-            <div class="formulario">
-                
-                <div class="tab_izquierda shadow">
-                    <button onclick="location.href = './session.php';" class="efex_button1">Información Personal</button><br>
-                    <button onclick="location.href = './index.php';" class="efex_button1">Capacitaciones</button><br>
-                    <button onclick="location.href = './addesp.php';" class="efex_button1">Especializaciones</button><br>
-                    <button onclick="location.href = './work.php';" class="efex_button1 selected">Experiencia Laboral</button><br>
-                            
-                    <button onclick="location.href = './index.php';" class="efex_button1">Bolsa de Trabajo</button>
-                </div>
+
+?>
                 <div class="tab_derecha">
                     <div class="tab_panel shadow workexp edit-profile">
                         

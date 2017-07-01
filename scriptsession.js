@@ -96,6 +96,13 @@ var imagenValidityChecks = [
 	},
 	{
 		isInvalid: function(input) {
+			return selectimage(input);		
+		},
+		invalidityMessage: 'Por favor seleccione una imagen',
+		element: document.querySelector('label[for="fileinput"] .input-requirements li:nth-child(2)')
+	},
+	{
+		isInvalid: function(input) {
 			return showFileSize();		
 		},
 		invalidityMessage: 'La imagen excede el tamaño máximo',
@@ -132,6 +139,13 @@ var imagenValidityChecks = [
         }
     }
 
+function selectimage(input){
+	if (!input.files[0]) {
+        //bodyAppend("p", "Please select a file before clicking 'Load'");
+		return true;
+	}
+}
+
 function showFileSize() {
     var input, file;
     if (!window.FileReader) {
@@ -149,7 +163,7 @@ function showFileSize() {
     }
     else if (!input.files[0]) {
         //bodyAppend("p", "Please select a file before clicking 'Load'");
-		return true;
+		return false;
     }
     else {
          
@@ -193,6 +207,9 @@ var inputs = document.querySelectorAll('input:not([type="submit"])');
 var img = document.querySelector('input[type="file"]');
 var submit = document.querySelector('input[type="submit"');
 var form = document.getElementById('uploadform');
+
+var elementt = document.getElementById('fileinput');
+elementt.setCustomValidity("Funciona");
 
 
 function validate() {

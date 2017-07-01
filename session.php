@@ -1,18 +1,8 @@
 <?php
-include './db.php';
-include './header.php';
+session_start();
+$_SESSION['page']=1;
+require './log_header.php';
 ?>
-        <div class="container">
-        
-            <div class="formulario">
-                
-                <div class="tab_izquierda shadow">
-                    <button onclick="location.href = './session.php';" class="efex_button1 selected">Información Personal</button><br>
-                    <button onclick="location.href = './index.php';" class="efex_button1">Capacitaciones</button><br>
-                    <button onclick="location.href = './listestudio.php';" class="efex_button1">Especializaciones</button><br>
-                    <button onclick="location.href = './work.php';" class="efex_button1">Experiencia Laboral</button><br>
-                    <button onclick="location.href = './index.php';" class="efex_button1">Bolsa de Trabajo</button>
-                </div>
                 <div class="tab_derecha">
                     <div class="tab_panel shadow">
                         <div class="alignleft pic edit-profile">
@@ -21,10 +11,10 @@ include './header.php';
                                     $result=$mysqli->query("SELECT * FROM tbl_egresado WHERE cod_alumno='$_SESSION[cod]'");
                                     $user = $result->fetch_assoc();
                                     if(isset($user['col_imgperfil'])){
-                                        echo "<img src='data:image/jpg;base64,".base64_encode($user['col_imgperfil'])."' height='200px' width='190px'>";
+                                        echo "<img class='se-img-size' src='data:image/jpg;base64,".base64_encode($user['col_imgperfil'])."' height='200px' width='190px'>";
                                     }
                                     else{
-                                        echo "<img src='./img/profimage.png' height='160px'>";
+                                        echo "<img class='se-img-size' src='./img/profimage.png' height='160px'>";
                                     }
                                 ?>
                                 <label class="edit" for="fileinput" title="Solo se admite imagenes .jpg .png">

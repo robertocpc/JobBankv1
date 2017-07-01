@@ -1,19 +1,8 @@
 <?php
-include './db.php';
-include './header.php';
+session_start();
+$_SESSION['page']=3;
+require './log_header.php';
 ?>
-        <div class="container">
-        
-            <div class="formulario">
-                
-                <div class="tab_izquierda shadow">
-                    <button onclick="location.href = './session.php';" class="efex_button1">Información Personal</button><br>
-                    <button onclick="location.href = './index.php';" class="efex_button1">Capacitaciones</button><br>
-                    <button onclick="location.href = './listestudio.php';" class="efex_button1 selected">Especializaciones</button><br>
-                    <button onclick="location.href = './work.php';" class="efex_button1">Experiencia Laboral</button><br>
-                            
-                    <button onclick="location.href = './index.php';" class="efex_button1">Bolsa de Trabajo</button>
-                </div>
                 <div class="tab_derecha">
                     <div class="tab_panel shadow workexp edit-profile">
                         
@@ -23,7 +12,7 @@ include './header.php';
                                 <span class="stag">Instituto/Universidad:  </span>
                                 <input id="wecargo"class="sinput" type="text" name="cargo" required>
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
+                                    <li>Debe contener almenos 3 caracteres</li>
                                 </ul>
                         
                             </label>
@@ -31,7 +20,7 @@ include './header.php';
                                 <span class="stag">Grado:  </span>
                                 <input id="weempresa" class="sinput" type="text" name="empresa" required>
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
+                                    <li>Debe contener almenos 3 caracteres</li>
                                 </ul>
                             </label>
                             <label for="wedireccion">

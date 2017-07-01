@@ -352,6 +352,13 @@ header .contacto{
     width: 200px;
 }
 
+.se-img-size{
+    max-height: 200px;
+    min-height: 200px;
+    max-width: 190px;
+    min-width: 190px;
+}
+
 
 .tab_panel .alignleft form label{
     background-image: url("../imglogo/camera.png");

@@ -1,19 +1,8 @@
 <?php
-include './db.php';
-include './header.php';
+session_start();
+$_SESSION['page']=3;
+require './log_header.php';
 ?>
-        <div class="container">
-        
-            <div class="formulario">
-                
-                <div class="tab_izquierda shadow">
-                    <button onclick="location.href = './session.php';" class="efex_button1">Información Personal</button><br>
-                    <button onclick="location.href = './index.php';" class="efex_button1">Capacitaciones</button><br>
-                    <button onclick="location.href = './addesp.php';" class="efex_button1 selected">Especializaciones</button><br>
-                    <button onclick="location.href = './work.php';" class="efex_button1">Experiencia Laboral</button><br>
-                            
-                    <button onclick="location.href = './index.php';" class="efex_button1">Bolsa de Trabajo</button>
-                </div>
                 <div class="tab_derecha">
                     
                     <div class="tab_panel workexp shadow slist">
@@ -36,7 +25,8 @@ include './header.php';
               
                             while( $row = $sql->fetch_assoc())
                                 {
-                                echo "<div class='left'><label><span class='slist'>".$i++." Institución/Universidad:  ".$row['col_school']."</span></label><br>
+                                echo "<div class='left'><label><a href='./estudio-edit.php?id=".$row['cod_estudio']."'>Codigo: ".$row['cod_alumno']."</a>
+                                <br><span class='slist'>".$i++." Institución/Universidad:  ".$row['col_school']."</span></label><br>
                                 <label><span class='slist'>   Grado:  ".$row['col_grado']."</span></label>
                                 <label><span class='slist'>   Campo de Estudio:  ".$row['col_campest']."</span></label>
                                 <label><span class='slist'>   Año/Cursando:  ".$row['col_cursando']."</span></label>

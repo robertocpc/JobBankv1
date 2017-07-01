@@ -1,6 +1,6 @@
 <?php
-include './db.php';
-include './header.php';
+$_SESSION['page']=1;
+require './log_header.php';
 
 $id=$_REQUEST['id'];
     $_SESSION['estudio']=$id;
@@ -8,18 +8,6 @@ $id=$_REQUEST['id'];
     $user = $result->fetch_assoc();
 
 ?>
-        <div class="container">
-        
-            <div class="formulario">
-                
-                <div class="tab_izquierda shadow">
-                    <button onclick="location.href = './session.php';" class="efex_button1">Información Personal</button><br>
-                    <button onclick="location.href = './index.php';" class="efex_button1">Capacitaciones</button><br>
-                    <button onclick="location.href = './addesp.php';" class="efex_button1 selected">Especializaciones</button><br>
-                    <button onclick="location.href = './work.php';" class="efex_button1">Experiencia Laboral</button><br>
-                            
-                    <button onclick="location.href = './index.php';" class="efex_button1">Bolsa de Trabajo</button>
-                </div>
                 <div class="tab_derecha">
                     <div class="tab_panel shadow workexp edit-profile">
                         
