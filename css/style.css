@@ -98,10 +98,7 @@ header .contacto{
  #showcase h1,p,h3,h4{
      color: white;
  }
-#showcase .sub1{
-    padding-bottom: 10%;
-    padding-top: 10%;
-}
+
  #newsletter{
      padding: 3%;
      background-image:url("../img/opacity1.png");
@@ -112,12 +109,13 @@ header .contacto{
      float: left;
  }
 #newsletter form{
-    float: right;
+    float: left;
+    margin-left: 50px;
 }
 #newsletter input[type=search]{
     padding: 4px;
     height: 25px;
-    width: 250px;
+    width: 400px;
     border-radius: 5px;
 }
 #newsletter input[type=search]:hover{
