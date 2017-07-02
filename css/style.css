@@ -112,14 +112,17 @@ header .contacto{
     float: left;
     margin-left: 50px;
 }
-#newsletter input[type=search]{
+#newsletter #search{
     padding: 4px;
     height: 25px;
     width: 400px;
     border-radius: 5px;
 }
-#newsletter input[type=search]:hover{
+#newsletter #search:hover{
     border: 1.5px solid #26C6CE;
+}
+.table{
+    color: white;
 }
 #newsletter input[type=submit] {
     background-color: #0287cb;
