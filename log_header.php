@@ -26,6 +26,10 @@ include './header.php';
                     <?php
                     if($_SESSION['page']==5){$page='selected';}else{$page='';}
                     ?>
+                    <button onclick="location.href = './addpublic.php';" class="efex_button1 <?php echo $page;?>">Publicaciones</button><br>
+                    <?php
+                    if($_SESSION['page']==6){$page='selected';}else{$page='';}
+                    ?>
                     <button onclick="location.href = './index.php';" class="efex_button1">Bolsa de Trabajo</button>
 
                 </div>
