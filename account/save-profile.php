@@ -8,6 +8,14 @@ $nombre = $mysqli->escape_string($_POST['nombre']);
 $apellido = $mysqli->escape_string($_POST['apellido']);
 $email = $mysqli->escape_string($_POST['email']);
 $telefono = $mysqli->escape_string($_POST['telefono']);
+$sorderdate=$mysqli->escape_string($_POST['fecha']);
+
+$sorderdate = explode('/', $sorderdate);
+$smonth = $sorderdate[1];
+$sday   = $sorderdate[0];
+$syear  = $sorderdate[2];
+
+$date=$syear."-".$smonth."-".$sday;
 
 $_SESSION['user']=$nombre;
 $_SESSION['ape']=$apellido;

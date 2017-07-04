@@ -133,6 +133,9 @@ var urlValidityChecks = [
 
 function isUrlValid(input) {
     var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+	if(input.value.length==0){
+		return false;
+	}
     if (!re.test(input.value)) { 
         return true;
     }
@@ -348,7 +351,7 @@ var tituloInput = document.getElementById('titulop');
 var editorInput = document.getElementById('editor');
 var autorInput = document.getElementById('autor');
 var urlInput = document.getElementById('urlp');
-var descripcionInput = document.getElementById('desp');
+//var descripcionInput = document.getElementById('desp');
 var startdateInput = document.getElementById('box');
 
 
@@ -384,6 +387,8 @@ var inputs = document.querySelectorAll('input:not([type="submit"])');
 var datein = document.querySelector('input[name="fecha"]');
 var datefn = document.querySelector('input[name="fecha2"]');
 
+var textt= document.querySelector('textarea[id="desp"]');
+
 var submit = document.querySelector('input[type="submit"]');
 var form = document.getElementById('publicform');
 
@@ -395,6 +400,8 @@ function validate() {
 }
 
 datein.CustomValidation.checkInput();
+
+textt.CustomValidation.checkInput();
 
 //datein.addEventListener('onClick',validate);	
 

@@ -1,5 +1,10 @@
 <?php
-session_start();
+
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+
 include './db.php';
 include './header.php';
 ?>
@@ -12,9 +17,9 @@ include './header.php';
                     ?>
                     <button onclick="location.href = './session.php';" class="efex_button1 <?php echo $page;?>">Información Personal</button><br>
                     <?php
-                    if($_SESSION['page']==2){$page='selected';}else{$page='';}
-                    ?>
-                    <button onclick="location.href = './index.php';" class="efex_button1 <?php echo $page;?> ">Capacitaciones</button><br>
+                    /*if($_SESSION['page']==2){$page='selected';}else{$page='';}
+                    <button onclick="location.href = './add.php';" class="efex_button1 <?php echo $page;?> ">Capacitaciones</button><br>
+                    */?>
                     <?php
                     if($_SESSION['page']==3){$page='selected';}else{$page='';}
                     ?>

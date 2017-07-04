@@ -560,3 +560,18 @@ input:checked + .slider:before {
 #country{
     display: none;
 }
+
+/*cuadro textarea*/
+#desp{
+    max-width: 400px;
+    min-width: 400px;
+}
+
+/*EFECTO: opcion*/
+.efex-option{
+    border-radius: 5px;
+    padding: 5px;
+    width: 130px;
+    background-color: #D6D6D6;
+    border: 1px solid #ccc;
+}

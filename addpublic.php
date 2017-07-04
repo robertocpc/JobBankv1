@@ -6,7 +6,7 @@ require './log_header.php';
                 <div class="tab_derecha">
                     <div class="tab_panel shadow workexp edit-profile">
                         
-                        <form  onload="doOnLoad();" name="publicform" id="publicform" action="./account/save-estudio.php" method="post">
+                        <form  onload="doOnLoad();" name="publicform" id="publicform" action="./account/save-public.php" method="post">
                             <label class="title">Añadir Publicación : </label><br>
                             <label for="titulop">
                                 <span class="stag">Titulo:  </span>
@@ -47,24 +47,24 @@ require './log_header.php';
 
                             <label for="urlp">
                                 <span class="stag">URL(opcional):  </span>
-                                <input id="urlp" class="sinput" type="text" name="urlp" required>
+                                <input id="urlp" class="sinput" type="text" name="urlp">
                                 <ul class="input-requirements">
                                     <li>Debe contener almenos 2 caracteres</li>
                                 </ul>
                             </label>
 
                             <label for="desp">
-                                <span class="stag">Descripción:  </span>
-                                <input id="desp" class="sinput" type="text" name="desp" required>
+                                <span class="stag">Descripción(opcional):  </span>
+                                <textarea id="desp" type="text" name="desp"></textarea>
                                 <ul class="input-requirements">
                                     <li>Debe contener almenos 2 caracteres</li>
                                 </ul>
                             </label>                            
-                           
+                            
                             <input class="buttonefex1" type="submit" name="submit" value="Guardar Cambios">
                         </form>
 
-                    </div>
+                     </div>
                     
                 </div>
             </div>
@@ -104,8 +104,7 @@ function yesnoCheck() {
     </script>
 
     <script src="./scriptpublic.js"></script>
-    <link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" 
-    type="text/css"> 
+    <link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" type="text/css"> 
 <script src="./codebase/dhtmlxcalendar.js"></script>
 <script src="./scriptdate.js"></script>
    

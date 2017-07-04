@@ -32,15 +32,12 @@ include './header.php';
 
 
     </div>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
+    
     <script type="text/javascript">
     
    $(document).ready(function(){
-    $('#search').focus();
-    $('#search_form').submit(function(e){
-        e.preventDefault();
-    })
+    
 
     $('#search').keyup(function(){
         var txt=$('#search').val();

@@ -49,6 +49,15 @@ require './log_header.php';
                                     </ul>
                                 </label>
                             </div>
+                            <div class="tabizq">
+                                 <label for="box">
+                                    <span class="stag">Fecha de nacimiento: </span>
+                                    <input id="box" name="fecha" type="text" class="sinput datepicker" value=""   required >
+                                    <ul class="input-requirements">
+                                        <li>Debe contener almenos 2 caracteres</li>
+                                    </ul>
+                                </label>
+                            </div>
                             <input class="buttonefex1" type="submit" value="Guardar Cambios">
                         </form>
                     </div>
@@ -57,4 +66,7 @@ require './log_header.php';
         </div>
     </body>
     <script src="./script.js"></script>
+    <link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" type="text/css"> 
+<script src="./codebase/dhtmlxcalendar.js"></script>
+<script src="./scriptdate.js"></script>
 </html>

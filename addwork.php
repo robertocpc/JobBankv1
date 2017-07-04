@@ -31,6 +31,15 @@ require './log_header.php';
                                 </ul>
                             </label>
                             
+                            <label for="trabajo">
+                                <span class="stag">Tipo de trabajo:  </span>
+                                 <select class="efex-option shadow" name="trabajo" id="trabajo">
+                                    <option value="0" selected>Presencial</option>
+                                    <option value="1">Remoto</option>
+                                </select> 
+                                <br><br>
+                            </label>
+
                            
                             <label for="box">
                                 <span class="stag">Desde </span>
@@ -49,7 +58,7 @@ require './log_header.php';
                             
                             <label for="box2" id="hidde">
                                 <span class="stag">Hasta </span>
-                                <input id="box2" name="fecha2" type="date" 
+                                <input id="box2" name="fecha2" type="text" 
                                 class="sinput datepicker" value="" required>
                                 <ul class="input-requirements">
                                     <li>Debe contener almenos 2 caracteres</li>
