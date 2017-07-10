@@ -1,5 +1,5 @@
 body{
-    font-family:"Arial", Helvetica, sans-serif;
+    font-family: 'Merriweather Sans', sans-serif;
     font-size:15px;
     line-height: 1.5;
     padding:0;
@@ -90,7 +90,7 @@ header .contacto{
     float: right;
 }
 
-#showcase{
+#title{
 
     text-align:center;
 
@@ -100,25 +100,22 @@ header .contacto{
  }
 
  #newsletter{
-     padding: 3%;
      background-image:url("../img/opacity1.png");
+     padding: 5px;
  }
  #newsletter h1{
      color: white;
      font-size: 18px;
-     float: left;
  }
-#newsletter form{
-    float: left;
-    margin-left: 50px;
-}
-#newsletter #search{
+
+#search{
     padding: 4px;
-    height: 25px;
-    width: 400px;
+    font-size: 15px;
+    height: 40px;
+    width: 60%;
     border-radius: 5px;
 }
-#newsletter #search:hover{
+#search:hover{
     border: 1.5px solid #26C6CE;
 }
 .table{
@@ -571,7 +568,58 @@ input:checked + .slider:before {
 .efex-option{
     border-radius: 5px;
     padding: 5px;
-    width: 130px;
+    width: 180px;
     background-color: #D6D6D6;
     border: 1px solid #ccc;
 }
+/*ancho de boton devuelta*/
+.width-size{
+    width: 90px;
+    cursor: pointer;
+}
+
+/*ESTILO TABLA*/
+
+table, th, td {
+    margin-bottom: 10px;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;    
+}
+.search-size{
+    max-height: 100px;
+    min-height: 100px;
+    max-width: 90px;
+    min-width: 90px;
+    border-radius: 50%;
+}
+.admin .search-size{
+    max-height: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+}
+
+.resultado{
+    margin-top:50px;
+    padding: 14px;
+    padding-bottom: 30px;
+    color: black;
+    background-color: white;
+    border-radius: 5px
+}
+#result h3{
+    color: black;
+}
+.box-img{
+    width: 10%;
+}
+.result-a{text-decoration: none; color:blue; font-size:18px;}
+.result-a:hover{font-weight:bold}
+.box-txt{
+    width: 80%;   
+}
+.busca-option{height:41px}

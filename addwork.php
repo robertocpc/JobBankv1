@@ -23,6 +23,13 @@ require './log_header.php';
                                     <li>Debe contener almenos 2 caracteres</li>
                                 </ul>
                             </label>
+
+                            <label>
+                                <span class="stag">Localidad(Region)</span>
+                                <input id="autocomplete" class="sinput" placeholder=""
+                                onFocus="geolocate()" type="text" name="localidad">
+                            </label><br><br>
+
                             <label for="wedireccion">
                                 <span class="stag">Dirección:  </span>
                                 <input id="wedireccion" class="sinput" type="text" name="direccion" required>
@@ -121,6 +128,12 @@ function pruebass()
 }
 
     </script>
+
+
+    <script src="./googlemap.js">    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1mqGxOcvKuautGjS4Q0EcgWYV8jcltj8&libraries=places&callback=initAutocomplete"
+        async defer></script>
+   
 
     <script src="./scriptw.js"></script>
     <link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" 

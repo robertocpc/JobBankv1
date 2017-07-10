@@ -98,7 +98,7 @@ var cursoValidityChecks = [
 		isInvalid: function(input) {
 			return input.value.length < 3 | input.value.length > 70;;
 		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		invalidityMessage: 'Necesita al menos de 3 caracteres ',
 		element: document.querySelector('label[for="cursoanio"] .input-requirements li:nth-child(1)')
 	}
 ];
@@ -108,7 +108,7 @@ var wecargoValidityChecks = [
 		isInvalid: function(input) {
 			return input.value.length < 3 | input.value.length > 70;;
 		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		invalidityMessage: 'Necesita al menos de 3 caracteres ',
 		element: document.querySelector('label[for="wecargo"] .input-requirements li:nth-child(1)')
 	}
 ];
@@ -117,7 +117,7 @@ var weempresaValidityChecks = [
 		isInvalid: function(input) {
 			return input.value.length < 3 | input.value.length > 70;;
 		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		invalidityMessage: 'Necesita al menos de 3 caracteres ',
 		element: document.querySelector('label[for="weempresa"] .input-requirements li:nth-child(1)')
 	}
 ];
@@ -126,7 +126,7 @@ var wedireccionValidityChecks = [
 		isInvalid: function(input) {
 			return input.value.length < 3 | input.value.length > 70;;
 		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		invalidityMessage: 'Necesita al menos de 3 caracteres ',
 		element: document.querySelector('label[for="wedireccion"] .input-requirements li:nth-child(1)')
 	}
 ];
@@ -137,7 +137,7 @@ var startdateValidityChecks = [
 		isInvalid: function(input) {
 			return checkDate(input);
 		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		invalidityMessage: 'Fecha Invalida - No puede exceder la fecha actual ',
 		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
 	}
 ];
@@ -147,7 +147,7 @@ var finaldateValidityChecks = [
 		isInvalid: function(input) {
 			return checkDatee(input);
 		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		invalidityMessage: 'Fecha Invalida ',
 		element: document.querySelector('label[for="box2"] .input-requirements li:nth-child(1)')
 	},
 	{
@@ -155,7 +155,7 @@ var finaldateValidityChecks = [
 			return verifydate(input);
 		},
 		invalidityMessage: 'La fecha final no debe ser inferior a la fecha de inicio',
-		element: document.querySelector('label[for="box2"] .input-requirements li:nth-child(1)')
+		element: document.querySelector('label[for="box2"] .input-requirements li:nth-child(2)')
 	}
 ];
 

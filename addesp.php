@@ -12,7 +12,7 @@ require './log_header.php';
                                 <span class="stag">Instituto/Universidad:  </span>
                                 <input id="wecargo"class="sinput" type="text" name="cargo" required>
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 3 caracteres</li>
+                                    <li>Debe contener almenos 3 a 70 caracteres</li>
                                 </ul>
                         
                             </label>
@@ -20,14 +20,14 @@ require './log_header.php';
                                 <span class="stag">Grado:  </span>
                                 <input id="weempresa" class="sinput" type="text" name="empresa" required>
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 3 caracteres</li>
+                                    <li>Ejemplo: Doctor/Licenciado</li>
                                 </ul>
                             </label>
                             <label for="wedireccion">
                                 <span class="stag">Campo de estudio:  </span>
                                 <input id="wedireccion" class="sinput" type="text" name="direccion" required>
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
+                                    <li>Indique el campo de estudio al cual se oriente</li>
                                 </ul>
                             </label>
 
@@ -35,7 +35,7 @@ require './log_header.php';
                                 <span class="stag">Año cursando:  </span>
                                 <input id="cursoanio" class="sinput" type="text" name="cursoanio" required>
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
+                                    <li>Ejemplo 1er año/7mo ciclo</li>
                                 </ul>
                             </label>
                             
@@ -48,21 +48,20 @@ require './log_header.php';
                             
                             <label for="box">
                                 <span class="stag">Desde </span>
-                                <input id="box" name="fecha" type="date" 
+                                <input id="box" name="fecha" type="text" 
                                 class="sinput datepicker" value="" required>
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
-                                    <li>Debe contener almenos 2 caracteres</li>
+                                    <li>Fecha Inválida - No debe exceder a la fecha actual</li>
                                 </ul>
                             </label>
 
                             <label for="box2" id="hidde">
                                 <span class="stag">Hasta </span>
-                                <input id="box2" name="fecha2" type="date" 
+                                <input id="box2" name="fecha2" type="text" 
                                 class="sinput datepicker" value="" required>
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
-                                    <li>Debe contener almenos 2 caracteres</li>
+                                    <li>Fecha Inválida</li>
+                                    <li>La fecha final no debe ser inferior a la fecha de inicio</li>
                                 </ul>
                             </label>
                             

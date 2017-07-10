@@ -8,20 +8,22 @@ require './log_header.php';
                         
                         <form  onload="doOnLoad();" name="publicform" id="publicform" action="./account/save-public.php" method="post">
                             <label class="title">Añadir Publicación : </label><br>
+                            <span class="stag">Los campos con (*) a lado son opcionales</span><br><br><br>
                             <label for="titulop">
                                 <span class="stag">Titulo:  </span>
                                 <input id="titulop" class="sinput" type="text" name="titulop" required>
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 3 caracteres</li>
+                                    <li>Debe contener entre 2 a 70 caracteres</li>
                                 </ul>
                         
                             </label>
 
                             <label for="editor">
                                 <span class="stag">Editor:  </span>
+                                
                                 <input id="editor" class="sinput" type="text" name="editor" required>
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 3 caracteres</li>
+                                    <li>Debe contener entre 2 a 70 caracteres</li>
                                 </ul>
                             </label>
                             
@@ -30,35 +32,35 @@ require './log_header.php';
                                 <input id="box" name="fecha" type="text" 
                                 class="sinput datepicker" value="" required>
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
-                                    <li>Debe contener almenos 2 caracteres</li>
+                                    <li>La fecha debe ser inferior a la fecha actual</li>
                                 </ul>
                             </label>
 
                             
-
+                            <span class="stag">Autor:  </span>
+                            <span class="sinput"><?php echo $_SESSION['ape'].", ". $_SESSION['user']?></span>
+                            <br><br>
                             <label for="autor">
-                                <span class="stag">Autor(es):  </span>
-                                <input id="autor" class="sinput" type="text" name="autor" value="<?php echo $_SESSION['ape'].", ".$_SESSION['user'] ?>" required>
+                                <span class="stag">*Añada otro autor:  </span>
+                                <input id="autor" class="sinput" type="text" name="autor"
+                                 value="">
                                 <ul class="input-requirements">
                                     <li>Debe contener almenos 2 caracteres</li>
                                 </ul>
                             </label>
 
                             <label for="urlp">
-                                <span class="stag">URL(opcional):  </span>
+                                <span class="stag">*URL:  </span>
                                 <input id="urlp" class="sinput" type="text" name="urlp">
                                 <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
+                                    <li>URL inválido</li>
                                 </ul>
                             </label>
 
                             <label for="desp">
                                 <span class="stag">Descripción(opcional):  </span>
                                 <textarea id="desp" type="text" name="desp"></textarea>
-                                <ul class="input-requirements">
-                                    <li>Debe contener almenos 2 caracteres</li>
-                                </ul>
+                                
                             </label>                            
                             
                             <input class="buttonefex1" type="submit" name="submit" value="Guardar Cambios">

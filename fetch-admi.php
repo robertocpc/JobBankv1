@@ -16,7 +16,7 @@ if($result->num_rows>0){
         }
         $output .= "</th>
         <td width='90%'>
-            <a class='result-a' href='#'>".$row['col_apellido'].", ".$row['col_nombre']."</a><br>
+            <a class='result-a' href='./show-perfil.php?id=".$rowesp['cod_alumno']."'>".$row['col_apellido'].", ".$row['col_nombre']."</a><br>
             ".$row['col_ciudadorigen']."<br>
             ".$row['col_email']."
         </td>";

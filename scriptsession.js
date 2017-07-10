@@ -170,7 +170,7 @@ function showFileSize() {
 
         file = input.files[0]; console.log(file);
         //bodyAppend("p", "File " + file.name + " is " + file.size + " bytes in size");
-        if(file.size>500000){
+        if(file.size>300000){
             return true;
         }
         else{

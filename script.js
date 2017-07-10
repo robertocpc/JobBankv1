@@ -169,6 +169,59 @@ var telefonoValidityChecks = [
 	}
 ];
 
+var dniValidityChecks= [
+	{
+		isInvalid: function(input) {
+			return input.value.length != 8;
+		},
+		invalidityMessage: 'Tiene que tener entre 3-15 digitos',
+		element: document.querySelector('label[for="dni"] .input-requirements li:nth-child(1)')
+	},
+    {
+		isInvalid: function(input) {
+			var iillegalCharacters = input.value.match(/[^0-9]/g);
+			return iillegalCharacters ? true : false;
+		},
+		invalidityMessage: 'Solo se aceptan caracteres numéricos',
+		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(2)')
+	}
+];
+
+var pasaporteValidityChecks = [
+	{
+		isInvalid: function(input) {
+			return input.value.length < 7 | input.value.length > 12;
+		},
+		invalidityMessage: 'Tiene que tener entre 3-15 digitos',
+		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(1)')
+	},
+    {
+		isInvalid: function(input) {	
+			var iillegalCharacters = input.value.match(/[^A-Za-z0-9]/g);
+			return iillegalCharacters ? true : false;
+		},
+		invalidityMessage: 'Solo se aceptan caracteres numéricos',
+		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(2)')
+	}
+];
+
+var carnetValidityChecks = [
+	{
+		isInvalid: function(input) {
+			return input.value.length < 9 | input.value.length > 12;
+		},
+		invalidityMessage: 'Tiene que tener entre 3-15 digitos',
+		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(1)')
+	},
+    {
+		isInvalid: function(input) {	
+			var iillegalCharacters = input.value.match(/[^A-Za-z0-9-]/g);
+			return iillegalCharacters ? true : false;
+		},
+		invalidityMessage: 'Solo se aceptan caracteres numéricos',
+		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(2)')
+	}
+];
 
 var passwordValidityChecks = [
 	{
@@ -229,6 +282,8 @@ var startdateValidityChecks = [
 ];
 
 
+
+
 	function verifydate(field){
 		var input=document.getElementById('box').value;
 		re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
@@ -245,7 +300,6 @@ var startdateValidityChecks = [
 	}
   function checkDate(field)
   {
-
     var allowBlank = true;
     var minYear = 1902;
     var maxYear = (new Date()).getFullYear();
@@ -308,69 +362,6 @@ var startdateValidityChecks = [
 	
   }
 
-  function checkDatee(field)
-  {
-    var allowBlank = true;
-    var minYear = 1902;
-    var maxYear = (new Date()).getFullYear();
-	//alert("checkdata");
-
-    var errorMsg = "";
-	var days=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
-
-    // regular expression to match required date format
-    re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
-
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
-	var yyyy = today.getFullYear();
-
-	if(dd<10) {
-		dd = '0'+dd;
-	} 
-
-	if(mm<10) {
-		mm = '0'+mm;
-	} 
-
-	today = dd + '/' + mm + '/' + yyyy;
-
-	regd = today.match(re);
-	
-
-    if(field.value != '') {
-      if(regs = field.value.match(re)) {
-		var maxday=days[regs[2]-1];
-
-                    if(regs[2]==2){
-                        if(regs[3]%4==0){
-                            maxday=maxday+1;                                
-                        }
-                    }
-        if(regs[3] < minYear )  {
-          return true;//errorMsg = "Invalid value for day: " + regs[1];
-        } else if(regs[2] < 1 || regs[2] > 12) {
-          return true;//errorMsg = "Invalid value for month: " + regs[2];
-        } else if(regs[1] < 1 || regs[1]>maxday) {
-          return true;//errorMsg = "Invalid value for year: " + regs[3] + " - must be between " + minYear + " and " + maxYear;
-        }
-      } else {
-        return true;//errorMsg = "Invalid date format: " + field.value;
-      }
-    } else if(!allowBlank) {
-      return true;//errorMsg = "Empty date not allowed!";
-    }
-	/*
-    if(errorMsg != "") {
-      alert(errorMsg);
-      field.focus();
-      return false;
-    }*/
-	
-	
-  }
-
   function compare(regs,regd){
 	if(regs[3]<=regd[3]){
 		if(regs[3]==regd[3]){
@@ -400,7 +391,6 @@ var startdateValidityChecks = [
 		return true;
 	}
   }
-
 /* ----------------------------
 
 	Setup CustomValidation
@@ -414,14 +404,14 @@ var apellidoInput = document.getElementById('apellido');
 var usernameInput = document.getElementById('username');
 var emailInput = document.getElementById('email');
 var telefonoInput = document.getElementById('telefono');
-
+var dniInput = document.getElementById('dni');
+//var pasaporteInput = document.getElementById('pasaporte');
+//var carnetInput = document.getElementById('carnet');
 var startdateInput = document.getElementById('box');
 
 
 apellidoInput.CustomValidation = new CustomValidation(apellidoInput);
 apellidoInput.CustomValidation.validityChecks = apellidoValidityChecks;
-
-
 
 usernameInput.CustomValidation = new CustomValidation(usernameInput);
 usernameInput.CustomValidation.validityChecks = usernameValidityChecks;
@@ -435,7 +425,15 @@ telefonoInput.CustomValidation.validityChecks = telefonoValidityChecks;
 startdateInput.CustomValidation = new CustomValidation(startdateInput);
 startdateInput.CustomValidation.validityChecks = startdateValidityChecks;
 
+dniInput.CustomValidation = new CustomValidation(dniInput);
+dniInput.CustomValidation.validityChecks = dniValidityChecks;
+/*
+pasaporteInput.CustomValidation = new CustomValidation(pasaporteInput);
+pasaporteInput.CustomValidation.validityChecks = pasaporteValidityChecks;
 
+carnetInput.CustomValidation = new CustomValidation(carnetInput);
+carnetInput.CustomValidation.validityChecks = carnetValidityChecks;
+*/
 
 
 
@@ -469,6 +467,40 @@ var myCalendar;
 			myCalendar1 = new dhtmlXCalendarObject("box");
             myCalendar1.setDateFormat("%d/%m/%Y");
             var dd1 = myCalendar1.getFormatedDate();
+			if(document.getElementById("opt1").selected==true){
+				document.getElementById("dni").value=document.getElementById("numide").value;
+				document.getElementById("dni").style.display="inline";
+				document.getElementById("pasaporte").style.display="none";
+				document.getElementById("carnet").style.display="none";
+				document.getElementById("pasaporte").value="";
+				document.getElementById("carnet").value="";
+				document.getElementById("dni").required=true;
+				document.getElementById("pasaporte").required=false;
+				document.getElementById("carnet").required=false;
+				
+			}
+			else if(document.getElementById("opt2").selected==true){
+				document.getElementById("pasaporte").value=document.getElementById("numide").value;
+				document.getElementById("dni").style.display="none";
+				document.getElementById("pasaporte").style.display="inline";
+				document.getElementById("carnet").style.display="none";
+				//document.getElementById("dni").value="";
+				//document.getElementById("carnet").value="";
+				document.getElementById("dni").required=false;
+				document.getElementById("pasaporte").required=true;
+				document.getElementById("carnet").required=false;
+			}
+			else if(document.getElementById("opt3").selected==true){
+				document.getElementById("carnet").value=document.getElementById("numide").value;
+				document.getElementById("dni").style.display="none";
+				document.getElementById("pasaporte").style.display="none";
+				document.getElementById("carnet").style.display="inline";
+				//document.getElementById("dni").value="";
+				//document.getElementById("pasaporte").value="";
+				document.getElementById("dni").required=false;
+				document.getElementById("pasaporte").required=false;
+				document.getElementById("carnet").required=true;
+			}
 			myCalendar1.attachEvent("onClick", function(d){
 				//var element = document.querySelector('label[for="box2"] li:nth-child(1)');
                 //var elementt = document.getElementById('box2');
@@ -486,4 +518,7 @@ var myCalendar;
                 elementt.classList.add('invalid');*/
                 //alert("funciona");
 			});
+
+			
+
 		}

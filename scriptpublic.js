@@ -98,7 +98,7 @@ var tituloValidityChecks = [
 		isInvalid: function(input) {
 			return input.value.length < 2 | input.value.length > 70;;
 		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		invalidityMessage: 'Debe contener entre 2 a 70 caracteres',
 		element: document.querySelector('label[for="titulop"] .input-requirements li:nth-child(1)')
 	}
 ];
@@ -108,14 +108,20 @@ var editorValidityChecks = [
 		isInvalid: function(input) {
 			return input.value.length < 2 | input.value.length > 70;;
 		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		invalidityMessage: 'Debe contener entre 2 a 70 caracteres',
 		element: document.querySelector('label[for="editor"] .input-requirements li:nth-child(1)')
 	}
 ];
 var autorValidityChecks = [
 	{
 		isInvalid: function(input) {
-			return input.value.length < 2 | input.value.length > 70;;
+			if(input.value.length==0){
+				return false;
+			}
+			else{
+			return input.value.length < 2 | input.value.length > 70;
+
+			}
 		},
 		invalidityMessage: 'Necesita al menos de 2 caracteres ',
 		element: document.querySelector('label[for="autor"] .input-requirements li:nth-child(1)')
@@ -126,7 +132,7 @@ var urlValidityChecks = [
 		isInvalid: function(input) {
 			return isUrlValid(input);
 		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		invalidityMessage: 'URL inválido ',
 		element: document.querySelector('label[for="urlp"] .input-requirements li:nth-child(1)')
 	}
 ];
@@ -148,6 +154,7 @@ function isUrlValid(input) {
 var descripcionValidityChecks = [
 	{
 		isInvalid: function(input) {
+			
 			return input.value.length < 10 | input.value.length > 70;;
 		},
 		invalidityMessage: 'Necesita al menos de 10 caracteres ',
@@ -160,7 +167,7 @@ var startdateValidityChecks = [
 		isInvalid: function(input) {
 			return checkDate(input);
 		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
+		invalidityMessage: 'La fecha no debe ser inferior a la fecha actual ',
 		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
 	}
 ];

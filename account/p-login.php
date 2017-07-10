@@ -9,6 +9,32 @@ $username = $mysqli->escape_string($_POST['username']);
 $result = $mysqli->query("SELECT * FROM tbl_oasa WHERE cod_alumno='$username'");
 
 
+if(substr($username,0,-6)=='admin'){
+    $adm = $mysqli->query("SELECT * FROM tbl_egresado WHERE cod_alumno='$username'");
+    $row = $adm->fetch_assoc();
+    if ( $adm->num_rows == 0 ){ // User doesn't exist
+        $_SESSION['message'] = "Datos Invalidos";
+        echo substr($username,0,-6);
+        header("location: ../error.php");
+    }
+    else{
+        if ( $_POST['password']==$row['psw_alumno'] ) {
+            
+            $_SESSION['cod'] = $row['cod_alumno'];
+            $_SESSION['pass']=$_POST['password'];
+            $_SESSION['user']='Administrador';
+            // This is how we'll know the user is logged in
+            $_SESSION['logged_in'] = true;
+            $_SESSION['message']="Parte if 2";
+            $_SESSION['window']=5;
+            //$mysqli->query("INSERT INTO tbl_egresado (cod_alumno,psw_alumno) VALUES('$_SESSION[cod]','$_SESSION[pass]')");
+            header("location: ../session-index.php");
+        }
+    }
+}
+
+else{
+
 if ( $result->num_rows == 0 ){ // User doesn't exist
     $_SESSION['message'] = "Usuario con ese código no existe!";
     header("location: ../error.php");
@@ -63,5 +89,6 @@ else { // User exists
         
     }
     }
+}
 }
 ?>

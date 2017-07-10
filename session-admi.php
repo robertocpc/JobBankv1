@@ -1,46 +1,35 @@
 <?php
 session_start();
-$_SESSION['windows']=5;
-include './header.php';
+$_SESSION['page']=1;
+require './log_header.php';
 ?>
+                <div class="tab_derecha">
+                    <div class="tab_panel shadow">
+
+                        <div class="container">
+                            <input name="search" id="search" type="text" placeholder="Busqueda de profesional por nombre o especialidad">
+                            <select id="select-op"  class="efex-option busca-option" onchange="cambio();">
+                                <option id="nombre" selected>Nombre</option>
+                                <option id="especialidad" >Especialidad</option>
+                            </select>
+                        </div>
+
+                        <div class="container admin" id="cuadro-resultado" style="visibility:hidden">
+                            <div class="resultado">
+                                <div id="busqueda"></div>
+                                <div id="result"></div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <Script src="./jquery.js"></Script>
-    <div id="showcase">
-        <div class="container sub1">
-            <div class="title" id="title">
-            
-
-            <h1 id="titulo">BOLSA DE TRABAJO</h1>
-            
-            <h1>Escuela Profesional de Ingeniería en Informática y Sistemas</h1>
-
-            
-
-            <center><h3>Universidad Nacional Jorge Basadre Grohmann</h3></center>
-            <p></p><br><br><br><br><br><br>
-            </div>
-        </div>
-        <div id="newsletter">
-            <div class="container">
-                <input name="search" id="search" type="text" placeholder="Busqueda de profesional por nombre o especialidad">
-                <select id="select-op"  class="efex-option busca-option" onchange="cambio();">
-                    <option id="nombre" selected>Nombre</option>
-                    <option id="especialidad" >Especialidad</option>
-                </select>
-            </div>
-        </div>
-        <div class="container" id="cuadro-resultado" style="visibility:hidden">
-            <div class="resultado">
-                <div id="busqueda"></div>
-                <div id="result"></div>
-            </div>
-        </div>
-
-
-    </div>
-    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
-    
-    <script type="text/javascript">
+     <script type="text/javascript">
     
     function cambio(){
         
@@ -60,7 +49,7 @@ include './header.php';
             if(document.getElementById("nombre").selected==true){
                 $.ajax({
                 type: 'POST',
-                url: './fetch.php',
+                url: './fetch-admi.php',
                 data: {'search':txt},
                 success: function(resp){
                     $('#result').html(resp);
@@ -124,5 +113,6 @@ include './header.php';
 
     
     </script>
-</body>
+    
+    
 </html>

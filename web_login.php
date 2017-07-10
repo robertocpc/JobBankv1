@@ -19,7 +19,7 @@ include './header.php';
                 </form>
             </div>
             <div class="login inf">
-                <p>El acceso es solamente para egresados de la Universidad Nacional Jorge Basadre Grohman que pertenecen a la Escuela Profesional de Ingeniería en Informática y Sistemas</p>
+                <h3>El acceso es solamente para egresados de la Universidad Nacional Jorge Basadre Grohman que pertenecen a la Escuela Profesional de Ingeniería en Informática y Sistemas</h3>
             </div>
         </div>
     </div>
