@@ -18,9 +18,8 @@ require './log_header.php';
                                     }
                                 ?>
                                 <label class="edit" for="fileinput" title="Solo se admite imagenes .jpg .png">
+                                    <span><img id="camera-se" src="./img/camera.png"></span>
                                     <input id="fileinput" class="file" type="file" name="image" required>
-                                    
-
                                 </label>
                                 <input class="buttonefex1" type="submit" name="submit" value="subir">
                             </form>

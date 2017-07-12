@@ -153,6 +153,22 @@ header .contacto{
     background-repeat: no-repeat;
     padding-left:50px;
 }
+.searchciu{
+    width: 23%;
+    margin-top: 30px;
+    height: 40px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    background-image: url('../img/placeholder.png');
+    background-size: 26px 26px;
+    background-position:6px 6px; 
+    background-repeat: no-repeat;
+    padding-left:50px;
+}
+
 #search:hover{
     border: 2px solid #26C6CE;
 }
@@ -401,6 +417,10 @@ header .contacto{
 .tab_panel .alignleft form label{
     background-image: url("../imglogo/camera.png");
     background-repeat: no-repeat;
+    
+}
+#camera-se{
+    float:right;
 }
 .shadow{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

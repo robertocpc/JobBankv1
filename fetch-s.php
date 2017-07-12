@@ -1,7 +1,7 @@
 <?php
 session_start();
 $_SESSION['windows']=5;
-$searchq=$_REQUEST['search'];
+$searchq=rawurldecode($_REQUEST['search']);
 include './header.php';
 ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -98,115 +98,9 @@ include './header.php';
                 <div class='resultado shadow'>
                     <div id='result' >
 
-<?php
-include './db.php';
 
-    
-    
-    //$searchq=preg_replace("#[^0-9A-Za-z]#i","",$searchq);
-    //$query="SELECT * FROM tbl_egresado WHERE ";
-    if($searchq!=''){$query="SELECT * FROM tbl_egresado 
-    WHERE MATCH (col_nombre, col_apellido) AGAINST ('  ";
-    $i=0;
-    $terms=explode(" ",$searchq);
-    foreach($terms as $each){
-        $i++;
-        if($i==1){
-            $querysel.=" $each ";            
-        }
-        else
-            $querysel.=" $each";
-            
-    }
-//    $query=$mysqli->query("SELECT * FROM tbl_egresado WHERE col_nombre LIKE '%searchq%'")
-    $query;
-    $querysel.="  ' in boolean mode) ";
-    $query .=$querysel; 
-    $querys=$mysqli->query($query);
-    $nrows=$querys->num_rows;
-    
-    if($nrows>0){
-        $output .="<table width='100%' style='font-size:13px;'>";
-        while($row=$querys->fetch_assoc()){
-            
-            $estquery=$mysqli->query("SELECT GROUP_CONCAT(col_campest, '') as col_est 
-            FROM tbl_estudio WHERE cod_alumno='$row[cod_alumno]' GROUP BY tbl_estudio.cod_alumno");
-            $estrow=$estquery->fetch_assoc();
-            $output.="<tr><th>";
-            if(isset($row['col_imgperfil'])){
-                $output.= "<img class='search-size' src='data:image/jpg;base64,".base64_encode($row['col_imgperfil'])."' height='200px' width='190px'>";
-            }
-            else{
-                $output .= "<img class='search-size ' src='./img/profimage.png' height='160px'>";
-            }
-            $output .= "</th>
-            <td width='90%'>
-                <a class='result-a' href='./preview-perfil.php?id=".$row['cod_alumno']."'>".$row['col_apellido'].", ".$row['col_nombre']."</a><br>
-                ";
-            if(isset($estrow['col_est'])){$output.=" ".$estrow['col_est'];}
-            else{$output.= " Ingeniero en Informática y Sistemas";}
-            $output.=" <br>";
-            $output.= $row['col_ciudadorigen']."<br></td>";
-            $output.="</tr>";
-        }
-        $output .="</table>";
-        echo $output;
-    }
-    else{
-        $query="SELECT cod_alumno,col_nombre,col_imgperfil, col_apellido,col_cabecera,
-        col_posactual,col_email,col_ciudadorigen 
-        FROM tbl_egresado WHERE  ";
-        $i=0;
-        echo "parte 2";
-        $terms=explode(" ",$searchq);
-        foreach($terms as $each){
-            $i++;
-            if($i==1){
-                $query.="col_nombre LIKE '%$each%' ";
-                $query.=" OR col_apellido LIKE '%$each%'";
-            }
-            else
-                $query.="OR col_nombre LIKE '%$each%'";
-                $query.=" OR col_apellido LIKE '%$each%'";
-        }
-    //    $query=$mysqli->query("SELECT * FROM tbl_egresado WHERE col_nombre LIKE '%searchq%'")
-        $querys=$mysqli->query($query);
-        $nrows=$querys->num_rows;
-        if($nrows>0){
-            $output .="<table width='100%' style='font-size:13px;'>";
-            while($row=$querys->fetch_assoc()){
-                $output.="<tr><th>";
-                if(isset($row['col_imgperfil'])){
-                    $output.= "<img class='search-size' src='data:image/jpg;base64,".base64_encode($row['col_imgperfil'])."' height='200px' width='190px'>";
-                }
-                else{
-                    $output .= "<img class='search-size ' src='./img/profimage.png' height='160px'>";
-                }
-                $output .= "</th>
-                <td width='90%'>
-                    <a class='result-a' href='./preview-perfil.php?id=".$row['cod_alumno']."'>".$row['col_apellido'].", ".$row['col_nombre']."</a><br>
-                    Ingeniero en Informática y Sistemas<br>";
-                $output.= $row['col_ciudadorigen']."<br></td>";
-                $output.="</tr>";
-            }
-            $output .="</table>";
-            echo $output;
-        }
-        else{
-        echo "<center><img class='search' src='./img/search.png' height='160px'></center><br>
-        <center><span>No se hallo resultado, por favor asegurese que escribio correctamente, 
-        o intente con otro nombre o especialidad</span></center>";
-    }
-    }
-    }
-    else{
-        echo "<center><img class='search' src='./img/search.png' height='160px'></center><br>
-        <center><span>No se hallo resultado, por favor asegurese que escribio correctamente, 
-        o intente con otro nombre o especialidad</span></center>";
-    }
-?>
    
-</div>
+                    </div>
             
             </div>
         </div>
@@ -215,62 +109,27 @@ include './db.php';
     </div>
     <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
     <script>
-     $(document).ready(function(){
-        $('#buscar').click(function(){
-            var name=document.getElementById("search").value;
-            window.location = './fetch-s.php?search=' + name;
-                
-        })
-        $('#search').keypress(function(e){
-            if(e.which == 13) {
-            var name=document.getElementById("search").value;
-            window.location = './fetch-s.php?search=' + name;
-        }     
-        })
-        $('#keyword').click(function(){
-            var val_height="220px"
-            if(document.getElementById('keywords').style.height==val_height)
-                document.getElementById('keywords').style.height = "0px";
-            else
-                document.getElementById('keywords').style.height = val_height;
+    
 
-        })
-        $('#ubicacion').click(function(){
-            var val_height="210px"
-            if(document.getElementById('ubicaciones').style.height==val_height)
-                document.getElementById('ubicaciones').style.height = "0px";
-            else
-                document.getElementById('ubicaciones').style.height = val_height;
-
-        })
-        $('#empactual').click(function(){
-            var val_height="210px"
-            if(document.getElementById('empactuals').style.height==val_height)
-                document.getElementById('empactuals').style.height = "0px";
-            else
-                document.getElementById('empactuals').style.height = val_height;
-
-        })
-        $('#emppas').click(function(){
-            var val_height="210px"
-            if(document.getElementById('emppass').style.height==val_height)
-                document.getElementById('emppass').style.height = "0px";
-            else
-                document.getElementById('emppass').style.height = val_height;
-
-        })
-        $('#idioma').click(function(){
-            var val_height="200px";
-            var name=document.getElementById('idiomas');
-            if(document.getElementById('idiomas').style.height==val_height)
-                document.getElementById('idiomas').style.height = "0px";
-            else
-                document.getElementById('idiomas').style.height = val_height;
-
-        })
-    })
+    window.onload = function() {
+        var txt=document.getElementById('search').value; 
+        //$('#result').load("./resultado-egresado.php",{'search=': txt});
+        /*document.getElementById('egresado').style.backgroundColor="#0177B1";
+        document.getElementById('egresado').style.borderBottom="2px solid white";
+        document.getElementById('egresado').style.color="white";
+        document.getElementById('egresado').style.fontWeight="bold";*/
+        $.ajax({
+					type: 'POST',
+					url: './resultado-egresado.php',
+					data: 'search='+txt,
+					success: function(resp){
+						$('#result').html(resp);
+					}
+					})
+    }
 
     </script>
+    <script src="./filtro.js"></script>
     <script src="./googlemap.js">    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1mqGxOcvKuautGjS4Q0EcgWYV8jcltj8&libraries=places&callback=initAutocomplete"
         async defer></script>

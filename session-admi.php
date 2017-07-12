@@ -168,22 +168,27 @@ include './header.php';
         })
         $('#egresado').click(function(){
             $('#cuadroresultado').load("./prueba.php");
-            /*var txt=$('#search').val();
-            document.getElementById("cuadro-resultado").style.visibility="";
-            document.getElementById("select-op").style.visibility="";
+            document.getElementById('egresado').style.backgroundColor="#0177B1";
+            document.getElementById('egresado').style.borderBottom="2px solid white";
+            document.getElementById('egresado').style.color="white";
+            document.getElementById('egresado').style.fontWeight="bold";
 
+            document.getElementById('ofertas').style.backgroundColor="";
+            document.getElementById('ofertas').style.borderBottom="";
+            document.getElementById('ofertas').style.color="";
+            document.getElementById('ofertas').style.fontWeight="";      
+        })
+        $('#ofertas').click(function(){
+            $('#cuadroresultado').load("./oftrabajo.php");
+            document.getElementById('ofertas').style.backgroundColor="#0177B1";
+            document.getElementById('ofertas').style.borderBottom="2px solid white";
+            document.getElementById('ofertas').style.color="white";
+            document.getElementById('ofertas').style.fontWeight="bold";
 
-            $('#title').html('<h3>Resultados de la búsqueda</h3>');
-            $.ajax({
-            type: 'POST',
-            url: './pr  ueba.php',
-            data: {'search':txt},
-            success: function(resp){
-                $('#result').html(resp);
-            }
-            })*/
-               
-            
+            document.getElementById('egresado').style.backgroundColor="";
+            document.getElementById('egresado').style.borderBottom="";
+            document.getElementById('egresado').style.color="";
+            document.getElementById('egresado').style.fontWeight="";    
         })
     })
     window.onload = function() {

@@ -33,17 +33,17 @@ session_start();
                             <?php
                                 
                                 if(isset($_SESSION['logged_in'])&&$_SESSION['window']!=5){
-                                    echo "<li><a href='index-s.php'>Inicio</a></li>
+                                    echo "<li><a href='index.php'>Inicio</a></li>
                                     
                                     <li><a href='./session-index.php'>".$_SESSION['user']."</a></li>
                                     <li><a href='./account/p-logout.php'>Log out</a></li>";
                                 }
                                 else if($_SESSION['window']==5){
-                                    echo "<li><a href='index-s.php'>Inicio</a></li>
-                                    <li><a href='./blog.php'>Administrador</a></li>
+                                    echo "<li><a href='index.php'>Inicio</a></li>
+                                    <li><a href='./session-admi.php'>Administrador</a></li>
                                     <li><a href='./account/p-logout.php'>Log out</a></li>";
                                 }else{
-                                    echo "<li><a href='index-s.php'>Inicio</a></li>
+                                    echo "<li><a href='index.php'>Inicio</a></li>
                                     <li><a href='./web_login.php'>Log in</a></li>
                                     <li><a href='./blog.php'>Blog</a></li>";
 

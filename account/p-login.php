@@ -28,7 +28,7 @@ if(substr($username,0,-6)=='admin'){
             $_SESSION['message']="Parte if 2";
             $_SESSION['window']=5;
             //$mysqli->query("INSERT INTO tbl_egresado (cod_alumno,psw_alumno) VALUES('$_SESSION[cod]','$_SESSION[pass]')");
-            header("location: ../session-index.php");
+            header("location: ../session-admi.php");
         }
     }
 }

@@ -5,7 +5,7 @@ include './header.php';
 ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <Script src="./jquery.js"></Script>
-    <div id="showcase">
+    <div id="showcase white">
         <div class="container sub1">
             <div class="title" id="title">
             <h1 id="titulo">BOLSA DE TRABAJO</h1>     
@@ -17,108 +17,39 @@ include './header.php';
         <div id="newsletter">
             <div class="font-blue"></div>
             <div class="container">
-                <input name="search" id="search" type="text" placeholder="Busqueda de profesional por nombre o especialidad">
-                <select id="select-op"  class="efex-option busca-option" onchange="cambio();">
-                    <option id="nombre" selected>Nombre</option>
-                    <option id="especialidad" >Especialidad</option>
-                </select>
-                <br><label><span style="color:white">Ejemplo: Programador, Operador, Redes </span></label>
+                    <input  name="search" id="search" type="text" placeholder="Busqueda de profesional por nombre o especialidad">
+                    
+                    <input  type="submit" class="buscar-submit" id="buscar" value="Buscar">
+                    <br><label><span style="color:white">Ejemplo: Programador, Operador, Redes </span></label>
+                
             </div>
         </div>
         <div class="container" id="cuadro-resultado" style="visibility:hidden">
-            <div class="resultado">
+            <div class="resultado shadow">
                 <div id="busqueda"></div>
-                <div id="result"></div>
+                <div id="result" ></div>
             </div>
         </div>
 
 
     </div>
     <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
-    
-    <script type="text/javascript">
-    
-    function cambio(){
-        
-        var txt=$('#search').val();
-        document.getElementById("cuadro-resultado").style.visibility="";
-        document.getElementById("select-op").style.visibility="";
-
-
-        $('#title').html('<h3>Resultados de la búsqueda</h3>');
-        if(txt==''){
-            $('#result').html('<h3>No hay profesionales que buscar</h3>');
-        }
-
-
-        else{
-            //$('#busqueda').html('<h3>Resultados para '+txt+'</h3>');
-            if(document.getElementById("nombre").selected==true){
-                $.ajax({
-                type: 'POST',
-                url: './fetch.php',
-                data: {'search':txt},
-                success: function(resp){
-                    $('#result').html(resp);
-                }
-                })
-            }
-            else if(document.getElementById("especialidad").selected==true){
-                $.ajax({
-                type: 'POST',
-                url: './fetchesp.php',
-                data: {'search':txt},
-                success: function(resp){
-                    $('#result').html(resp);
-                }
-                })
-            }
-        }
-    
-    }
-
-   $(document).ready(function(){
-    
-
-    $('#search').keyup(function(){
-        var txt=$('#search').val();
-        document.getElementById("cuadro-resultado").style.visibility="";
-        document.getElementById("select-op").style.visibility="";
-
-
-        $('#title').html('<h3>Resultados de la búsqueda</h3>');
-        if(txt==''){
-            $('#result').html('<h3>No hay profesionales que buscar</h3>');
-        }
-
-
-        else{
-            //$('#busqueda').html('<h3>Resultados para '+txt+'</h3>');
-            if(document.getElementById("nombre").selected==true){
-                $.ajax({
-                type: 'POST',
-                url: './fetch.php',
-                data: {'search':txt},
-                success: function(resp){
-                    $('#result').html(resp);
-                }
-                })
-            }
-            else if(document.getElementById("especialidad").selected==true){
-                $.ajax({
-                type: 'POST',
-                url: './fetchesp.php',
-                data: {'search':txt},
-                success: function(resp){
-                    $('#result').html(resp);
-                }
-                })
-            }
-        }
-    })
+    <script>
+    $(document).ready(function(){
+        $('#buscar').click(function(){
+            var name=document.getElementById("search").value;
+            window.location = './fetch-s.php?search=' + name;
+                
+        })
+        $('#search').keypress(function(e){
+            if(e.which == 13) {
+            var name=document.getElementById("search").value;
+            name=encodeURIComponent(name);
+            window.location = './fetch-s.php?search=' + name;
+        }     
+        })
     })
 
-    
     </script>
 </body>
 </html>
