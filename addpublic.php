@@ -39,7 +39,7 @@ require './log_header.php';
                             
                             <span class="stag">Autor:  </span>
                             <span class="sinput"><?php echo $_SESSION['ape'].", ". $_SESSION['user']?></span>
-                            <br><br>
+                            <br><br><br>
                             <label for="autor">
                                 <span class="stag">*Añada otro autor:  </span>
                                 <input id="autor" class="sinput" type="text" name="autor"

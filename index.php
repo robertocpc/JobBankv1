@@ -8,25 +8,21 @@ include './header.php';
     <div id="showcase">
         <div class="container sub1">
             <div class="title" id="title">
-            
-
-            <h1 id="titulo">BOLSA DE TRABAJO</h1>
-            
-            <h1>Escuela Profesional de Ingeniería en Informática y Sistemas</h1>
-
-            
-
+            <h1 id="titulo">BOLSA DE TRABAJO</h1>     
+            <!--h1>Escuela Profesional de Ingeniería en Informática y Sistemas</h1>
             <center><h3>Universidad Nacional Jorge Basadre Grohmann</h3></center>
-            <p></p><br><br><br><br><br><br>
+            <p></p><br><br><br><br><br><br-->
             </div>
         </div>
         <div id="newsletter">
+            <div class="font-blue"></div>
             <div class="container">
                 <input name="search" id="search" type="text" placeholder="Busqueda de profesional por nombre o especialidad">
                 <select id="select-op"  class="efex-option busca-option" onchange="cambio();">
                     <option id="nombre" selected>Nombre</option>
                     <option id="especialidad" >Especialidad</option>
                 </select>
+                <br><label><span style="color:white">Ejemplo: Programador, Operador, Redes </span></label>
             </div>
         </div>
         <div class="container" id="cuadro-resultado" style="visibility:hidden">
