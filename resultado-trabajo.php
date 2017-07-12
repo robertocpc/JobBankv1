@@ -63,8 +63,8 @@ include './db.php';
     //Para Lugar
     
     //Para Idiomas
-    echo $idiomaq=$_REQUEST['idioma'];
-    echo $idiomaq = ltrim($idiomaq);
+    $idiomaq=$_REQUEST['idioma'];
+    $idiomaq = ltrim($idiomaq);
     if(!empty($idiomaq)){
         $idiomaquery=" AND MATCH(col_idiomas) AGAINST ('".$idiomaq."') ";
     }
@@ -108,7 +108,7 @@ include './db.php';
         $tipemquery="";
     }
     //Tipo post
-    echo $tippo=$_REQUEST['tippo'];
+    $tippo=$_REQUEST['tippo'];
     if(isset($tippo)){
         if($tippo==0){
             $tippoquery=" AND col_tipopost=0 ";
@@ -156,7 +156,7 @@ include './db.php';
         $disrquery="";
     }
 
-    if($searchq!=''){echo $query="SELECT  *,MATCH(col_ofnombre,col_empresa) AGAINST ('".$querysel."') as relevance 
+    if($searchq!=''){$query="SELECT  *,MATCH(col_ofnombre,col_empresa) AGAINST ('".$querysel."') as relevance 
     FROM tbl_oftrabajo WHERE ((match(col_ofnombre,col_empresa) AGAINST ('".$querysel."') )
     ".$querylike.")".$cargoquery.$empresaquery.$ciudadquery.$idiomaquery.$fechaquery.
     $tipemquery.$tippoquery.$disquery.$disvquery.$disrquery."    
