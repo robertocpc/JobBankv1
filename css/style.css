@@ -664,7 +664,7 @@ th, td {
 }
 
 .resultado{
-    margin-top:40px;
+    margin-top:10px;
     padding: 14px;
     padding-bottom: 30px;
     color: black;
@@ -755,7 +755,7 @@ th, td {
     margin-top:20px;
     background-color:white;
     float: left;
-    width:auto; 
+    width:100%; 
 }
 /*PERFIL P//REVIO*/
 .preview-left{
@@ -794,6 +794,12 @@ th, td {
     -o-transition:height 500ms ease-in;
     transition:height 500ms ease-in;
 }
+.dropdown label{
+    padding-top:3.5px;
+}
+.op-oftrabajo label{
+    padding-top:3.5px;
+}
 .spans{ /*Estilo Span Filtro*/
     font-weight: bold;    
 }
@@ -819,6 +825,7 @@ th, td {
 [type="checkbox"]:checked {
   position: absolute;
   left: -9999px;
+  margin-top:10px;
 }
 [type="checkbox"]:not(:checked) + label,
 [type="checkbox"]:checked + label {
@@ -844,7 +851,7 @@ th, td {
 [type="checkbox"]:checked + label:after {
   content: '✔';
   position: absolute;
-  top: .1em; left: .3em;
+  top: .25em; left: .20em;
   font-size: 1.3em;
   line-height: 0.8;
   color: #09ad7e;
@@ -913,4 +920,15 @@ label:hover:before {
     background-color: #0177B1;
     color: white;
     font-weight:bold;
+}
+
+/*opciones Ofertas Laborales*/
+.op-oftrabajo img{
+    max-height: 18px;
+    margin-bottom: -4px;
+    margin-right: 5px;
+    margin-left:20px;
+}
+#deleteoft{
+    cursor:pointer;
 }

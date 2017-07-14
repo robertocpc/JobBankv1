@@ -19,94 +19,9 @@ include './header.php';
                     <span>Becas</span>
                 </div>
             </div>
-      
-        <div id="cuadroresultado">
-        <!--div class="buscador shadow">
-            <div class="container">
-                    <input onkeypress="runScript(event)" name="search" id="search" type="text"
-                     placeholder="Busqueda de profesional por nombre o especialidad"
-                     value="<?php echo $searchq?>">
-                    
-                    <input  type="submit" class="buscar-submit" id="buscar" value="Buscar">
-                    <br><label><span style="color:white;">Ejemplo: Programador, Operador, Redes </span></label>
-                
-            </div>
-        </div>
-        <div class="container shadow">
-            <div id="contegre">
-                <div class="show-right">
-                    <label style="font-size:14px;" id="cab-filtro">Filtro por:</label><br><Br>
-                    <div class="dropdown">
-                        <div class="dropdownfiltro" id="keyword">
-                            <span class="spans" style="font-weigth:bold;">Palabras Claves:</span>
-                        </div>
-                            <div class="dropdown-keywords" id="keywords">
-                                <input class="filtro-input" type="text" name="nombre" id="ddnombre" placeholder="Nombre">
-                                <input class="filtro-input" type="text" name="apellido" id="ddapellido" placeholder="Apellido">
-                                <input class="filtro-input" type="text" name="titulo" id="ddtitulo" placeholder="Titulo">
-                                <input class="filtro-input" type="text" name="compania" id="ddcompania" placeholder="Compañia">
-                                <input class="filtro-input" type="text" name="uni" id="dduni" placeholder="Instituto/Universidad">
-                            </div>
-                        <div class="dropdownfiltro" id="ubicacion">
-                            <span class="spans" style="font-weigth:bold;">Ubicación:</span>
-                        </div>
-                            <div class="dropdown-keywords" id="ubicaciones">
-                                <p><input type="checkbox" id="test1" /><label for="test1">Tacna</label></p>
-                                <p><input type="checkbox" id="test2" /><label for="test1">Lima</label></p>
-                                <p><input type="checkbox" id="test3" /><label for="test1">Arequipa</label></p>
-                                <div  id="agrelugar" style="margin-left:26px;"><span class="spans">Agregar</span>
-                                <input id="autocomplete" class="filtro-input" placeholder="Lugar "
-                                    onFocus="geolocate()" type="text" name="lugar" id="inputlugar">
-                                </div>
-                                
-                            </div>
-                        <div class="dropdownfiltro" id="empactual">
-                            <span class="spans" style="font-weigth:bold;">Empresas en la que trabajan actualmente:</span>
-                        </div>
-                            <div class="dropdown-keywords" id="empactuals">
-                                <p><input type="checkbox" id="test1" /><label for="test1">Southern</label></p>
-                                <p><input type="checkbox" id="test2" /><label for="test1">Electrosur</label></p>
-                                <p><input type="checkbox" id="test3" /><label for="test1">EPS</label></p>
-                                <div id="agreempac" style="margin-left:26px;"><span class="spans">Agregar</span>
-                                <input class="filtro-input" placeholder="Escriba el nombre de una empresa" type="text" name="empac" id="inputempac">
-                                </div>
-                                
-                            </div>
-                        <div class="dropdownfiltro" id="emppas">
-                            <span class="spans" style="font-weigth:bold;">Empresas en la que trabajó:</span>
-                        </div>
-                            <div class="dropdown-keywords" id="emppass">
-                                <p><input type="checkbox" id="test1" /><label for="test1">Southern</label></p>
-                                <p><input type="checkbox" id="test2" /><label for="test1">Electrosur</label></p>
-                                <p><input type="checkbox" id="test3" /><label for="test1">EPS</label></p>
-                                <div  id="agreemppas" style="margin-left:26px;"><span class="spans">Agregar</span>
-                                <input class="filtro-input" placeholder="Escriba el nombre de una empresa" type="text" name="emppas" id="inputemppas">
-                                </div>
-                                
-                            </div>
-                        <div class="dropdownfiltro" id="idioma">
-                            <span class="spans" style="font-weigth:bold;">Idiomas:</span>
-                        </div>
-                            <div class="dropdown-keywords" id="idiomas">
-                                <p><input type="checkbox" id="test1" /><label for="test1">Inglés</label></p>
-                                <p><input type="checkbox" id="test2" /><label for="test1">Portugués</label></p>
-                                <p><input type="checkbox" id="test3" /><label for="test1">Francés</label></p>
-                                <div  id="agreid" style="margin-left:26px;"><span class="spans">Agregar</span>
-                                <input class="filtro-input" placeholder="Idioma" type="text" name="idioma" id="inputid">
-                                </div>
-                                
-                            </div>
-                    </div>
-                </div>
-                <div-- class="resultado shadow">
-                    <div id="result" -->
-
-
-   
-                    <!--/div>
+        
             
-                </div>
-            </div-->
+        <div id="cuadroresultado">
         </div>
 
 
@@ -114,6 +29,7 @@ include './header.php';
     <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
     <script>
      $(document).ready(function(){
+        
         $('#buscar').click(function(){
             var name=document.getElementById("search").value;
             window.location = './fetch-s.php?search=' + name;

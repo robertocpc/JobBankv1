@@ -166,6 +166,7 @@ include './db.php';
     
     if($nrows>0){
         $output .="<table width='100%' style='font-size:13px;'>";
+        $i=0;
         while($row=$querys->fetch_assoc()){
             //$rowegre=$mysqli->query("SELECT * FROM tbl_egresado 
             //WHERE col_nombre='$row[col_nombre]' AND col_apellido='$row[col_apellido]'");
@@ -174,14 +175,19 @@ include './db.php';
             /*$estquery=$mysqli->query("SELECT GROUP_CONCAT(col_campest, '') as col_est 
             FROM tbl_estudio WHERE cod_alumno='$row[cod_alumno]' GROUP BY tbl_estudio.cod_alumno");
             $estrow=$estquery->fetch_assoc();*/
-            $output.="<tr><th>";
+            $i++;
+            $output.="<tr>
+            
+            <th>
+            <p><input class='checkopt' type='checkbox' id='ck".$i."' value='".$row['cod_oftrabajo']."'/><label for='ck".$i."'></label></p>
+            ";
             
             $output .= "</th>
-            <td width='90%'>
-                <a class='result-a' href='./preview-perfil.php?id=".$row['cod_ofnombre']."'>".$row['col_empresa'].", ".$row['col_ubicacion']."</a><br>
+            <td width='95%'>
+                <a class='result-a' href='./preview-perfil.php?id=".$row['cod_oftrabajo']."'>".$row['col_ofnombre'].", ".$row['col_empresa']."</a><br>
                 ";
             /*if(isset($row['col_cabecera'])){*/
-            $output.=" ".$row['col_fechalim'];
+            $output.=" ".$row['col_ubicacion'];
             //}
             /*else{$output.= " Ingeniero en Informática y Sistemas";}*/
             $output.=" <br>";
@@ -189,6 +195,7 @@ include './db.php';
             $output.="</tr>";
         }
         $output .="</table>";
+        $i=0;
         echo $output;
     }
     else{
