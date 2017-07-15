@@ -755,7 +755,7 @@ th, td {
     margin-top:20px;
     background-color:white;
     float: left;
-    width:100%; 
+    width:98%; 
 }
 /*PERFIL P//REVIO*/
 .preview-left{
@@ -825,7 +825,6 @@ th, td {
 [type="checkbox"]:checked {
   position: absolute;
   left: -9999px;
-  margin-top:10px;
 }
 [type="checkbox"]:not(:checked) + label,
 [type="checkbox"]:checked + label {

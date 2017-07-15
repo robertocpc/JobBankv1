@@ -123,7 +123,7 @@ include './db.php';
     $disq=$_REQUEST['dis'];
     if(isset($disq)){
         if($disq==1)
-            $disquery=" AND disponible=1 ";
+            $disquery=" AND datediff(col_fechalim,DATE(NOW()))>=0 ";
         else{
             $disquery="";
         }
@@ -156,7 +156,7 @@ include './db.php';
         $disrquery="";
     }
 
-    if($searchq!=''){$query="SELECT  *,MATCH(col_ofnombre,col_empresa) AGAINST ('".$querysel."') as relevance 
+    if($searchq!=''){echo $query="SELECT  *,MATCH(col_ofnombre,col_empresa) AGAINST ('".$querysel."') as relevance 
     FROM tbl_oftrabajo WHERE ((match(col_ofnombre,col_empresa) AGAINST ('".$querysel."') )
     ".$querylike.")".$cargoquery.$empresaquery.$ciudadquery.$idiomaquery.$fechaquery.
     $tipemquery.$tippoquery.$disquery.$disvquery.$disrquery."    
@@ -203,71 +203,9 @@ include './db.php';
         <center><span>No se hallo resultado, por favor asegurese que escribio correctamente, 
         o intente con otro nombre o especialidad</span></center>";
     }
-    /*else{
-        echo "parte 2";
-        echo $searchq;
-        $i=0;
-        $terms=explode(" ",$searchq);
-        $querysel="";
-        foreach($terms as $each){
-            $i++;
-            if($i==1){
-                $querysel.=" $each ";            
-            }
-            else
-                $querysel.=" $each";
-                
-        }
-    //    $query=$mysqli->query("SELECT * FROM tbl_egresado WHERE col_nombre LIKE '%searchq%'")
-        
-        $querysel.="  ' in boolean mode) ";
-        $query="SELECT DISTINCT col_nombre,col_apellido 
-        FROM tbl_egresado LEFT JOIN tbl_estudio ON tbl_egresado.cod_alumno=tbl_estudio.cod_alumno
-         WHERE MATCH(col_nombre,col_apellido) AGAINST('".$querysel."
-          AND MATCH(col_campest) AGAINST('".$querysel;
-        echo $query .=$querysel; 
-        $querys=$mysqli->query($query);
-        $nrows=$querys->num_rows;
-        if($nrows>0){
-            
-            $output .="<table width='100%' style='font-size:13px;'>";
-            while($row=$querys->fetch_assoc()){
-                $estquery=$mysqli->query("SELECT GROUP_CONCAT(col_campest, '') as col_est 
-                FROM tbl_estudio WHERE cod_alumno='$row[cod_alumno]' GROUP BY tbl_estudio.cod_alumno");
-                $estrow=$estquery->fetch_assoc();
-
-                $rowegre=$mysqli->query("SELECT * FROM tbl_egresado 
-                WHERE cod_alumno='$row[cod_alumno]'");
-                $rowegres=$rowegre->fetch_assoc();
-
-                $output.="<tr><th>";
-                if(isset($row['col_imgperfil'])){
-                    $output.= "<img class='search-size' src='data:image/jpg;base64,".base64_encode($row['col_imgperfil'])."' height='200px' width='190px'>";
-                }
-                else{
-                    $output .= "<img class='search-size ' src='./img/profimage.png' height='160px'>";
-                }
-                $output .= "</th>
-                <td width='90%'>
-                    <a class='result-a' href='./preview-perfil.php?id=".$row['cod_alumno']."'>".$rowegres['col_apellido'].", ".$rowegres['col_nombre']."</a><br>
-                    ";
-                if(isset($estrow['col_est'])){$output.=" ".$estrow['col_est'];}
-                else{$output.= " Ingeniero en Informática y Sistemas";}
-                $output.=" <br>";
-                $output.= $rowegres['col_ciudadorigen']."<br></td>";
-                $output.="</tr>";
-            }
-            $output .="</table>";
-            echo $output;
-        }
-        else{
-        echo "<center><img class='search' src='./img/search.png' height='160px'></center><br>
-        <center><span>No se hallo resultado, por favor asegurese que escribio correctamente, 
-        o intente con otro nombre o especialidad</span></center>";
-    }
-    }*/
     }
     else{
+        echo "<input style='display:none' value=''>";
         echo "<center><img class='search' src='./img/search.png' height='160px'></center><br>
         <center><span>No se hallo resultado, por favor asegurese que escribio correctamente, 
         o intente con otro nombre o especialidad</span></center>";
