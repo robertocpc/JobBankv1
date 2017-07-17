@@ -75,16 +75,16 @@
 						<div style='float:right' id='add'><span><img src='./imglogo/add-op.png'>Añadir</span></div>
 						<div style='float:right' id='deleteoft'><span><img src='./imglogo/cancel.png'>Eliminar</span></div>
 					</div>
-					<div class='line' style='width:100%;float:left;'><hr></div>
+					
                <div id='result' >
 					
 					";
-					
-
-
-    echo "        
+	
+	echo "
                 </div>
             </div>
+			
+			<div class='line' style='width:100%;float:left;'><hr></div>
         </div>
 
 
@@ -92,148 +92,41 @@
 					";
 					?>
 <script>
+	
+
 	$(document).ready(function(){
-		$('#checkall').click(function(){
-			if(document.getElementById('checkall').checked==true){
-				var inputs = document.querySelectorAll('.checkopt');	
-				for (var i = 0; i < inputs.length; i++) {
-					inputs[i].checked=true;
-				}
-			}
-			else if(document.getElementById('checkall').checked==false){
-				var inputs = document.querySelectorAll('.checkopt');
-				for (var i = 0; i < inputs.length; i++) {
-					inputs[i].checked=false;
-				}
+		$('#tippos').change(function(){
+			var opt=document.getElementById('tippos');
+			var input=document.getElementById('inputpost');
+			input.style.display='inline';
+			input.disabled=false;
+			var val=opt.value;
+			if(val=='0')
+				input.value='E-mail...';
+			else if(val=='1')
+				input.value='Dirección...';
+		})
+
+		$("#add").on('click',function(){
+        	$('#cuadroresultado').load("./add-oftrabajo.php");
+		})
+        
+		/*
+		$("#add").on('click',function(){
+			$('#cover').fadeIn('slow');
+			$('#popup').fadeIn('slow');
+		})
+		$('#popup').on('click',function(){
+			if($(event.target).is('#close')){
+				$('#cover').fadeOut('slow');
+				$('#popup').fadeOut('slow');
 			}
 		})
-		$('#deleteoft').click(function(){
-			var j=1;
-            var ck='ck'+j;
-			//var ck='ck1';
-			var txt;
-			alert(document.getElementById(ck).value);
-			var inputs = document.querySelectorAll('.checkopt');
-            for (var i = 0; i < inputs.length; i++) {
-				txt = inputs[i].value;
-				//alert(txt);
-				if(inputs[i].checked==true){
-					alert(inputs[i].value);
-					/*$.ajax({
-					type: 'POST',
-					url: './account/admin-oft-delete.php',
-					data: { 'id':txt},
-					success: function(resp){
-						var txt=document.getElementById("search").value;
-						var txtc=document.getElementById("autocomplete").value;
-						var txt1=document.getElementById("ddcargo").value;
-						var txt2=document.getElementById("ddempresa").value;
-						var txt3=document.getElementById("ddidioma").value;
-						
-
-						if(document.getElementById('fptest1').checked==true)
-							var fecha=document.getElementById('fptest1').value;
-						else if(document.getElementById('fptest2').checked==true)
-							var fecha=document.getElementById('fptest2').value;
-						else if(document.getElementById('fptest3').checked==true)
-							var fecha=document.getElementById('fptest3').value;
-						else if(document.getElementById('fptest4').checked==true)
-							var fecha=document.getElementById('fptest4').value;
-
-						if(document.getElementById('tetest1').checked==true)
-							var tipem=document.getElementById('tetest1').value;
-						else if(document.getElementById('tetest2').checked==true)
-							var tipem=document.getElementById('tetest2').value;
-						else if(document.getElementById('tetest3').checked==true)
-							var tipem=document.getElementById('tetest3').value;
-						else if(document.getElementById('tetest4').checked==true)
-							var tipem=document.getElementById('tetest4').value;
-						else if(document.getElementById('tetest5').checked==true)
-							var tipem=document.getElementById('tetest5').value;
-						else if(document.getElementById('tetest6').checked==true)
-							var tipem=document.getElementById('tetest6').value;
-						else if(document.getElementById('tetest7').checked==true)
-							var tipem=document.getElementById('tetest7').value;   
-						
-						if(document.getElementById('tptest1').checked==true)
-							var tippo=document.getElementById('tptest1').value;
-						else if(document.getElementById('tptest2').checked==true)
-							var tippo=document.getElementById('tptest2').value;
-						
-						if(document.getElementById('dstest1').checked==true)
-							var dis=document.getElementById('dstest1').value;
-						if(document.getElementById('dstest2').checked==true)
-							var disv=document.getElementById('dstest2').value;
-						if(document.getElementById('dstest3').checked==true)
-							var disr=document.getElementById('dstest3').value;
-						
-						$.ajax({
-						type: 'POST',
-						url: './resultado-trabajo.php',
-						data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,'idioma':txt3,
-								'fechali':fecha,'tipem':tipem,'tippo':tippo,
-								'dis':dis,'disv':disv,'disr':disr},
-						success: function(resp){
-							$('#result').html(resp);
-						}
-						})
-						}
-						})*/
-				}
-			}
-                
-        })  
-		$('#keyword').click(function(){
-            var val_height="130px"
-            if(document.getElementById('keywords').style.height==val_height){
-                document.getElementById('keywords').style.height = "0px";
-				document.getElementById('arrowdown').style.display='inline';
-				document.getElementById('arrowup').style.display='none';
-			}else{
-                document.getElementById('keywords').style.height = val_height;
-				document.getElementById('arrowdown').style.display='none';
-				document.getElementById('arrowup').style.display='inline';
-			}
-
-        })
-        $('#ubicacion').click(function(){
-            var val_height="140px"
-            if(document.getElementById('ubicaciones').style.height==val_height){
-                document.getElementById('ubicaciones').style.height = "0px";
-				document.getElementById('arrowdown1').style.display='inline';
-				document.getElementById('arrowup1').style.display='none';
-			}else{
-                document.getElementById('ubicaciones').style.height = val_height;
-				document.getElementById('arrowdown1').style.display='none';
-				document.getElementById('arrowup1').style.display='inline';
-			}
-        })
-        $('#empactual').click(function(){
-            var val_height="230px"
-            if(document.getElementById('empactuals').style.height==val_height){
-                document.getElementById('empactuals').style.height = "0px";
-				document.getElementById('arrowdown2').style.display='inline';
-				document.getElementById('arrowup2').style.display='none';
-			}else{
-                document.getElementById('empactuals').style.height = val_height;
-				document.getElementById('arrowdown2').style.display='none';
-				document.getElementById('arrowup2').style.display='inline';
-			}
-        })
-        $('#emppas').click(function(){
-            var val_height="80px"
-            if(document.getElementById('emppass').style.height==val_height){
-                document.getElementById('emppass').style.height = "0px";
-				document.getElementById('arrowdown3').style.display='inline';
-				document.getElementById('arrowup3').style.display='none';
-			}else{
-                document.getElementById('emppass').style.height = val_height;
-				document.getElementById('arrowdown3').style.display='none';
-				document.getElementById('arrowup3').style.display='inline';
-			}
-        })
-        		
-
+		$('#cover,#close').on('click',function(){
+			$('#cover').fadeOut('slow');
+			$('#popup').fadeOut('slow');
+		})
+		*/
 
 		function fnsearch(){
 			document.getElementById('checkall').checked=false;
@@ -292,6 +185,98 @@
 			}
 			})
 		}
+
+		$('#checkall').click(function(){
+			if(document.getElementById('checkall').checked==true){
+				var inputs = document.querySelectorAll('.checkopt');	
+				for (var i = 0; i < inputs.length; i++) {
+					inputs[i].checked=true;
+				}
+			}
+			else if(document.getElementById('checkall').checked==false){
+				var inputs = document.querySelectorAll('.checkopt');
+				for (var i = 0; i < inputs.length; i++) {
+					inputs[i].checked=false;
+				}
+			}
+		})
+		$('#deleteoft').click(function(){
+			var j=1;
+            var ck='ck'+j;
+			//var ck='ck1';
+			var txt;
+			alert(document.getElementById(ck).value);
+			var inputs = document.querySelectorAll('.checkopt');
+            for (var i = 0; i < inputs.length; i++) {
+				txt = inputs[i].value;
+				//alert(txt);
+				if(inputs[i].checked==true){
+					alert(inputs[i].value);
+					/*$.ajax({
+					type: 'POST',
+					url: './account/admin-oft-delete.php',
+					data: { 'id':txt},
+					success: function(resp){
+						fnsearch();
+					}
+					})*/
+				}
+			}
+                
+        })  
+		$('#keyword').click(function(){
+            var val_height="130px"
+            if(document.getElementById('keywords').style.height==val_height){
+                document.getElementById('keywords').style.height = "0px";
+				document.getElementById('arrowdown').style.display='inline';
+				document.getElementById('arrowup').style.display='none';
+			}else{
+                document.getElementById('keywords').style.height = val_height;
+				document.getElementById('arrowdown').style.display='none';
+				document.getElementById('arrowup').style.display='inline';
+			}
+
+        })
+        $('#ubicacion').click(function(){
+            var val_height="140px"
+            if(document.getElementById('ubicaciones').style.height==val_height){
+                document.getElementById('ubicaciones').style.height = "0px";
+				document.getElementById('arrowdown1').style.display='inline';
+				document.getElementById('arrowup1').style.display='none';
+			}else{
+                document.getElementById('ubicaciones').style.height = val_height;
+				document.getElementById('arrowdown1').style.display='none';
+				document.getElementById('arrowup1').style.display='inline';
+			}
+        })
+        $('#empactual').click(function(){
+            var val_height="230px"
+            if(document.getElementById('empactuals').style.height==val_height){
+                document.getElementById('empactuals').style.height = "0px";
+				document.getElementById('arrowdown2').style.display='inline';
+				document.getElementById('arrowup2').style.display='none';
+			}else{
+                document.getElementById('empactuals').style.height = val_height;
+				document.getElementById('arrowdown2').style.display='none';
+				document.getElementById('arrowup2').style.display='inline';
+			}
+        })
+        $('#emppas').click(function(){
+            var val_height="80px"
+            if(document.getElementById('emppass').style.height==val_height){
+                document.getElementById('emppass').style.height = "0px";
+				document.getElementById('arrowdown3').style.display='inline';
+				document.getElementById('arrowup3').style.display='none';
+			}else{
+                document.getElementById('emppass').style.height = val_height;
+				document.getElementById('arrowdown3').style.display='none';
+				document.getElementById('arrowup3').style.display='inline';
+			}
+        })
+        		
+
+
+		
 
    
 
@@ -362,6 +347,13 @@
         
     })
 </script>
+<link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" 
+    type="text/css"> 
+<script src="./codebase/dhtmlxcalendar.js"></script>
+<script src='./scriptdate.js'></script>
+<script src='./scriptoftrabajo.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <Script src="./jquery.js"></Script>
  <script src="./googlemap.js">    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1mqGxOcvKuautGjS4Q0EcgWYV8jcltj8&libraries=places&callback=initAutocomplete"
         async defer></script>

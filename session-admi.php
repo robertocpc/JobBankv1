@@ -21,7 +21,7 @@ include './header.php';
             </div>
         
             
-        <div id="cuadroresultado">
+        <div id="cuadroresultado" style='float:left;width:100%;'>
         </div>
 
 

@@ -429,9 +429,10 @@ header .contacto{
   border-bottom-color: #2ecc71;
 }
 .edit-profile input:not([type="submit"]):invalid {
-  border-bottom-color: #e74c3c;
+  border: red 2px solid;
   box-shadow: none;
-  outline: none;
+  outline:none;
+  
 }
 .edit-profile input:not([type="submit"]):required{
     
@@ -932,4 +933,67 @@ label:hover:before {
 }
 #deleteoft{
     cursor:pointer;
+}
+#add{
+    cursor:pointer;
+}
+
+/*Estilo Pop Up*/
+/*
+.popup{
+    padding: 3%;
+    width: 74%;
+    height: 60%;
+    background: #fff;
+    border-radius: 4px;
+    margin: 0;
+    z-index: 1000;
+    display:none;
+    position: absolute; 
+}
+.cover{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+    z-index: 999;
+    background-color: rgba(0,0,0,0.5);
+    top:0;
+    left: 0;
+}
+#close{
+    cursor:pointer;
+    float:right;
+}
+/*VENTANA ADD-OFTRABAJO*/
+.add-oftrabajo{
+    margin-top:3%;
+    border-radius:4px;
+    padding: 2%;
+    background-color:white;
+}
+
+
+/*EFECTO BOTON ESTILO 1*/
+.btn-st1{
+    height: 35px;
+    
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    width:65%;
+}
+.btn-st1:hover{
+    border: 2px solid #26C6CE;
+}
+.slt-sty1{
+    width:40%;
+    border-radius:1px;
+    padding: 4px;
+    border: 2px solid #ccc;
+}
+.tbl-oftrabajo td{
+    padding:10px;
+    vertical-align: top;
 }
