@@ -1,23 +1,22 @@
 <?php echo "<div class='buscador shadow'>
-            <div class='container'>
-                    <input  name='search' id='search' type='text'
+            <div class='container searchbar'>
+                    <input  name='search' id='search' type='text' class='width-of'
                      placeholder='Busqueda ofertas laborales'
                      value='".$searchq."'>
                      <input name='searchciu' id='autocomplete' type='text' class='searchciu'
                      placeholder='Ciudad, Provincia o Pais' onFocus='geolocate()' 
                      value='".$searchciuq."'>
-
-
                     <input  type='submit' class='buscar-submit' id='buscar' value='Buscar'>
+						  <div style='float:right;' id='opavanzadas'><img src='./imglogo/settings.png'></div>
                     <br><label><span style='color:white;'>Ejemplo: Ingeniero de Preventa </span></label>
                 
-            </div>
+           </div>
         </div>
         <div class='container shadow'>
             <div id='contegre'>
-                <div class='show-right'>
+                <div class='show-right' >
                     <label style='font-size:14px;' id='cab-filtro'>Filtro por:</label><br><Br>
-                    <div class='dropdown'>
+                    <div class='dropdown' id='dropdown'>
                         <div class='dropdownfiltro' id='keyword'>
                             <span class='spans' style='font-weigth:bold;'>Palabras Claves:</span>
 							<span><img id='arrowdown'src='./img/arrow-down.png'></span>
@@ -77,7 +76,7 @@
 						<div style='float:right' id='deleteoft'><span><img src='./imglogo/cancel.png'>Eliminar</span></div>
 					</div>
 					<div class='line' style='width:100%;float:left;'><hr></div>
-                    <div id='result' >
+               <div id='result' >
 					
 					";
 					
@@ -234,1329 +233,132 @@
 			}
         })
         		
-		$('#search').keypress(function(e){
+
+
+		function fnsearch(){
+			document.getElementById('checkall').checked=false;
+			var txt=document.getElementById("search").value;
+			var txtc=document.getElementById("autocomplete").value;
+			var txt1=document.getElementById("ddcargo").value;
+			var txt2=document.getElementById("ddempresa").value;
+			var txt3=document.getElementById("ddidioma").value;
+			
+
+			if(document.getElementById('fptest1').checked==true)
+				var fecha=document.getElementById('fptest1').value;
+			else if(document.getElementById('fptest2').checked==true)
+				var fecha=document.getElementById('fptest2').value;
+			else if(document.getElementById('fptest3').checked==true)
+				var fecha=document.getElementById('fptest3').value;
+			else if(document.getElementById('fptest4').checked==true)
+				var fecha=document.getElementById('fptest4').value;
+
+			var tipem="";
+			if(document.getElementById('tetest1').checked==true)
+				tipem=tipem+" "+document.getElementById('tetest1').value;
+			if(document.getElementById('tetest2').checked==true)
+				tipem=tipem+" "+document.getElementById('tetest2').value;
+			if(document.getElementById('tetest3').checked==true)
+				tipem=tipem+" "+document.getElementById('tetest3').value;
+			if(document.getElementById('tetest4').checked==true)
+				tipem=tipem+" "+document.getElementById('tetest4').value;
+			if(document.getElementById('tetest5').checked==true)
+				tipem=tipem+" "+document.getElementById('tetest5').value;
+			if(document.getElementById('tetest6').checked==true)
+				tipem=tipem+" "+document.getElementById('tetest6').value;
+			if(document.getElementById('tetest7').checked==true)
+				tipem=tipem+" "+document.getElementById('tetest7').value;
+			
+			if(document.getElementById('tptest1').checked==true)
+				var tippo=document.getElementById('tptest1').value;
+			else if(document.getElementById('tptest2').checked==true)
+				var tippo=document.getElementById('tptest2').value;
+			
+			if(document.getElementById('dstest1').checked==true)
+				var dis=document.getElementById('dstest1').value;
+			if(document.getElementById('dstest2').checked==true)
+				var disv=document.getElementById('dstest2').value;
+			if(document.getElementById('dstest3').checked==true)
+				var disr=document.getElementById('dstest3').value;
+			
+			$.ajax({
+			type: 'POST',
+			url: './resultado-trabajo.php',
+			data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,'idioma':txt3,
+					'fechali':fecha,'tipem':tipem,'tippo':tippo,
+							'dis':dis,'disv':disv,'disr':disr},
+			success: function(resp){
+				$('#result').html(resp);
+			}
+			})
+		}
+
+   
+
+		$('#opavanzadas').click(function(e){
+			var val_height="330px"
+            if(document.getElementById('dropdown').style.height==val_height){
+                document.getElementById('dropdown').style.height = "0px";
+				document.getElementById('arrowdown').style.display='inline';
+				//document.getElementById('dropdown').style.display='none';
+			}else{
+				document.getElementById('dropdown').style.display='inline';
+                document.getElementById('dropdown').style.height = val_height;
+				//document.getElementById('arrowdown').style.display='none';
+			}     
+		})
+
+		$('#ddcargo,#ddempresa,#ddidioma,#autocomplete,#search').keypress(function(e){
             if(e.which == 13) {
-				//alert("bienn"); 
-				var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;   
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,'idioma':txt3,
-						'fechali':fecha,'tipem':tipem,'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-				
-				//window.location = './fetch-s.php?search=' + name;
+				fnsearch();
 			}     
         })
-
-        $('#autocomplete').keypress(function(e){
-            if(e.which == 13) {
-				//alert("bienn"); 
-				var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,'idioma':txt3,
-						'fechali':fecha,'tipem':tipem,'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-				
-				//window.location = './fetch-s.php?search=' + name;
-			}     
-        })
-
-		$('#ddcargo').keypress(function(e){
-            if(e.which == 13) {
-				var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,'idioma':txt3,
-						'fechali':fecha,'tipem':tipem,'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			}     
-        })
-		$('#ddempresa').keypress(function(e){
-            if(e.which == 13) {
-				var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,'idioma':txt3,
-						'fechali':fecha,'tipem':tipem,'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			}     
-        })
-		$('#ddidioma').keypress(function(e){
-            if(e.which == 13) {
-				var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			}     
-        })
+	
 		$('#fptest1').click(function(e){
-                document.getElementById('fptest2').checked=false;
-                document.getElementById('fptest3').checked=false;
-                document.getElementById('fptest4').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
+			document.getElementById('fptest2').checked=false;
+			document.getElementById('fptest3').checked=false;
+			document.getElementById('fptest4').checked=false;
+         fnsearch();   
 			   
         })
         $('#fptest2').click(function(e){
-                document.getElementById('fptest1').checked=false;
-                document.getElementById('fptest3').checked=false;
-                document.getElementById('fptest4').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			   
+			document.getElementById('fptest1').checked=false;
+			document.getElementById('fptest3').checked=false;
+			document.getElementById('fptest4').checked=false;
+			fnsearch();		
         })
 
         $('#fptest3').click(function(e){
-                document.getElementById('fptest2').checked=false;
-                document.getElementById('fptest1').checked=false;
-                document.getElementById('fptest4').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
+			document.getElementById('fptest2').checked=false;
+			document.getElementById('fptest1').checked=false;
+			document.getElementById('fptest4').checked=false;
+         fnsearch();
 			   
         })
 
         $('#fptest4').click(function(e){
-                document.getElementById('fptest2').checked=false;
-                document.getElementById('fptest3').checked=false;
-                document.getElementById('fptest1').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			   
+			document.getElementById('fptest2').checked=false;
+			document.getElementById('fptest3').checked=false;
+			document.getElementById('fptest1').checked=false;
+         fnsearch();  
         })
 
-        $('#tetest1').click(function(e){
-            document.getElementById('tetest2').checked=false;
-            document.getElementById('tetest3').checked=false;
-            document.getElementById('tetest4').checked=false;
-            document.getElementById('tetest5').checked=false;
-            document.getElementById('tetest6').checked=false;
-            document.getElementById('tetest7').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			   
+        $('#tetest1,#tetest2,#tetest3,#tetest4,#tetest5,#tetest6,#tetest7,#dstest1,#dstest2,#dstest3').click(function(e){
+			
+			fnsearch();
         })
 
-        $('#tetest2').click(function(e){
-            document.getElementById('tetest1').checked=false;
-            document.getElementById('tetest3').checked=false;
-            document.getElementById('tetest4').checked=false;
-            document.getElementById('tetest5').checked=false;
-            document.getElementById('tetest6').checked=false;
-            document.getElementById('tetest7').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			   
-        })
-
-        $('#tetest3').click(function(e){
-            document.getElementById('tetest2').checked=false;
-            document.getElementById('tetest1').checked=false;
-            document.getElementById('tetest4').checked=false;
-            document.getElementById('tetest5').checked=false;
-            document.getElementById('tetest6').checked=false;
-            document.getElementById('tetest7').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			   
-        })
-
-        $('#tetest4').click(function(e){
-            document.getElementById('tetest2').checked=false;
-            document.getElementById('tetest3').checked=false;
-            document.getElementById('tetest1').checked=false;
-            document.getElementById('tetest5').checked=false;
-            document.getElementById('tetest6').checked=false;
-            document.getElementById('tetest7').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			   
-        })
-
-        $('#tetest5').click(function(e){
-            document.getElementById('tetest2').checked=false;
-            document.getElementById('tetest3').checked=false;
-            document.getElementById('tetest4').checked=false;
-            document.getElementById('tetest1').checked=false;
-            document.getElementById('tetest6').checked=false;
-            document.getElementById('tetest7').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				}) 
-			   
-        })
-
-        $('#tetest6').click(function(e){
-            document.getElementById('tetest2').checked=false;
-            document.getElementById('tetest3').checked=false;
-            document.getElementById('tetest4').checked=false;
-            document.getElementById('tetest5').checked=false;
-            document.getElementById('tetest1').checked=false;
-            document.getElementById('tetest7').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			   
-        })
-
-        $('#tetest7').click(function(e){
-            document.getElementById('tetest2').checked=false;
-            document.getElementById('tetest3').checked=false;
-            document.getElementById('tetest4').checked=false;
-            document.getElementById('tetest5').checked=false;
-            document.getElementById('tetest6').checked=false;
-            document.getElementById('tetest1').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			   
-        })
 
         $('#tptest1').click(function(e){
-            document.getElementById('tptest2').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				}) 
-			   
+         document.getElementById('tptest2').checked=false;
+         fnsearch();  
         })
 
         $('#tptest2').click(function(e){
-            document.getElementById('tptest1').checked=false;
-            
-
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				}) 
-			   
+         document.getElementById('tptest1').checked=false;
+         fnsearch();
         })
 
-        $('#dstest1').click(function(e){
-            
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			   
-        })
-
-        $('#dstest2').click(function(e){
-            
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			   
-        })
-
-        $('#dstest3').click(function(e){
-            
-            var txt=document.getElementById("search").value;
-                var txtc=document.getElementById("autocomplete").value;
-				var txt1=document.getElementById("ddcargo").value;
-				var txt2=document.getElementById("ddempresa").value;
-				var txt3=document.getElementById("ddidioma").value;
-				
-
-				if(document.getElementById('fptest1').checked==true)
-					var fecha=document.getElementById('fptest1').value;
-				else if(document.getElementById('fptest2').checked==true)
-					var fecha=document.getElementById('fptest2').value;
-				else if(document.getElementById('fptest3').checked==true)
-					var fecha=document.getElementById('fptest3').value;
-				else if(document.getElementById('fptest4').checked==true)
-					var fecha=document.getElementById('fptest4').value;
-
-				if(document.getElementById('tetest1').checked==true)
-					var tipem=document.getElementById('tetest1').value;
-				else if(document.getElementById('tetest2').checked==true)
-					var tipem=document.getElementById('tetest2').value;
-				else if(document.getElementById('tetest3').checked==true)
-					var tipem=document.getElementById('tetest3').value;
-				else if(document.getElementById('tetest4').checked==true)
-					var tipem=document.getElementById('tetest4').value;
-                else if(document.getElementById('tetest5').checked==true)
-					var tipem=document.getElementById('tetest5').value;
-                else if(document.getElementById('tetest6').checked==true)
-					var tipem=document.getElementById('tetest6').value;
-                else if(document.getElementById('tetest7').checked==true)
-					var tipem=document.getElementById('tetest7').value;
-               
-				
-				if(document.getElementById('tptest1').checked==true)
-					var tippo=document.getElementById('tptest1').value;
-				else if(document.getElementById('tptest2').checked==true)
-					var tippo=document.getElementById('tptest2').value;
-				
-				if(document.getElementById('dstest1').checked==true)
-					var dis=document.getElementById('dstest1').value;
-				if(document.getElementById('dstest2').checked==true)
-					var disv=document.getElementById('dstest2').value;
-				if(document.getElementById('dstest3').checked==true)
-					var disr=document.getElementById('dstest3').value;
-				
-				$.ajax({
-				type: 'POST',
-				url: './resultado-trabajo.php',
-				data: { 'search':txt,'searchc':txtc,'cargo':txt1,'empresa':txt2,
-                        'idioma':txt3,'fechali':fecha,'tipem':tipem,
-                        'tippo':tippo,
-                        'dis':dis,'disv':disv,'disr':disr},
-				success: function(resp){
-					$('#result').html(resp);
-				}
-				})
-			   
-        })
         
     })
 </script>

@@ -117,10 +117,9 @@ header .contacto{
     color: white;
     height: 42px;
     padding: 6px 10px;
-    margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: auto;
+    width: 80px;
     cursor: pointer;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
@@ -139,8 +138,8 @@ header .contacto{
 
 
 #search{
-    width: 65%;
-    margin-top: 30px;
+    width: 55%;
+
     height: 40px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -155,7 +154,7 @@ header .contacto{
 }
 .searchciu{
     width: 23%;
-    margin-top: 30px;
+    
     height: 40px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -677,13 +676,12 @@ th, td {
 
 .show-right{
     margin-top:40px;
-    padding: 14px;
-    padding-bottom: 30px;
     color: rgb(100,100,100);
     font-size:12px;
     width:28%;
     float: right;
     border-radius: 5px;
+    
 }
 .show-left{
     margin-top:40px;
@@ -695,17 +693,7 @@ th, td {
     float: left;
     border-radius: 5px;
 }
-.show-right-ad{
-    margin-top:40px;
-    padding: 14px;
-    padding-bottom: 30px;
-    color: black;
-    background-color: white;
-    width:73%;
-    float: right;
-    font-size:12px;
-    border-radius: 5px;
-}
+
 #result h3{
     color: black;
 }
@@ -774,12 +762,26 @@ th, td {
 #cab-filtro{
     margin-bottom:14px;
 }
+.searchbar img{
+    max-height: 30px;
+    max-width: 30px;
+    padding: 5px;
+}
+#opavanzadas{
+    cursor:pointer;
+}
+#contegre{
+    background-image: red;
+}
+.searchbar{
+    margin-top: 30px;
+}
+
 .dropdownfiltro{
     position: relative;
     cursor:pointer;
     border-top: 2px solid gray;
     padding-top:10px;
-    padding-bottom: 10px;
 }
 .dropdownfiltro img{
     max-height: 18px;

@@ -25,7 +25,7 @@ include './db.php';
         }
         else{
             if($i==1){
-                $querysel.=" $each ";            
+                $querysel.="$each";            
             }
             else
                 $querysel.=" $each";
@@ -88,24 +88,34 @@ include './db.php';
     }
     //para tipo de empleo
     $tipem=$_REQUEST['tipem'];
-    if(isset($tipem)){
-        if($tipem==0)
-            $tipemquery=" AND col_tipoempleo=0 ";
-        elseif($tipem==1)
-            $tipemquery=" AND col_tipoempleo=1 ";
-        elseif($tipem==2)
-            $tipemquery=" AND col_tipoempleo=2 ";
-        elseif($tipem==3)
-            $tipemquery=" AND col_tipoempleo=3 ";
-        elseif($tipem==4)
-            $tipemquery=" AND col_tipoempleo=4 ";
-        elseif($tipem==5)
-            $tipemquery=" AND col_tipoempleo=5 ";
-        elseif($tipem==6)
-            $tipemquery=" AND col_tipoempleo=6 ";
-    }
-    else{
-        $tipemquery="";
+
+    $separate=explode(" ",$tipem);
+    $tipemquery.="";
+    $j=0;
+    if(isset($tipem)&&$tipem!=""){
+        foreach($separate as $eachs){
+            if($j!=0){
+            if($j!=1)
+                $tipemquery.=" OR ";
+            if($eachs=='0')
+                $tipemquery.="  col_tipoempleo=0 ";
+            if($eachs=='1')
+                $tipemquery.="  col_tipoempleo=1 ";
+            if($eachs=='2')
+                $tipemquery.="  col_tipoempleo=2 ";
+            if($eachs=='3')
+                $tipemquery.="  col_tipoempleo=3 ";
+            if($eachs=='4')
+                $tipemquery.="  col_tipoempleo=4 ";
+            if($eachs=='5')
+                $tipemquery.="  col_tipoempleo=5 ";
+            if($eachs=='6')
+                $tipemquery.="  col_tipoempleo=6 ";    
+            }
+            $j++;
+        }
+        $tipemquery=" AND(".$tipemquery.")";
+
     }
     //Tipo post
     $tippo=$_REQUEST['tippo'];

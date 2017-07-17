@@ -1,14 +1,15 @@
 <?php echo "<div class='buscador shadow'>
-            <div class='container'>
-                    <input onkeypress='runScript(event)' name='search' id='search' type='text'
+            	<div class='container searchbar'>
+                    <input name='search' id='search' type='text'
                      placeholder='Busqueda de profesional por nombre o especialidad'
                      value='".$searchq."'>
                     
                     <input  type='submit' class='buscar-submit' id='buscar' value='Buscar'>
+						  
                     <br><label><span style='color:white;'>Ejemplo: Programador, Operador, Redes </span></label>
                 
-            </div>
-        </div>
+						</div>
+				</div>
         <div class='container shadow'>
             <div id='contegre'>
                 <div class='show-right'>
