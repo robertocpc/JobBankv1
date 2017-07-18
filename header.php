@@ -11,11 +11,8 @@ session_start();
         <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
         <title>Esis</title>
     </head>
-    <?php if($_SESSION['windows']==5){
-                echo "<body onload='doOnLoad();' class='theme1'>"; }
-        else{
-            echo "<body onload='doOnLoad();' class='theme2'>";}
-    ?>
+    <body onload='doOnLoad();'>
+        
         <header>    
             <div class="container">
                 <div id="branding">

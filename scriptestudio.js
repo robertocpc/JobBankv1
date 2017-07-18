@@ -64,7 +64,7 @@ CustomValidation.prototype = {
 	registerListener: function() { //register the listener here
 
 		var CustomValidation = this;
-		var startdateInput = document.getElementById('box');
+		
 
 		
 
@@ -390,17 +390,7 @@ function validate() {
 	}
 }
 
-datein.CustomValidation.checkInput();
 
-//datein.addEventListener('onClick',validate);	
-
-datein.addEventListener('onClick', function() {
-			datein.CustomValidation.checkInput();
-		});
-
-datefn.addEventListener('onClick', function() {
-			datefn.CustomValidation.checkInput();
-		});
 
 submit.addEventListener('click', validate);
 
@@ -412,6 +402,7 @@ var myCalendar;
             myCalendar.setDateFormat("%d/%m/%Y");
             var dd = myCalendar.getFormatedDate();
 			myCalendar.attachEvent("onClick", function(d){
+				alert('dfsdf');
 				//var element = document.querySelector('label[for="box2"] li:nth-child(1)');
                 //var elementt = document.getElementById('box2');
                 dd = myCalendar.getFormatedDate(null,d);
@@ -432,6 +423,7 @@ var myCalendar;
             myCalendar1.setDateFormat("%d/%m/%Y");
             var dd1 = myCalendar1.getFormatedDate();
 			myCalendar1.attachEvent("onClick", function(d){
+				alert('sdasd');
 				//var element = document.querySelector('label[for="box2"] li:nth-child(1)');
                 //var elementt = document.getElementById('box2');
                 dd1 = myCalendar1.getFormatedDate(null,d);

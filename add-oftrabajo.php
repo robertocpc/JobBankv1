@@ -74,7 +74,7 @@
                         <span class='spans'>Tipo de postulación: </span>
                      </td>
                      <td style='width:65%;'>
-                        <select name='tippos' style='font-size:12px;' class='slt-sty1' id='tippos'>
+                        <select name='tippos' style='font-size:12px;' class='slt-sty1' id='tippos' required>
                            <option value='' disabled selected>Selecione...</option>
                            <option value='0'>E-mail</option>
                            <option value='1'>Presencial</option>
@@ -95,7 +95,7 @@
                         <span class='spans'>Fecha Limite Postulación: </span>
                      </td>
                      <td style='width:65%;'>
-                        <input name='fechalim' type='text' class='btn-st1' id='box' value='' placeholder='' required>
+                        <input id='box' name='fechalim' type='text'  class='btn-st1 datepicker'  required>
                      </td>
                   </tr>
                   <tr>
@@ -103,7 +103,7 @@
                         <span class='spans'>Cantidad de Puestos: </span>
                      </td>
                      <td style='width:65%;'>
-                        <input name='ofcan' class='btn-st1' id='ofurl' value='' placeholder=''>
+                        <input name='ofcan' class='btn-st1' id='ofcan' value='' placeholder=''>
                      </td>
                   </tr>
                   <tr>
@@ -111,7 +111,7 @@
                         <span class='spans'>Idiomas requeridos: </span> 
                      </td>
                      <td style='width:65%;'>
-                        <input name='ofidioma' class='btn-st1' id='ofurl' value='' placeholder='Ej: Inglés, Francés ...'>
+                        <input name='ofidioma' class='btn-st1' id='ofidioma' value='' placeholder='Ej: Inglés, Francés ...'>
                      </td>
                   </tr>
                   <tr>
@@ -119,7 +119,7 @@
                         <span class='spans'>Tiempo mínimo laborando: </span>
                      </td>
                      <td style='width:65%;'>
-                        <input name='oftimin' class='btn-st1' id='ofurl' value='' placeholder='Ej: 2 años'>
+                        <input name='oftimin' class='btn-st1' id='oftimin' value='' placeholder='Ej: 2 años'>
                      </td>
                   </tr>
                   <tr>
@@ -165,7 +165,7 @@
                         <span class='spans'>Descripción: </span>
                      </td>
                      <td style='width:65%;'>
-                        <textarea name='ofdescrip' style='width:70%;height: 100px;border-radius:4px;border: 2px solid #ccc;resize:none;'></textarea>
+                        <textarea name='ofdescrip' id='ofdescrip' style='width:70%;height: 100px;border-radius:4px;border: 2px solid #ccc;resize:none;'></textarea>
                      </td>
                   </tr>
                </table>
@@ -179,10 +179,15 @@
       
       $('#ofnombre').keypress(function(e) {
          var txt =document.getElementById('ofnombre');
-         if(txt.value.length>5){
-            e.preventDefault();
+         if(txt.value.length>80){
+            return this.value = this.value.substring(0, 80);
          }
-            //return false;
+      })
+      $('#ofcan').keypress(function(e) {
+         var txt =document.getElementById('ofcan');
+         if(txt.value.length>=3){
+            return this.value = this.value.substring(0, 2);
+         }
       })
 
 
@@ -200,8 +205,9 @@
 
    })
 
+   
+
 </script>
+<script src='./scriptoftrabajo.js'></script>
 <link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" type="text/css"> 
 <script src="./codebase/dhtmlxcalendar.js"></script>
-<script src='./scriptdate.js'></script>
-<script src='./scriptoftrabajo.js'></script>

@@ -205,23 +205,23 @@
             var ck='ck'+j;
 			//var ck='ck1';
 			var txt;
-			alert(document.getElementById(ck).value);
 			var inputs = document.querySelectorAll('.checkopt');
             for (var i = 0; i < inputs.length; i++) {
 				txt = inputs[i].value;
 				//alert(txt);
 				if(inputs[i].checked==true){
-					alert(inputs[i].value);
-					/*$.ajax({
+					$.ajax({
 					type: 'POST',
 					url: './account/admin-oft-delete.php',
 					data: { 'id':txt},
 					success: function(resp){
 						fnsearch();
 					}
-					})*/
+					})
 				}
 			}
+			
+       		//$('#cuadroresultado').load("./oftrabajo.php");
                 
         })  
 		$('#keyword').click(function(){

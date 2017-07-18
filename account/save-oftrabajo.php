@@ -23,6 +23,9 @@ $syear  = $sorderdate[2];
 $date=$syear."-".$smonth."-".$sday;
 
 echo $ofcan=$_POST['ofcan'];
+if(!isset($ofcan))
+   $ofcan='NULL';
+
 echo $ofidioma=$_POST['ofidioma'];
 echo $oftimin=$_POST['oftimin'];
 echo $oflic=$_POST['oflic'];
@@ -40,7 +43,7 @@ col_emailcon,col_telfcon,col_tipoempleo,col_tipopost,col_emdi,col_url,
 col_fechalim,col_cantvacantes,col_idiomas,col_tiempoexp,col_liconducir,
 col_dispviaje,col_dispresid,col_fechapub,col_descripcion) 
 VALUES (1,'$ofnombre','$ofempresa','$ofubicacion','$ofemail','$oftelf','$tipem',
-'$tippos','$inputpos','$ofurl','$date','$ofcan','$ofidioma','$oftimin',$oflic,
+'$tippos','$inputpos','$ofurl','$date',$ofcan,'$ofidioma','$oftimin',$oflic,
 '$ofdisv','$ofdisr','$currentdate','$ofdescrip') ";
 $mysqli-> query($query);
 
