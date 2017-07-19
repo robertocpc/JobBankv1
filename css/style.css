@@ -139,7 +139,6 @@ header .contacto{
 
 #search{
     width: 55%;
-
     height: 40px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -406,6 +405,10 @@ header .contacto{
 }
 
 .se-img-size{
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
     max-height: 200px;
     min-height: 200px;
     max-width: 190px;
@@ -420,6 +423,15 @@ header .contacto{
 }
 #camera-se{
     float:right;
+}
+#camera-mp{
+    background: black;
+    float: left;
+    max-width: 28px;
+    max-height: 28px;
+}
+#fileinput{
+    width:0.0000001px;
 }
 .shadow{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -784,12 +796,45 @@ th, td {
     border-top: 2px solid gray;
     padding-top:10px;
 }
+.set-white{
+    background-color: white;
+    padding:0px;
+}
+.set-blue{
+    background-color:#0177B1;
+    color: black;
+    padding:10px;
+    border-top: 2px solid white;
+}
+.set-white li{
+    padding: 10px 0px 10px 8px;
+    background: white;
+    list-style: none;
+    text-decoration: none;
+    cursor:pointer;
+}
+.set-white ul{
+    padding:0px;
+}
+.linkdirec{
+    color: black;
+    width:100%;
+    font-weight: bold;
+}
+.set-white li:hover{
+    border-left: 8px solid #0177B1;
+}
+.set-white li:hover > .linkdirec{
+    font-weight: bold;
+    color:black;
+}
 .dropdownfiltro img{
     max-height: 18px;
     min-height: 18px;
     float: right;
 }
 .dropdown-keywords{
+    padding:0;
     overflow:hidden;
     height:0;
     -webkit-transition:height 500ms ease-in;
@@ -996,4 +1041,9 @@ label:hover:before {
 .tbl-oftrabajo td{
     padding:10px;
     vertical-align: top;
+}
+
+.bg-white{
+    background-color: white;
+    padding: 15px;
 }

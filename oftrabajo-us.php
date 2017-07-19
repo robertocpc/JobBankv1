@@ -71,9 +71,9 @@
                 </div>
                 <div class='resultado shadow'>
 					<div class='op-oftrabajo' >
-						<div style='float:left' class='ckbox'><span><input type='checkbox' id='checkall' value='1'/><label for='checkall'>Marcar Todo</label></span></div>
-						<div style='float:right' id='add'><span><img src='./imglogo/add-op.png'>Añadir</span></div>
-						<div style='float:right' id='deleteoft'><span><img src='./imglogo/cancel.png'>Eliminar</span></div>
+						<div style='float:left;display:none;' class='ckbox'><span><input type='checkbox' id='checkall' value='1'/><label for='checkall'>Marcar Todo</label></span></div>
+						<div style='float:right;display:none;' id='add'><span><img src='./imglogo/add-op.png'>Añadir</span></div>
+						<div style='float:right;display:none;' id='deleteoft'><span><img src='./imglogo/cancel.png'>Eliminar</span></div>
 					</div>
 					
                <div id='result' >

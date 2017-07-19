@@ -16,7 +16,7 @@ include './header.php';
         </div>
         <div id="newsletter">
             <div class="font-blue"></div>
-            <div class="container">
+            <div class="container searchbar">
                     <input  name="search" id="search" type="text" placeholder="Busqueda de profesional por nombre o especialidad">
                     
                     <input  type="submit" class="buscar-submit" id="buscar" value="Buscar">

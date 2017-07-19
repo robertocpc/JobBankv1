@@ -37,7 +37,7 @@ session_start();
                                 }
                                 else if($_SESSION['window']==5){
                                     echo "<li><a href='index.php'>Inicio</a></li>
-                                    <li><a href='./session-admi.php'>Administrador</a></li>
+                                    <li><a href='./session-admi.php'>".$_SESSION['nombre']."</a></li>
                                     <li><a href='./account/p-logout.php'>Log out</a></li>";
                                 }else{
                                     echo "<li><a href='index.php'>Inicio</a></li>

@@ -106,7 +106,7 @@ var usernameValidityChecks = [
 	},
 	{
 		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^A-Za-z ]/g);
+			var illegalCharacters = input.value.match(/[^A-Za-zÑñÁÉÍÓÚáéíóú ]/g);
 			return illegalCharacters ? true : false;
 		},
 		invalidityMessage: 'Solo los caracteres alfabéticos estan permitidos',
@@ -223,52 +223,6 @@ var carnetValidityChecks = [
 	}
 ];
 
-var passwordValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 8 | input.value.length > 100;
-		},
-		invalidityMessage: 'This input needs to be between 8 and 100 characters',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			return !input.value.match(/[0-9]/g);
-		},
-		invalidityMessage: 'At least 1 number is required',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(2)')
-	},
-	{
-		isInvalid: function(input) {
-			return !input.value.match(/[a-z]/g);
-		},
-		invalidityMessage: 'At least 1 lowercase letter is required',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(3)')
-	},
-	{
-		isInvalid: function(input) {
-			return !input.value.match(/[A-Z]/g);
-		},
-		invalidityMessage: 'At least 1 uppercase letter is required',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(4)')
-	},
-	{
-		isInvalid: function(input) {
-			return !input.value.match(/[\!\@\#\$\%\^\&\*]/g);
-		},
-		invalidityMessage: 'You need one of the required special characters',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(5)')
-	}
-];
-
-var passwordRepeatValidityChecks = [
-	{
-		isInvalid: function() {
-			return passwordRepeatInput.value != passwordInput.value;
-		},
-		invalidityMessage: 'This password needs to match the first one'
-	}
-];
 
 
 var startdateValidityChecks = [
@@ -367,7 +321,7 @@ var startdateValidityChecks = [
 		if(regs[3]==regd[3]){
 			if(regs[2]<=regd[2]){
 				if(regs[2]==regd[2]){
-					if(regs[1]<=regd[1]){
+					if(regs[1]<regd[1]){
 						return false;
 						
 					}
@@ -464,7 +418,8 @@ form.addEventListener('submit', validate);
 var myCalendar;
 		function doOnLoad() {
 			
-			myCalendar1 = new dhtmlXCalendarObject("box");
+			var myCalendar1 = new dhtmlXCalendarObject("box");
+
             myCalendar1.setDateFormat("%d/%m/%Y");
             var dd1 = myCalendar1.getFormatedDate();
 			if(document.getElementById("opt1").selected==true){
@@ -502,6 +457,7 @@ var myCalendar;
 				document.getElementById("carnet").required=true;
 			}
 			myCalendar1.attachEvent("onClick", function(d){
+					alert('funciona');
 				//var element = document.querySelector('label[for="box2"] li:nth-child(1)');
                 //var elementt = document.getElementById('box2');
                 dd1 = myCalendar1.getFormatedDate(null,d);

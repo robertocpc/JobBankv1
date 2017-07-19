@@ -24,19 +24,11 @@ $_SESSION['telf']=$telefono;
 
 $tipodoc=$mysqli->escape_string($_POST['tipodoc']);
 
-switch ($tipodoc) {
-    case 0:
-        $numide=$mysqli->escape_string($_POST['dni']);
-        break;
-    case 1:
-        $numide=$mysqli->escape_string($_POST['pasaporte']);
-        break;
-    case 2:
-        $numide=$mysqli->escape_string($_POST['carnet']);
-        break;
-}
 
-echo $numide;
+        $numide=$mysqli->escape_string($_POST['inputpost']);
+
+
+$numide;
 $ciudadorigen=$mysqli->escape_string($_POST['ciudadorigen']);
 //$ciudadactual=$mysqli->escape_string($_POST['ciudadactual']);
 $genero=$mysqli->escape_string($_POST['genero']);
@@ -52,11 +44,12 @@ if ( $result->num_rows == 0 ){ // User doesn't exist
     '$date','$tipodoc','$numide','$ciudadorigen','$genero','$direccion','$cabecera','posactual')");
     echo "CASO 1";
 }else{
-    $mysqli->query("UPDATE tbl_egresado SET  col_nombre='$nombre', col_apellido='$apellido', 
+    $sentence="UPDATE tbl_egresado SET  col_nombre='$nombre', col_apellido='$apellido', 
     col_email='$email',col_telf='$telefono',col_fechanac='$date',col_tipodoc='$tipodoc',
     col_numide='$numide',col_ciudadorigen='$ciudadorigen',col_genero='$genero',col_direccion='$direccion',
     col_cabecera='$cabecera',col_posactual='$posactual' 
-    WHERE cod_alumno='$_SESSION[cod]'");
+    WHERE cod_alumno='$_SESSION[cod]'"; 
+    $mysqli->query($sentence);
     echo "CASO 2";
 }
 

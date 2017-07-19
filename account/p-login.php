@@ -22,6 +22,8 @@ if(substr($username,0,-6)=='admin'){
             
             $_SESSION['cod'] = $row['cod_alumno'];
             $_SESSION['pass']=$_POST['password'];
+            $_SESSION['nombre'] = $row['col_nombre'];
+            $_SESSION['apellido']=$_POST['col_apellido'];
             $_SESSION['user']='Administrador';
             // This is how we'll know the user is logged in
             $_SESSION['logged_in'] = true;

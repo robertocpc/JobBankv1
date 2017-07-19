@@ -15,7 +15,7 @@ include './header.php';
                 <div class="tab_izquierda shadow">
                     <?php  if($_SESSION['page']==1){$page='selected';}else{$page='';}
                     ?>
-                    <button onclick="location.href = './session.php';" class="efex_button1 <?php echo $page;?>">Información Personal</button><br>
+                    <button onclick="location.href = './session-index-s.php';" class="efex_button1 <?php echo $page;?>">Información Personal</button><br>
                     <?php
                     if($_SESSION['page']==2){$page='selected';}else{$page='';}
                     ?>
@@ -35,18 +35,8 @@ include './header.php';
                     <?php
                     if($_SESSION['page']==6){$page='selected';}else{$page='';}
                     ?>
-                    <button onclick="location.href = './index.php';" class="efex_button1">Bolsa de Trabajo</button>
+                    <button onclick="location.href = './buscar-user.php';" class="efex_button1">Bolsa de Trabajo</button>
 
                 </div>
-                <?php }else{ ?>
-                <div class="tab_izquierda shadow">
-                    <?php  if($_SESSION['page']==1){$page='selected';}else{$page='';}
-                    ?>
-                    <button onclick="location.href = './session-admi.php';" class="efex_button1 <?php echo $page;?>">Egresados</button><br>
-                    <?php
-                    if($_SESSION['page']==2){$page='selected';}else{$page='';}
-                    ?>
-                    <button onclick="location.href = './bolsa-trabajo.php';" class="efex_button1 <?php echo $page;?> ">Bolsa de Trabajo</button><br>
-                    
-                </div>
+                
                 <?php }?>

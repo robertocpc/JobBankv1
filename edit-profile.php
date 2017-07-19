@@ -190,7 +190,7 @@ $user = $result->fetch_assoc();
                 </div>
             </div>
         </div>
-    </body>
+    
     <script type="text/javascript">
 
     function goBack() {

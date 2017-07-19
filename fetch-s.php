@@ -10,13 +10,15 @@ include './header.php';
     <div id="showcase" class="white" >
       
         <div class='buscador shadow'>
-            <div class='container'>
+            <div class='container searchbar'>
+               
                     <input onkeypress='runScript(event)' name='search' id='search' type='text'
                      placeholder='Busqueda de profesional por nombre o especialidad'
                      value='<?php echo $searchq;?>'>
                     
                     <input  type='submit' class='buscar-submit' id='buscar' value='Buscar'>
                     <br><label><span style='color:white;'>Ejemplo: Programador, Operador, Redes </span></label>
+        
                 
             </div>
         </div>

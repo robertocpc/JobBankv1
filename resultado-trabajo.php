@@ -77,7 +77,7 @@ include './db.php';
         if($fechaq==0)
             $fechaquery=" AND datediff(DATE(NOW()),col_fechapub)<=1 ";
         elseif($fechaq==1)
-            $fechaquery=" AND datediff(MONTH(DATE(NOW())),MONTH(col_fechapub))<=7 ";
+            $fechaquery=" AND datediff(DATE(NOW()),col_fechapub)<=7 ";
         elseif($fechaq==2)
             $fechaquery=" AND (MONTH(date(now()))- MONTH(col_fechapub) )<=1";
         elseif($fechaq==3)
@@ -166,7 +166,7 @@ include './db.php';
         $disrquery="";
     }
 
-    if($searchq!=''){echo $query="SELECT  *,MATCH(col_ofnombre,col_empresa) AGAINST ('".$querysel."') as relevance 
+    if($searchq!=''){$query="SELECT  *,MATCH(col_ofnombre,col_empresa) AGAINST ('".$querysel."') as relevance 
     FROM tbl_oftrabajo WHERE ((match(col_ofnombre,col_empresa) AGAINST ('".$querysel."') )
     ".$querylike.")".$cargoquery.$empresaquery.$ciudadquery.$idiomaquery.$fechaquery.
     $tipemquery.$tippoquery.$disquery.$disvquery.$disrquery."    
@@ -194,7 +194,7 @@ include './db.php';
             
             $output .= "</th>
             <td width='95%'>
-                <a class='result-a' href='./preview-perfil.php?id=".$row['cod_oftrabajo']."'>".$row['col_ofnombre'].", ".$row['col_empresa']."</a><br>
+                <a class='result-a' href='#'>".$row['col_ofnombre'].", ".$row['col_empresa']."</a><br>
                 ";
             /*if(isset($row['col_cabecera'])){*/
             $output.=" ".$row['col_ubicacion'];

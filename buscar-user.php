@@ -1,23 +1,18 @@
 <?php
 session_start();
 $_SESSION['windows']=5;
-$searchq=$_REQUEST['search'];
 include './header.php';
 ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <Script src="./jquery.js"></Script>
     
     <div id="showcase" class="white" >
-            <div class="font-blue">
-                <div class="tag-ad" id="egresado">
-                    <span>Egresados</span>
-                </div>
-                <div class="tag-ad" id="ofertas">
+            <div class="font-blue" >
+                
+                <div class="tag-ad" style='width:100%;' id="ofertas">
                     <span>Ofertas Laborales</span>
                 </div>
-                <div class="tag-ad" id="becas">
-                    <span>Añadir Administradores</span><br>
-                </div>
+                
             </div>
         
             
@@ -92,15 +87,10 @@ include './header.php';
             document.getElementById('ofertas').style.backgroundColor="";
             document.getElementById('ofertas').style.borderBottom="";
             document.getElementById('ofertas').style.color="";
-            document.getElementById('ofertas').style.fontWeight="";    
-            
-            document.getElementById('becas').style.backgroundColor="";
-            document.getElementById('becas').style.borderBottom="";
-            document.getElementById('becas').style.color="";
-            document.getElementById('becas').style.fontWeight="";
+            document.getElementById('ofertas').style.fontWeight="";      
         })
         $('#ofertas').click(function(){
-            $('#cuadroresultado').load("./oftrabajo.php");
+            $('#cuadroresultado').load("./oftrabajo-us.php");
             document.getElementById('ofertas').style.backgroundColor="#0177B1";
             document.getElementById('ofertas').style.borderBottom="2px solid white";
             document.getElementById('ofertas').style.color="white";
@@ -109,40 +99,11 @@ include './header.php';
             document.getElementById('egresado').style.backgroundColor="";
             document.getElementById('egresado').style.borderBottom="";
             document.getElementById('egresado').style.color="";
-            document.getElementById('egresado').style.fontWeight=""; 
-            
-            document.getElementById('becas').style.backgroundColor="";
-            document.getElementById('becas').style.borderBottom="";
-            document.getElementById('becas').style.color="";
-            document.getElementById('becas').style.fontWeight=""; 
+            document.getElementById('egresado').style.fontWeight="";    
         })
-
-        $('#becas').click(function(){
-            $('#cuadroresultado').load("./add-admin.php",function(){
-                var txt =document.getElementById('ofusername');
-                if(txt.value.length!=11){
-                    txt.setCustomValidity('sdfsdfsdf');
-                }
-            });
-            document.getElementById('becas').style.backgroundColor="#0177B1";
-            document.getElementById('becas').style.borderBottom="2px solid white";
-            document.getElementById('becas').style.color="white";
-            document.getElementById('becas').style.fontWeight="bold";
-
-            document.getElementById('egresado').style.backgroundColor="";
-            document.getElementById('egresado').style.borderBottom="";
-            document.getElementById('egresado').style.color="";
-            document.getElementById('egresado').style.fontWeight=""; 
-            
-            document.getElementById('ofertas').style.backgroundColor="";
-            document.getElementById('ofertas').style.borderBottom="";
-            document.getElementById('ofertas').style.color="";
-            document.getElementById('ofertas').style.fontWeight=""; 
-        })
-
     })
     window.onload = function() {
-        $('#cuadroresultado').load("./prueba.php");
+        $('#cuadroresultado').load("./oftrabajo-us.php");
         document.getElementById('egresado').style.backgroundColor="#0177B1";
         document.getElementById('egresado').style.borderBottom="2px solid white";
         document.getElementById('egresado').style.color="white";
