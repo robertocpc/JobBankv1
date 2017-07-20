@@ -39,7 +39,7 @@ session_start();
                         
                      </td>
                      <td style='width:20%;'>
-                        <span style='margin-top:20px;' class='spans'>".$user['cod_grado']."</span><br>
+                        <span style='margin-top:20px;' class='spans'>".$user['col_grado']."</span><br>
                      </td>
                      <td style='width:20%;'>
                         <span style='margin-top:20px;' class='spans'>".$user['col_campest']."</span><br>

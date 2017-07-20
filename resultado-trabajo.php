@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 $searchq=$_REQUEST['search'];
 $searchciq=$_REQUEST['searchc'];
 
@@ -175,7 +176,7 @@ include './db.php';
     $nrows=$querys->num_rows;
     
     if($nrows>0){
-        $output .="<table width='100%' style='font-size:13px;'>";
+        $output .="<div id='result2'><table width='100%' style='font-size:13px;'>";
         $i=0;
         while($row=$querys->fetch_assoc()){
             //$rowegre=$mysqli->query("SELECT * FROM tbl_egresado 
@@ -188,13 +189,14 @@ include './db.php';
             $i++;
             $output.="<tr>
             
-            <th>
-            <p><input class='checkopt' type='checkbox' id='ck".$i."' value='".$row['cod_oftrabajo']."'/><label for='ck".$i."'></label></p>
-            ";
-            
+            <th>";
+            if($_SESSION['window']==5){
+            echo"<p><input class='checkopt' type='checkbox' id='ck".$i."' value='".$row['cod_oftrabajo']."'/><label for='ck".$i."'></label></p>";
+
+            }            
             $output .= "</th>
             <td width='95%'>
-                <a class='result-a' href='#'>".$row['col_ofnombre'].", ".$row['col_empresa']."</a><br>
+                <a class='result-a' style='cursor:pointer' data-code='".$row['cod_oftrabajo']."'>".$row['col_ofnombre'].", ".$row['col_empresa']."</a><br>
                 ";
             /*if(isset($row['col_cabecera'])){*/
             $output.=" ".$row['col_ubicacion'];
@@ -204,7 +206,7 @@ include './db.php';
             $output.= $row['col_url']."<br></td>";
             $output.="</tr>";
         }
-        $output .="</table>";
+        $output .="</table></div>";
         $i=0;
         echo $output;
     }
@@ -222,3 +224,21 @@ include './db.php';
     }
 
 ?>
+<script>
+    $(document).ready(function(){
+		$('.result-a').click(function(){
+            var txt=this.getAttribute("data-code");
+            $.ajax({
+			type: 'POST',
+			url: './preview-oftrabajo.php',
+			data: { 'id':txt},
+			success: function(resp){
+				$('#result2').html(resp);
+			}
+			})
+        })
+    })
+
+
+	
+</script>

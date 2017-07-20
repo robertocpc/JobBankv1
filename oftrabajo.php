@@ -95,6 +95,11 @@
 	
 
 	$(document).ready(function(){
+		$('.result-a').click(function(){
+			alert('dfsdf');/*
+            var txt=this.getAttribute("data-code");
+            $('#result').load("./preview-oftrabajo-f.php" {'id':txt});*/
+        })
 		$('#tippos').change(function(){
 			var opt=document.getElementById('tippos');
 			var input=document.getElementById('inputpost');
