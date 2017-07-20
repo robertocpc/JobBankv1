@@ -1,7 +1,8 @@
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
+<link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" type="text/css"> 
+    <!--script src="./dhtmlx.css"></script-->
 <script src="jquery-3.2.1.min.js"></script>
 <?php
 session_start();
@@ -95,7 +96,7 @@ echo "
                                  <span style='color: gray'>* Ejemplo: 02/08/2017</span>
                               </td>
                               <td style='width:65%;'>
-                                 <input name='fecha' id='box' type='date' class='btn-st1' value='".$user['col_fechanac']."' placeholder='dd/mm/yyyy' required>
+                                 <input name='fecha' id='box' type='text' class='btn-st1' value='".$user['col_fechanac']."'  required>
                               </td>
                            </tr>
                            <tr>
@@ -162,13 +163,15 @@ echo "
                               <td>
                                  <input class='buttonefex1' type='submit' value='Guardar Cambios'>
                               </td>
-                           </tr>                 
+                           </tr>    
+                        </table>             
 
                         </form>
       ";
                 
 
-?>
+?><link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" type="text/css"> 
+    <!--script src="./dhtmlx.css"></script-->
 
 <script>
         function change(){
@@ -184,23 +187,18 @@ echo "
             else{
                 document.getElementById('inputpost').value='';
             }
-        }
-
-
-    
-   
+        }  
 
 </script>
 
+    
+<script src="./codebase/dhtmlxcalendar.js"></script>
+<script src="./script.js"></script>
 <script src="./scriptsession.js"></script>
-    <script src="./script.js"></script>
+ 
 <script src="./scriptdate.js"></script>
 
     <script src="./googlemap.js"></script>
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1mqGxOcvKuautGjS4Q0EcgWYV8jcltj8&libraries=places&callback=initAutocomplete"
         async defer></script>
-
-    <link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" type="text/css"> 
-    <!--script src="./dhtmlx.css"></script-->
-<script src="./codebase/dhtmlxcalendar.js"></script>

@@ -3,11 +3,10 @@
 session_start();
 include '../db.php';
 
-$cargo = $mysqli->escape_string($_POST['cargo']);
-$empresa = $mysqli->escape_string($_POST['empresa']);
-$direccion = $mysqli->escape_string($_POST['direccion']);
-$checkwork = $mysqli->escape_string($_POST['checkwork']);
-$cursoanio = $mysqli->escape_string($_POST['cursoanio']);
+$esnombre = $mysqli->escape_string($_POST['esnombre']);
+$estitulo = $mysqli->escape_string($_POST['estitulo']);
+$escamp = $mysqli->escape_string($_POST['escamp']);
+
 
 $sorderdate=$mysqli->escape_string($_POST['fecha']);
 
@@ -16,6 +15,7 @@ $smonth = $sorderdate[1];
 $sday   = $sorderdate[0];
 $syear  = $sorderdate[2];
 
+$datein=$syear."-".$smonth."-".$sday;
 
 $forderdate=$mysqli->escape_string($_POST['fecha2']);
 
@@ -24,16 +24,17 @@ $fmonth = $forderdate[1];
 $fday   = $forderdate[0];
 $fyear  = $forderdate[2];
 
+$datefn=$fyear."-".$fmonth."-".$fday;
+
 if($checkwork==true)
     $curwork=1;
 else
     $curwork=0; 
 
-
-$mysqli->query("INSERT INTO tbl_estudio (cod_alumno,col_school,col_grado,col_campest,col_cursando,col_idia,
-col_imes,col_ianio, col_fdia,col_fmes,col_fanio)
-VALUES('$_SESSION[cod]','$cargo','$empresa','$direccion','$cursoanio','$sday','$smonth','$syear','$fday','$fmonth','$fyear')");
-
+$sentence="INSERT INTO tbl_estudio (cod_alumno,col_school,col_grado,col_campest,col_fechain, col_fechafin)
+VALUES('$_SESSION[cod]','$esnombre','$estitulo','$escamp','$datein','$datefn')";
+$mysqli->query($sentence);
 
 
-    header("location: ../listestudio.php");
+
+header("location: ../session-admi.php");

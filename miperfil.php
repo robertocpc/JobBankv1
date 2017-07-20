@@ -20,7 +20,7 @@
                         </div>
                             <div class='dropdown-keywords set-white' id='keywords'>
                                 <li id='ipdp'><a class='linkdirec'>Datos Personales</a></li>
-                                <li><a class='linkdirec'>Datos de Carrera</a></li>
+                                <li id='ipc'><a class='linkdirec'>Datos de Carrera</a></li>
                             </div>
                         <div class='dropdownfiltro set-blue' id='ubicacion'>
                             <span class='spans' style='font-weigth:bold;'>Estudios</span>
@@ -28,8 +28,8 @@
                            <span><img id='arrowup1' style='display:none;' src='./img/up-arrow.png'></span>
                         </div>
                             <div class='dropdown-keywords set-white' id='ubicaciones'>
-                                <li><a class='linkdirec'>Añadir Estudios</a></li>
-                                <li><a class='linkdirec'>Listado</a></li>                               
+                                <li id='estadd'><a class='linkdirec'>Añadir Estudios</a></li>
+                                <li id='estlist'><a class='linkdirec'>Listado</a></li>                               
                             </div>
                         <div class='dropdownfiltro set-blue' id='empactual'>
                             <span class='spans' style='font-weigth:bold;'>Experiencia Laboral:</span>
@@ -172,8 +172,21 @@
             else if(document.getElementById('tipogen').value==2){
                document.getElementById('optg3').selected=true;
             }
-
-
+         });
+      })
+      $('#ipc').click(function(){
+         $('#result').load("./miperfil-dt-c.php",function(){
+            
+         });
+      })
+      $('#estadd').click(function(){
+         $('#result').load("./miperfil-est-add.php",function(){
+            
+         });
+      })
+      $('#estlist').click(function(){
+         $('#result').load("./miperfil-est-list.php",function(){
+            
          });
       })
             
