@@ -37,8 +37,8 @@
 							<span><img id='arrowup2' style='display:none;' src='./img/up-arrow.png'></span>
                         </div>
                             <div class='dropdown-keywords set-white' id='empactuals'>
-                                <li><a class='linkdirec'>Añadir Experiencia Laboral</a></li>
-                                <li><a class='linkdirec'>Listado</a></li> 
+                                <li id='expadd'><a class='linkdirec'>Añadir Experiencia Laboral</a></li>
+                                <li id='explist'><a class='linkdirec'>Listado</a></li> 
                             </div>
                         <div class='dropdownfiltro set-blue' id='emppas'>
                             <span class='spans' style='font-weigth:bold;'>Publicaciones</span>
@@ -187,6 +187,18 @@
       $('#estlist').click(function(){
          $('#result').load("./miperfil-est-list.php",function(){
             
+         });
+      })
+      $('#expadd').click(function(){
+         $('#result').load("./miperfil-exp-add.php",function(){
+            if(document.getElementById('opta1').selected==true){
+               document.getElementById('fechafn').style.display='none';
+               document.getElementById('box2').required=false;
+            }
+            if(document.getElementById('opta2').selected==true){
+               document.getElementById('fechafn').style.display='table-row';
+               document.getElementById('box2').required=true;
+            }
          });
       })
             
