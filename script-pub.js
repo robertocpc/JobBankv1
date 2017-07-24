@@ -87,7 +87,7 @@ CustomValidation.prototype = {
 
 ---------------------------- */
 
-var usernameValidityChecks = [
+var pubtituloValidityChecks = [
 	{
 		isInvalid: function(input) {
 			return input.value.length < 2 | input.value.length > 80;
@@ -104,7 +104,7 @@ var usernameValidityChecks = [
 		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(2)')
 	}
 ];
-var apellidoValidityChecks = [
+var pubeditorialValidityChecks = [
 	{
 		isInvalid: function(input) {
 			return input.value.length < 2 | input.value.length > 80;
@@ -122,83 +122,31 @@ var apellidoValidityChecks = [
 	}
 ];
 
-var emailValidityChecks = [
+
+
+var puburlValidityChecks= [
 	{
 		isInvalid: function(input) {
-			return validateForm();
+			return isUrlValid(input);
 		},
-		invalidityMessage: 'No es un email válido',
-		element: document.querySelector('label[for="email"] .input-requirements li:nth-child(1)')
+		invalidityMessage: 'URL inválido ',
+		element: document.querySelector('label[for="urlp"] .input-requirements li:nth-child(1)')
 	}
 ];
 
-function validateForm() {
-    var x = document.forms["registration"]["email"].value;
-    var atpos = x.indexOf("@");
-    var dotpos = x.lastIndexOf(".");
-    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-        //alert("Not a valid e-mail address");
+function isUrlValid(input) {
+    var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+	if(input.value.length==0){
+		return false;
+	}
+    if (!re.test(input.value)) { 
         return true;
+    }
+    else{
+        return false;
     }
 }
 
-var telefonoValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 3 | input.value.length > 15;
-		},
-		invalidityMessage: 'Tiene que tener entre 3-15 digitos',
-		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(1)')
-	},
-    {
-		isInvalid: function(input) {
-			var iillegalCharacters = input.value.match(/[^0-9]/g);
-			return iillegalCharacters ? true : false;
-		},
-		invalidityMessage: 'Solo se aceptan caracteres numéricos',
-		element: document.querySelector('label[for="telefono"] .input-requirements li:nth-child(2)')
-	}
-];
-
-
-var inputpostValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 2 | input.value.length > 80;
-		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres ',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^A-Za-zÑñÁÉÍÓÚáéíóú.#$@%&', ]/g);
-			return illegalCharacters ? true : false;
-		},
-		invalidityMessage: 'Caracter inválido',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(2)')
-	}
-];
-
-var expdirValidityChecks = [
-	{
-		isInvalid: function(input) {
-         if(document.getElementById('expdir').value.length==0)
-            return false;
-         else
-			   return input.value.length < 2 | input.value.length > 80;
-		},
-		invalidityMessage: 'Necesita al menos de 2 caracteres o deje la casilla en blanco',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^A-Za-z0-9ÑñÁÉÍÓÚáéíóú.#$@%&', ]/g);
-			return illegalCharacters ? true : false;
-		},
-		invalidityMessage: 'Caracter inválido',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(2)')
-	}
-];
 
 
 var startdateValidityChecks = [
@@ -208,40 +156,9 @@ var startdateValidityChecks = [
 		},
 		invalidityMessage: 'Fecha Inválida ',
 		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
-   },
-   {
-		isInvalid: function(input) {
-         if(document.getElementById('box2').value!='')
-            return verifydatein(input);
-         else
-            return false;
-		},
-		invalidityMessage: 'Fecha Inválida ',
-		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
-	}
+   }
 ];
-var enddateInputValidityChecks = [
-   {
-		isInvalid: function(input) {
-         if(document.getElementById('trabajo').value==0)
-            return false;
-         else
-			   return verifydate(input);
-		},
-		invalidityMessage: 'Fecha Inválida ',
-		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
-   },
-   {
-		isInvalid: function(input) {
-         if(document.getElementById('trabajo').value==0)
-            return false;
-         else
-			   return checkDate(input);
-		},
-		invalidityMessage: 'Fecha Inválida ',
-		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
-   }  
-];
+
 
 
 
@@ -260,20 +177,7 @@ var enddateInputValidityChecks = [
 		}
 		
    }
-   function verifydatein(field){
-		var input=document.getElementById('box2').value;
-		re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
-		//alert("verifyfield");
-		regs = input.match(re);
-		regd = field.value.match(re);
-		if(input!=''){
-			return compare(regd,regs);
-		}
-		else{
-			return false;
-		}
-		
-	}
+   
   function checkDate(field)
   {
     var allowBlank = true;
@@ -376,35 +280,29 @@ var enddateInputValidityChecks = [
 
 ---------------------------- */
 
-var apellidoInput = document.getElementById('estitulo');
-var usernameInput = document.getElementById('esnombre');
+var pubeditorial = document.getElementById('pubeditorial');
+var pubtitulo = document.getElementById('pubtitulo');
 
-var inputpost = document.getElementById('escamp');
-var expdir = document.getElementById('expdir');
-//var pasaporteInput = document.getElementById('pasaporte');
-//var carnetInput = document.getElementById('carnet');
+var puburl = document.getElementById('puburl');
+
+
 var startdateInput = document.getElementById('box');
-var enddateInput = document.getElementById('box2');
 
 
-apellidoInput.CustomValidation = new CustomValidation(apellidoInput);
-apellidoInput.CustomValidation.validityChecks = apellidoValidityChecks;
 
-usernameInput.CustomValidation = new CustomValidation(usernameInput);
-usernameInput.CustomValidation.validityChecks = usernameValidityChecks;
+pubeditorial.CustomValidation = new CustomValidation(pubeditorial);
+pubeditorial.CustomValidation.validityChecks = pubeditorialValidityChecks;
 
-inputpost.CustomValidation = new CustomValidation(inputpost);
-inputpost.CustomValidation.validityChecks = inputpostValidityChecks;
+pubtitulo.CustomValidation = new CustomValidation(pubtitulo);
+pubtitulo.CustomValidation.validityChecks = pubtituloValidityChecks;
 
-expdir.CustomValidation = new CustomValidation(expdir);
-expdir.CustomValidation.validityChecks = expdirValidityChecks;
+puburl.CustomValidation = new CustomValidation(puburl);
+puburl.CustomValidation.validityChecks = puburlValidityChecks;
 
 
 startdateInput.CustomValidation = new CustomValidation(startdateInput);
 startdateInput.CustomValidation.validityChecks = startdateValidityChecks;
 
-enddateInput.CustomValidation = new CustomValidation(enddateInput);
-enddateInput.CustomValidation.validityChecks = enddateInputValidityChecks;
 /*
 pasaporteInput.CustomValidation = new CustomValidation(pasaporteInput);
 pasaporteInput.CustomValidation.validityChecks = pasaporteValidityChecks;
@@ -424,7 +322,7 @@ carnetInput.CustomValidation.validityChecks = carnetValidityChecks;
 var inputs = document.querySelectorAll('input:not([type="submit"])');
 
 var datein = document.querySelector('input[name="fecha"]');
-var datefn = document.querySelector('input[name="fecha2"]');
+
 
 var submit = document.querySelector('input[type="submit"');
 var form = document.getElementById('registration');
@@ -441,22 +339,12 @@ submit.addEventListener('click', validate);
 form.addEventListener('submit', validate);
 
  $(document).ready(function(){    
-   
-	 var myCalendar3 = new dhtmlXCalendarObject("box2");
-    myCalendar3.setDateFormat("%d/%m/%Y");
-    var myEvent = myCalendar3.attachEvent("onClick", function(){
-        datefn.CustomValidation.checkInput();
-        if(document.getElementById('box').value!='')
-            datein.CustomValidation.checkInput();
-	 });
+  
 		
 	 var myCalendar1 = new dhtmlXCalendarObject("box");
     myCalendar1.setDateFormat("%d/%m/%Y");
     var myEvent = myCalendar1.attachEvent("onClick", function(){
         datein.CustomValidation.checkInput();
-        document.getElementById('box2').disabled=false;
-         if(document.getElementById('box2').value!='')
-            datefn.CustomValidation.checkInput();
     });
     })
    

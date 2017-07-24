@@ -32,7 +32,7 @@ session_start();
                                 if(isset($_SESSION['logged_in'])&&$_SESSION['window']!=5){
                                     echo "<li><a href='index.php'>Inicio</a></li>
                                     
-                                    <li><a href='./session-index.php'>".$_SESSION['user']."</a></li>
+                                    <li><a href='./session-index-s.php'>".$_SESSION['user']."</a></li>
                                     <li><a href='./account/p-logout.php'>Log out</a></li>";
                                 }
                                 else if($_SESSION['window']==5){

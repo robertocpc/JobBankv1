@@ -11,7 +11,7 @@ include './db.php';
     
     $i=0;
     $terms=explode(" ",$searchq);
-    $querysel.="";
+    $querysel="";
     foreach($terms as $each){
         $i++;
         if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $each))
@@ -138,9 +138,11 @@ include './db.php';
                 <a class='result-a' href='./preview-perfil.php?id=".$rowegres['cod_alumno']."'>".$rowegres['col_apellido'].", ".$rowegres['col_nombre']."</a><br>
                 ";
             if(isset($rowegres['col_cabecera'])){$output.=" ".$rowegres['col_cabecera'];}
-            else{$output.= " Ingeniero en Informática y Sistemas";}
+            else{$output.= " ";}
+            if(isset($rowegres['col_posactual'])){$output.=" ".$rowegres['col_posactual'];}
+            else{$output.= " ";}
             $output.=" <br>";
-            $output.= $rowegres['col_ciudadorigen']."<br></td>";
+            $output.= $rowegres['col_ciudadactual']."<br></td>";
             $output.="</tr>";
         }
         $output .="</table>";

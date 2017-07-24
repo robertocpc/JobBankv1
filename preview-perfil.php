@@ -53,10 +53,10 @@ include './header.php';
                                 }else{
                                 echo '';}
                                 ?></span><br>
-                                <span style="color: #;"><?php echo 'Reside en ';if(isset($user['col_ciudadorigen'])){
-                                    echo $user['col_ciudadorigen'];
+                                <span style="color: #;"><?php echo 'Reside en ';if(isset($user['col_ciudadactual'])){
+                                    echo $user['col_ciudadactual'];
                                 }else{
-                                echo 'No disponible';}
+                                echo 'No especificado';}
                                 ?></span><br>
                                 <span style="color: #;"><?php echo 'Email: ';if(isset($user['col_email'])){
                                     echo $user['col_email'];

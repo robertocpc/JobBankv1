@@ -54,4 +54,4 @@ if ( $result->num_rows == 0 ){ // User doesn't exist
 }
 
 
-    header("location: ../session.php");
+    header("location: ../session-index-s.php");

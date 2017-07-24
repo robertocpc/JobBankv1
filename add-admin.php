@@ -43,7 +43,7 @@
                         <span style='color: gray'>* Máximo 15 caracteres</span>
                      </td>
                      <td style='width:65%;'>
-                        <input type='password' name='ofpassword' class='btn-st1' id='ofpassword' value='' placeholder='' required>
+                        <input style='width:65%;' type='password' name='ofpassword' class='btn-st1' id='ofpassword'  required>
                      </td>
                   </tr>
                   
@@ -70,16 +70,16 @@
       })
       $('#ofusername').keypress(function(e) {
          var txt =document.getElementById('ofusername');
-         if(txt.value.length>=11){
-            return this.value = this.value.substring(0, 11);
+         if(txt.value.length>=15){
+            return this.value = this.value.substring(0, 15);
          }
       })
-      $('#ofpassword').keypress(function(e) {
+      /*$('#ofpassword').keypress(function(e) {
          var txt =document.getElementById('ofpassword');
-         if(txt.value.length>=14){
-            return this.value = this.value.substring(0, 14);
+         if(txt.value.length>=22){
+            return this.value = this.value.substring(0, 22);
          }
-      })
+      })*/
       $('#listadmin').click(function(){
             $('#cuadroresultado').load("./list-admin.php",function(){
                 var txt =document.getElementById('ofusername');
@@ -99,3 +99,4 @@
 </script>
 <script src='./scriptadmin.js'></script>
 
+ 

@@ -123,7 +123,7 @@ var apellidoValidityChecks = [
 	},
 	{
 		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^A-Za-z ]/g);
+			var illegalCharacters = input.value.match(/[^A-Za-zÑñÁÉÍÓÚáéíóú ]/g);
 			return illegalCharacters ? true : false;
 		},
 		invalidityMessage: 'Solo los caracteres alfabéticos estan permitidos',

@@ -60,7 +60,7 @@ else { // User exists
             $_SESSION['message']="Parte if 1";
             $_SESSION['window']=1;
 
-            header("location: ../session-index.php");
+            header("location: ../session-index-s.php");
         }
         else{
             $_SESSION['message']="Ha ingresado una contraseña incorrecta, intente denuevo..";

@@ -46,8 +46,8 @@
 							<span><img id='arrowup3' style='display:none;' src='./img/up-arrow.png'></span>
                         </div>
                             <div class='dropdown-keywords set-white' id='emppass'>
-                                <li><a class='linkdirec'>Añadir Publicaciones</a></li>
-                                <li><a class='linkdirec'>Listado</a></li> 
+                                <li id='pubadd'><a class='linkdirec'>Añadir Publicaciones</a></li>
+                                <li id='publist'><a class='linkdirec'>Listado</a></li> 
                             </div>
                         
                             
@@ -201,6 +201,21 @@
             }
          });
       })
+      $('#explist').click(function(){
+         $('#result').load("./miperfil-exp-list.php",function(){
+            
+         });
+      })
+
+      $('#pubadd').click(function(){
+         $('#result').load("./miperfil-pub-add.php",function(){     
+         });
+      })
+      $('#publist').click(function(){
+         $('#result').load("./miperfil-pub-add.php",function(){     
+         });
+      })
+      
             
 
 		

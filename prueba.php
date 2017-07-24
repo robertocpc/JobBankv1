@@ -486,6 +486,7 @@
 
 			if(document.getElementById('ubtest1').checked==true)
 				var lugar=document.getElementById('ubtest1').value;
+			//alert(lugar); 
 			$.ajax({
 			type: 'POST',
 			url: './resultado-egresado.php',
