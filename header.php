@@ -8,7 +8,7 @@ session_start();
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="./css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
         <title>Esis</title>
     </head>
     <body onload='doOnLoad();'>

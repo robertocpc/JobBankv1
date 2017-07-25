@@ -7,7 +7,7 @@
                      placeholder='Ciudad, Provincia o Pais' onFocus='geolocate()' 
                      value='".$searchciuq."'>
                     <input  type='submit' class='buscar-submit' id='buscar' value='Buscar'>
-						  <div style='float:right;' id='opavanzadas'><img src='./imglogo/settings.png'></div>
+
                     <br><label><span style='color:white;'>Ejemplo: Ingeniero de Preventa </span></label>
                 
            </div>
@@ -99,6 +99,10 @@
 			alert('dfsdf');/*
             var txt=this.getAttribute("data-code");
             $('#result').load("./preview-oftrabajo-f.php" {'id':txt});*/
+		})
+		$('#buscar').click(function(){
+            fnsearch();
+                
         })
 		$('#tippos').change(function(){
 			var opt=document.getElementById('tippos');

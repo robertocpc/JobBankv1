@@ -212,7 +212,7 @@
          });
       })
       $('#publist').click(function(){
-         $('#result').load("./miperfil-pub-add.php",function(){     
+         $('#result').load("./miperfil-pub-list.php",function(){     
          });
       })
       

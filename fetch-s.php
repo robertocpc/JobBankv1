@@ -17,7 +17,8 @@ include './header.php';
                      value='<?php echo $searchq;?>'>
                     
                     <input  type='submit' class='buscar-submit' id='buscar' value='Buscar'>
-                    <br><label><span style='color:white;'>Ejemplo: Programador, Operador, Redes </span></label>
+                    <br><label><span style="color:white">Ejemplo: <a   class='ref' data-code='Programador' style='cursor:pointer;'>Programador</a>,
+                     <a  class='ref' data-code='Operador' style='cursor:pointer;'> Operador</a>  </span></label>
         
                 
             </div>
@@ -54,7 +55,7 @@ include './header.php';
                                 
                             </div>
                         <div class='dropdownfiltro' id='empactual'>
-                            <span class='spans' style='font-weigth:bold;'>Empresas en la que labora:</span>
+                            <span class='spans' style='font-weigth:bold;'>Empresas en las que labora:</span>
 							<span><img id='arrowdown2'src='./img/arrow-down.png'></span>
 							<span><img id='arrowup2' style='display:none;' src='./img/up-arrow.png'></span>
                         </div>
@@ -68,7 +69,7 @@ include './header.php';
                                 
                             </div>
                         <div class='dropdownfiltro' id='emppas'>
-                            <span class='spans' style='font-weigth:bold;'>Empresas en la que trabajó:</span>
+                            <span class='spans' style='font-weigth:bold;'>Empresas en las que trabajó:</span>
 							<span><img id='arrowdown3'src='./img/arrow-down.png'></span>
 							<span><img id='arrowup3' style='display:none;' src='./img/up-arrow.png'></span>
                         </div>
@@ -111,7 +112,26 @@ include './header.php';
     </div>
     <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
     <script>
-    
+    $(document).ready(function(){
+        $('.ref').click(function(){
+            var txt=this.getAttribute("data-code");
+            //var name=document.getElementById("search").value;
+            window.location = './fetch-s.php?search=' + txt;
+        })
+
+        $('#buscar').click(function(){
+            var name=document.getElementById("search").value;
+            window.location = './fetch-s.php?search=' + name;
+                
+        })
+        $('#search').keypress(function(e){
+            if(e.which == 13) {
+            var name=document.getElementById("search").value;
+            name=encodeURIComponent(name);
+            window.location = './fetch-s.php?search=' + name;
+        }     
+        })
+    })
 
     window.onload = function() {
         var txt=document.getElementById('search').value; 

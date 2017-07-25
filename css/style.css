@@ -1,4 +1,4 @@
-body{
+/*body{
     font-family: 'Merriweather Sans', sans-serif;
     font-size:13px;
     line-height: 1.5;
@@ -6,7 +6,7 @@ body{
     margin:0;
     color: black;
     background-color: #f4f4f4;
-    background-image: url("../img/img4.jpg");
+    background-image: url("../img/cool-background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: fixed;
@@ -14,10 +14,33 @@ body{
 }
 
 /*global*/
+body{
+    font-family:  'Roboto', serif;
+    font-size:13px;
+    line-height: 1.5;
+    padding:0;
+    margin:0;
+    color: black;
+    background-color: #DCD9D9;
+    background-image: url("../img/cool-background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: fixed;
+    background-size: cover; 
+}
+#slider-p{
+    background-image: url('../img/blue-bg.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    height:320px;
+}
 .container{
     width:80%;
     margin:auto;
     
+}
+.ref:hover{
+    text-decoration: underline;
 }
 
 ul{
@@ -99,7 +122,7 @@ header .contacto{
  }
 
  #newsletter{
-     margin-top: 15%;
+    margin-top:30px;
      background-image:url("../img/opacity1.png");
      background-color:rgba(2, 120, 205, 0.1);
      margin-left:10%;margin-right: 10%;

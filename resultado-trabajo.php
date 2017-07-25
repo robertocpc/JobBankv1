@@ -167,64 +167,141 @@ include './db.php';
         $disrquery="";
     }
 
-    if($searchq!=''){$query="SELECT  *,MATCH(col_ofnombre,col_empresa) AGAINST ('".$querysel."') as relevance 
-    FROM tbl_oftrabajo WHERE ((match(col_ofnombre,col_empresa) AGAINST ('".$querysel."') )
-    ".$querylike.")".$cargoquery.$empresaquery.$ciudadquery.$idiomaquery.$fechaquery.
-    $tipemquery.$tippoquery.$disquery.$disvquery.$disrquery."    
-    order by relevance desc";
-    $querys=$mysqli->query($query);
-    $nrows=$querys->num_rows;
-    
-    if($nrows>0){
-        $output .="<div id='result2'><table width='100%' style='font-size:13px;'>";
-        $i=0;
-        while($row=$querys->fetch_assoc()){
-            //$rowegre=$mysqli->query("SELECT * FROM tbl_egresado 
-            //WHERE col_nombre='$row[col_nombre]' AND col_apellido='$row[col_apellido]'");
-            //$rowegres=$rowegre->fetch_assoc();
-
-            /*$estquery=$mysqli->query("SELECT GROUP_CONCAT(col_campest, '') as col_est 
-            FROM tbl_estudio WHERE cod_alumno='$row[cod_alumno]' GROUP BY tbl_estudio.cod_alumno");
-            $estrow=$estquery->fetch_assoc();*/
-            $i++;
-            $output.="<tr>
+    if($searchq!=''){
+        if($searchq!='todos'){
+            echo $query="SELECT  *,MATCH(col_ofnombre,col_empresa) AGAINST ('".$querysel."') as relevance 
+            FROM tbl_oftrabajo WHERE ((match(col_ofnombre,col_empresa) AGAINST ('".$querysel."') )
+            ".$querylike.")".$cargoquery.$empresaquery.$ciudadquery.$idiomaquery.$fechaquery.
+            $tipemquery.$tippoquery.$disquery.$disvquery.$disrquery."    
+            order by relevance desc";
+            $querys=$mysqli->query($query);
+            $nrows=$querys->num_rows;
             
-            <th>";
-            if($_SESSION['window']==5){
-            echo"<p><input class='checkopt' type='checkbox' id='ck".$i."' value='".$row['cod_oftrabajo']."'/><label for='ck".$i."'></label></p>";
+            if($nrows>0){
+                $output .="<div id='result2'><table width='100%' style='font-size:13px;'>";
+                $i=0;
+                while($row=$querys->fetch_assoc()){
+                    //$rowegre=$mysqli->query("SELECT * FROM tbl_egresado 
+                    //WHERE col_nombre='$row[col_nombre]' AND col_apellido='$row[col_apellido]'");
+                    //$rowegres=$rowegre->fetch_assoc();
 
-            }            
-            $output .= "</th>
-            <td width='95%'>
-                <a class='result-a' style='cursor:pointer' data-code='".$row['cod_oftrabajo']."'>".$row['col_ofnombre'].", ".$row['col_empresa']."</a><br>
-                ";
-            /*if(isset($row['col_cabecera'])){*/
-            $output.=" ".$row['col_ubicacion'];
-            //}
-            /*else{$output.= " Ingeniero en Informática y Sistemas";}*/
-            $output.=" <br>";
-            $output.= $row['col_url']."<br></td>";
-            $output.="</tr>";
-        }
-        $output .="</table></div>";
-        $i=0;
-        echo $output;
-    }
-    else{
-        echo "<center><img class='search' src='./img/search.png' height='160px'></center><br>
-        <center><span>No se hallo resultado, por favor asegurese que escribio correctamente, 
+                    /*$estquery=$mysqli->query("SELECT GROUP_CONCAT(col_campest, '') as col_est 
+                    FROM tbl_estudio WHERE cod_alumno='$row[cod_alumno]' GROUP BY tbl_estudio.cod_alumno");
+                    $estrow=$estquery->fetch_assoc();*/
+                    $i++;
+                    $output.="<tr>
+                    
+                    <th>";
+                    if($_SESSION['window']==5){
+                    echo"<p><input class='checkopt' type='checkbox' id='ck".$i."' value='".$row['cod_oftrabajo']."'/><label for='ck".$i."'></label></p>";
+
+                    }            
+                    $output .= "</th>
+                    <td width='95%'>
+                        <a class='result-a' style='cursor:pointer' data-code='".$row['cod_oftrabajo']."'>".$row['col_ofnombre']."</a><br>
+                        ";
+                    /*if(isset($row['col_cabecera'])){*/
+                    $output.=" ".$row['col_empresa']."<br>";
+                    $output.=" ".$row['col_ubicacion'];
+                    //}
+                    /*else{$output.= " Ingeniero en Informática y Sistemas";}*/
+                    $output.=" <br>";
+                    
+                    $output.= $row['col_url']."<br></td>";
+                    $output.="</tr>";
+                }
+                $output .="</table></div>";
+                $i=0;
+                echo $output;
+            }
+            else{
+                echo "<center><img class='search' src='./img/search.png' height='160px'></center><br>
+        <center><span>No se hallaron resultados, por favor asegúrese que escribió correctamente, 
         o intente con otro nombre o especialidad</span></center>";
-    }
+            }
+
+        }
+        else{
+            $query="SELECT  * 
+            FROM tbl_oftrabajo";
+            if(!empty($cargoquery)||!empty($empresaquery)||!empty($ciudadquery)||!empty($idiomaquery)||!empty($fechaquery)||!empty($tipemquery)||!empty($tippoquery)
+            ||!empty($disquery)||!empty($disvquery)||!empty($disrquery)){
+                $add1.=" WHERE ";
+                 $add.=$cargoquery.$empresaquery.$ciudadquery.$idiomaquery.$fechaquery.
+                $tipemquery.$tippoquery.$disquery.$disvquery.$disrquery."    
+                order by col_ofnombre";
+                
+                if(substr($add, 0, 4)==" AND"){
+                    $add=substr($add,4);
+                    $add=$add1.$add;
+                    $query=$query.$add;
+                }
+
+            }
+            $query;
+            $querys=$mysqli->query($query);
+            $nrows=$querys->num_rows;
+            
+            if($nrows>0){
+                $output .="<div id='result2'><table width='100%' style='font-size:13px;'>";
+                $i=0;
+                while($row=$querys->fetch_assoc()){
+                    //$rowegre=$mysqli->query("SELECT * FROM tbl_egresado 
+                    //WHERE col_nombre='$row[col_nombre]' AND col_apellido='$row[col_apellido]'");
+                    //$rowegres=$rowegre->fetch_assoc();
+
+                    /*$estquery=$mysqli->query("SELECT GROUP_CONCAT(col_campest, '') as col_est 
+                    FROM tbl_estudio WHERE cod_alumno='$row[cod_alumno]' GROUP BY tbl_estudio.cod_alumno");
+                    $estrow=$estquery->fetch_assoc();*/
+                    $i++;
+                    $output.="<tr>
+                    
+                    <th>";
+                    if($_SESSION['window']==5){
+                    echo"<p><input class='checkopt' type='checkbox' id='ck".$i."' value='".$row['cod_oftrabajo']."'/><label for='ck".$i."'></label></p>";
+
+                    }            
+                    $output .= "</th>
+                    <td width='95%'>
+                        <a class='result-a' style='cursor:pointer' data-code='".$row['cod_oftrabajo']."'>".$row['col_ofnombre']."</a><br>
+                        ";
+                    /*if(isset($row['col_cabecera'])){*/
+                    $output.=" ".$row['col_empresa']."<br>";
+                    $output.=" ".$row['col_ubicacion'];
+                    //}
+                    /*else{$output.= " Ingeniero en Informática y Sistemas";}*/
+                    $output.=" <br>";
+                    
+                    $output.= $row['col_url']."<br></td>";
+                    $output.="</tr>";
+                }
+                $output .="</table></div>";
+                $i=0;
+                echo $output;
+            }
+            else{
+                echo "<center><img class='search' src='./img/search.png' height='160px'></center><br>
+        <center><span>No se hallaron resultados, por favor asegúrese que escribió correctamente, 
+        o intente con otro nombre o especialidad</span></center>";
+            }
+
+        }
     }
     else{
         echo "<input style='display:none' value=''>";
         echo "<center><img class='search' src='./img/search.png' height='160px'></center><br>
-        <center><span>No se hallo resultado, por favor asegurese que escribio correctamente, 
+        <center><span>No se hallaron resultados, por favor asegúrese que escribió correctamente, 
         o intente con otro nombre o especialidad</span></center>";
     }
 
 ?>
 <script>
+    function addhttp($url) {
+    if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+        $url = "http://" . $url;
+    }
+    return $url;
+}
     $(document).ready(function(){
 		$('.result-a').click(function(){
             var txt=this.getAttribute("data-code");

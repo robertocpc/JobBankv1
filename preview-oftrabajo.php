@@ -12,13 +12,14 @@ echo "
                            <td style='width:100%;font-size:14px;'>
                                 <span style='font-size:28px'>".$user['col_ofnombre']."</span>
                                 <hr>
-                                <span style='color: #;'>".$user['col_empresa']."</span>
+                                <span style='color: #;'>".$user['col_empresa']."</span><br>
+                                <span style='color: #;'>Fecha de Publicación".$user['col_fechapub']."</span>
                             </td>
 
                         </tr>
                         <tr>
                            <td style='width:100%;font-size:14px;'>
-                                <span style='font-size:16px;border-bottom: 2px solid black;'>Principales Datos</span><br><br>";
+                                <span style='font-size:16px;border-bottom: 2px solid black;'>Datos Principales</span><br><br>";
                                 
                                  if(isset($user['col_ubicacion']))
                                     echo "<span style='color: #;'>Ubicación: ".$user['col_ubicacion']."</span><br>";
@@ -86,9 +87,9 @@ echo "
                                  }
                         echo "</tr>
                         <tr>
-                           <td>";
+                           <td style='width:100%;font-size:14px;'>";
                                  echo "<span style='font-size:16px;border-bottom: 2px solid black;'>Requisitos :</span><br><br>";
-                                 echo "<span style='color: #;'>Idiomas:  ";
+                                 echo "<span style='font-size='14px'>Idiomas:  ";
                                  if(isset($user['col_idiomas'])){
                                     echo $user['col_idiomas']."</span><br>";
                                  }
@@ -108,6 +109,40 @@ echo "
                                  }
                                  else{
                                     echo " No especificada</span><br>";
+                                 }
+                                 echo "<span style='color: #;'>Disponibilidad para viajar:  ";
+                                 if(isset($user['col_dispviaje'])){
+                                     if($user['col_dispviaje']==1)
+                                        echo "Si</span><br>";
+                                    else
+                                        echo "No</span><br>";
+                                 }
+                                 else{
+                                    echo " No especificada</span><br>";
+                                 }
+                                 echo "<span style='color: #;'>Disponibilidad para cambio residencia:  ";
+                                 if(isset($user['col_dispresid'])){
+                                     if($user['col_dispresid']==1)
+                                        echo "Si</span><br>";
+                                    else
+                                        echo "No</span><br>";
+                                 }
+                                 else{
+                                    echo " No especificada</span><br>";
+                                 }
+                                 
+                           echo "</td>
+
+                        </tr>
+                        <tr>
+                           <td style='width:100%;font-size:14px;'>";
+                                 echo "<span style='font-size:16px;border-bottom: 2px solid black;'>Descripción :</span><br><br>";
+                                 echo "<span style='font-size='14px'>  ";
+                                 if(isset($user['col_descripcion'])){
+                                    echo $user['col_descripcion']."</span><br>";
+                                 }
+                                 else{
+                                     echo "No hay descripciones para esta oferta laboral</span><br>";
                                  }
                                  
                            echo "</td>

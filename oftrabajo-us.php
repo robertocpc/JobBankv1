@@ -7,7 +7,8 @@
                      placeholder='Ciudad, Provincia o Pais' onFocus='geolocate()' 
                      value='".$searchciuq."'>
                     <input  type='submit' class='buscar-submit' id='buscar' value='Buscar'>
-						  <div style='float:right;' id='opavanzadas'><img src='./imglogo/settings.png'></div>
+					<a id='all' class='buscar-submit' style='cursor:pointer;font-weight:bold;'>MOSTRAR TODOS</a>
+						  
                     <br><label><span style='color:white;'>Ejemplo: Ingeniero de Preventa </span></label>
                 
            </div>
@@ -95,6 +96,15 @@
 	
 
 	$(document).ready(function(){
+		$('#buscar').click(function(){
+            fnsearch();
+                
+		})
+		$('#all').click(function(){
+			document.getElementById('search').value='todos';
+            fnsearch();
+                
+        })
 		$('#tippos').change(function(){
 			var opt=document.getElementById('tippos');
 			var input=document.getElementById('inputpost');

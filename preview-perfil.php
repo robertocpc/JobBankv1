@@ -8,20 +8,8 @@ include './header.php';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <Script src="./jquery.js"></Script>
     <div id="showcase" class="white" >
-      
-        <div class="buscador shadow">
-            <div class="font-blue"></div>
-            <div class="container searchbar">
-                    <input onkeypress="runScript(event)" name="search" id="search" type="text"
-                     placeholder="Busqueda de profesional por nombre o especialidad"
-                     value="<?php echo $searchq?>">
-                    
-                    <input  type="submit" class="buttonefex1 buscar" id="buscar" value="Buscar">
-                    <br><label><span style="color:white">Ejemplo: Programador, Operador, Redes </span></label>
-                
-            </div>
-        </div>
         <div class="container" id="cuadro-resultado">
+            <button class='buttonefex1' onclick="goBack()" style='margin-top:20px;margin-left:10px;;'>Go Back</button>
             <div class="resultado shadow">
                 <div id="result" >
 
@@ -164,7 +152,11 @@ include './header.php';
     </div>
     <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
     <script>
+        function goBack() {
+    window.history.back();
+}
      $(document).ready(function(){
+         
         $('#buscar').click(function(){
             var name=document.getElementById("search").value;
             window.location = './fetch-s.php?search=' + name;

@@ -29,7 +29,7 @@ echo "
                            <tr>
                               <td style='width:35%;padding-top:15px;text-align:left;'>
                                  <span style='margin-top:20px;' class='spans'>Editorial: </span><br>
-                                 <span style='color: gray'>* Ej. <Octaedro></Octaedro></span>
+                                 <span style='color: gray'>* Ej. Octaedro</Octaedro></span>
                               </td>
                               <td style='width:65%;'>
                                  <span><input name='pubeditorial' id='pubeditorial' type='text' class='btn-st1' required ></span>
@@ -37,7 +37,7 @@ echo "
                            </tr>
                            <tr>
                               <td style='width:35%;padding-top:15px;text-align:left;'>
-                                 <span style='margin-top:20px;' class='spans'>Fecha de Inicio: </span><br>
+                                 <span style='margin-top:20px;' class='spans'>Fecha de Publicación: </span><br>
                                  <span style='color: gray'></span>
                               </td>
                               <td style='width:65%;'>

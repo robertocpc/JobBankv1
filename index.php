@@ -6,21 +6,24 @@ include './header.php';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <Script src="./jquery.js"></Script>
     <div id="showcase white">
-        <div class="container sub1">
-            <div class="title" id="title">
-            <h1 id="titulo">BOLSA DE TRABAJO</h1>     
-            <!--h1>Escuela Profesional de Ingeniería en Informática y Sistemas</h1>
-            <center><h3>Universidad Nacional Jorge Basadre Grohmann</h3></center>
-            <p></p><br><br><br><br><br><br-->
+        <div id='slider-p' style='float:left;width:100%'>
+            <div style='width:40%;float:left;'>
+                <h1 style='margin-left: 50px;color:white;'>Bolsa de Trabajo</h1>
+                <p style='margin-left: 50px;color:white;'>Profesional Egresados de nuestra escuela</p>
+                <p></p>
+            </div>
+            <div style='width:60%;float:left;'>
+                <img src='imglogo/esis-bg.jpg' height='320' style='float:right'>
             </div>
         </div>
-        <div id="newsletter">
+        <div id="newsletter" style='float:left;width:80%'>
             <div class="font-blue"></div>
             <div class="container searchbar">
                     <input  name="search" id="search" type="text" placeholder="Busqueda de profesional por nombre o especialidad">
                     
                     <input  type="submit" class="buscar-submit" id="buscar" value="Buscar">
-                    <br><label><span style="color:white">Ejemplo: Programador, Operador, Redes </span></label>
+                    <br><label><span style="color:white">Ejemplo: <a   class='ref' data-code='Programador' style='cursor:pointer;'>Programador</a>,
+                     <a  class='ref' data-code='Operador' style='cursor:pointer;'> Operador</a>  </span></label>
                 
             </div>
         </div>
@@ -36,6 +39,12 @@ include './header.php';
     <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
     <script>
     $(document).ready(function(){
+        $('.ref').click(function(){
+            var txt=this.getAttribute("data-code");
+            //var name=document.getElementById("search").value;
+            window.location = './fetch-s.php?search=' + txt;
+        })
+
         $('#buscar').click(function(){
             var name=document.getElementById("search").value;
             window.location = './fetch-s.php?search=' + name;
