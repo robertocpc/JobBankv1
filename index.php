@@ -8,8 +8,9 @@ include './header.php';
     <div id="showcase white">
         <div id='slider-p' style='float:left;width:100%'>
             <div style='width:40%;float:left;'>
-                <h1 style='margin-left: 50px;color:white;'>Bolsa de Trabajo</h1>
-                <p style='margin-left: 50px;color:white;'>Profesional Egresados de nuestra escuela</p>
+                <h1 style='margin-left: 50px;color:white;padding-right:80px;'>Bolsa de Trabajo</h1>
+                <p style='margin-left: 50px;color:white;padding-right:80px;'>Profesional Egresados de nuestra escuela</p>
+                <p style='margin-left: 50px;color:white;text-align:justify;padding-right:80px;'>Encuentre los profesionales aptos para puesto que desea requerir. Realize su búsqueda por </p>
                 <p></p>
             </div>
             <div style='width:60%;float:left;'>

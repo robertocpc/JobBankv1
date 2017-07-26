@@ -82,8 +82,38 @@ else { // User exists
         $_SESSION['logged_in'] = true;
         $_SESSION['message']="Parte if 2";
         $_SESSION['window']=1;
-        $mysqli->query("INSERT INTO tbl_egresado (cod_alumno,psw_alumno) VALUES('$_SESSION[cod]','$_SESSION[pass]')");
-        header("location: ../session-index.php");
+        if(empty($user['col_tipodoc']))
+            echo $tipodoc='NULL';
+        else
+            $tipodoc=$user['col_tipodoc'];
+
+        if(empty($user['col_fechafin']))
+            echo $fechafin='NULL';
+        else
+            $fechafin=$user['col_fechafin'];
+
+        if(empty($user['col_telf']))
+            echo $telf='NULL';
+        else
+            $telf=$user['col_telf'];
+
+        if(empty($user['col_fechaing']))
+            echo $fechaing='NULL';
+        else
+            $fechaing=$user['col_fechaing'];
+
+        if(empty($user['col_promedio']))
+            echo $promedio='NULL';
+        else
+            $promedio=$user['col_promedio'];
+
+        echo $sentence="INSERT INTO tbl_egresado (cod_alumno,psw_alumno,col_nombre,col_apellido,col_email,col_tipodoc,col_numide,col_telf,
+        col_ciudadorigen,col_direccion,col_fechaing,col_fechafin,col_promedio,cod_tesis,col_tesis,col_urltesis)
+         VALUES('$_SESSION[cod]','$_SESSION[pass]','$user[col_nombre]','$user[col_apellido]','$user[col_email]',$tipodoc,'$user[col_numide]'
+         ,$telf,'$user[col_ciudadorigen]','$user[col_direccion]',$fechaing,$fechafin,$promedio
+         ,'$user[cod_tesis]','$user[col_tesis]','$user[col_urltesis]')";
+        $mysqli->query($sentence);
+        header("location: ../session-index-s.php");
     }
     else {
         $_SESSION['message'] = "Has ingresado una contraseña incorrecta, intenta denuevo..";

@@ -4,10 +4,10 @@ session_start();
 	$n=$mysqli->query("SELECT * FROM tbl_egresado WHERE cod_alumno LIKE 'admin%'");
 	
    echo "
-      <div class='container' > 
-         <div class='add-oftrabajo shadow'>
+  
+         <div class='add-oftrabajo'>
                   <span class='spans'>Listado de administradores : </span>
-                  <input id='listadmin' style='float:right;cursor:pointer;font-size:10px;width:100px;' type='text' class='buttonefex1' value='Añadir Admins'>
+                  
                   <div class='line' style='width:100%;'><hr></div>
             <form id='oftrabajo' method='POST' action='./account/add-admin-user.php'>
                <table class='tbl-oftrabajo' style='font-size:12px;width:100%;border-collapse: collapse;'>
@@ -53,7 +53,7 @@ session_start();
                
             </form>
 			</div>
-      </div>";
+     ";
 ?>
 <script>
    $(document).ready(function(){

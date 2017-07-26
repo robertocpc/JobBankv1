@@ -217,21 +217,12 @@ var startdateValidityChecks = [
 		element: document.querySelector('label[for="box"] .input-requirements li:nth-child(1)')
 	}
 ];
-var enddateInputValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return checkDate(input);
-		},
-		invalidityMessage: 'Fecha Inválida ',
-		element: document.querySelector('label[for="box2"] .input-requirements li:nth-child(1)')
-	}
-];
 
 
 
 
 	function verifydate(field){
-		var input=document.getElementById('box').value;
+		var input=document.getElementById('boxs').value;
 		re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
 		//alert("verifyfield");
 		regd = input.match(re);
@@ -351,10 +342,8 @@ var usernameInput = document.getElementById('username');
 var emailInput = document.getElementById('email');
 var telefonoInput = document.getElementById('telefono');
 var inputpost = document.getElementById('inputpost');
-//var pasaporteInput = document.getElementById('pasaporte');
-//var carnetInput = document.getElementById('carnet');
-var startdateInput = document.getElementById('box');
-var enddateInput = document.getElementById('box2');
+var startdateInput = document.getElementById('boxs');
+
 
 
 apellidoInput.CustomValidation = new CustomValidation(apellidoInput);
@@ -372,15 +361,7 @@ telefonoInput.CustomValidation.validityChecks = telefonoValidityChecks;
 startdateInput.CustomValidation = new CustomValidation(startdateInput);
 startdateInput.CustomValidation.validityChecks = startdateValidityChecks;
 
-enddateInput.CustomValidation = new CustomValidation(enddateInput);
-enddateInput.CustomValidation.validityChecks = enddateInputValidityChecks;
-/*
-pasaporteInput.CustomValidation = new CustomValidation(pasaporteInput);
-pasaporteInput.CustomValidation.validityChecks = pasaporteValidityChecks;
 
-carnetInput.CustomValidation = new CustomValidation(carnetInput);
-carnetInput.CustomValidation.validityChecks = carnetValidityChecks;
-*/
 
 
 
@@ -393,7 +374,7 @@ carnetInput.CustomValidation.validityChecks = carnetValidityChecks;
 var inputs = document.querySelectorAll('input:not([type="submit"])');
 
 var datein = document.querySelector('input[name="fecha"]');
-var datefn = document.querySelector('input[name="fecha2"]');
+
 
 var submit = document.querySelector('input[type="submit"');
 var form = document.getElementById('registration');
@@ -409,81 +390,5 @@ submit.addEventListener('click', validate);
 
 form.addEventListener('submit', validate);
 
- $(document).ready(function(){    
+
    
-	 var myCalendar3 = new dhtmlXCalendarObject("box2");
-    myCalendar3.setDateFormat("%d/%m/%Y");
-    var myEvent = myCalendar3.attachEvent("onClick", function(){
-        datefn.CustomValidation.checkInput();
-	 });
-		
-	 var myCalendar1 = new dhtmlXCalendarObject("box");
-    myCalendar1.setDateFormat("%d/%m/%Y");
-    var myEvent = myCalendar1.attachEvent("onClick", function(){
-        datein.CustomValidation.checkInput();
-    });
-    })
-   
-var myCalendar;
-		function doOnLoad() {
-			
-			var myCalendar1 = new dhtmlXCalendarObject("box");
-
-            myCalendar1.setDateFormat("%d/%m/%Y");
-            var dd1 = myCalendar1.getFormatedDate();
-			if(document.getElementById("opt1").selected==true){
-				document.getElementById("dni").value=document.getElementById("numide").value;
-				document.getElementById("dni").style.display="inline";
-				document.getElementById("pasaporte").style.display="none";
-				document.getElementById("carnet").style.display="none";
-				document.getElementById("pasaporte").value="";
-				document.getElementById("carnet").value="";
-				document.getElementById("dni").required=true;
-				document.getElementById("pasaporte").required=false;
-				document.getElementById("carnet").required=false;
-				
-			}
-			else if(document.getElementById("opt2").selected==true){
-				document.getElementById("pasaporte").value=document.getElementById("numide").value;
-				document.getElementById("dni").style.display="none";
-				document.getElementById("pasaporte").style.display="inline";
-				document.getElementById("carnet").style.display="none";
-				//document.getElementById("dni").value="";
-				//document.getElementById("carnet").value="";
-				document.getElementById("dni").required=false;
-				document.getElementById("pasaporte").required=true;
-				document.getElementById("carnet").required=false;
-			}
-			else if(document.getElementById("opt3").selected==true){
-				document.getElementById("carnet").value=document.getElementById("numide").value;
-				document.getElementById("dni").style.display="none";
-				document.getElementById("pasaporte").style.display="none";
-				document.getElementById("carnet").style.display="inline";
-				//document.getElementById("dni").value="";
-				//document.getElementById("pasaporte").value="";
-				document.getElementById("dni").required=false;
-				document.getElementById("pasaporte").required=false;
-				document.getElementById("carnet").required=true;
-			}
-			myCalendar1.attachEvent("onClick", function(d){
-					alert('funciona');
-				//var element = document.querySelector('label[for="box2"] li:nth-child(1)');
-                //var elementt = document.getElementById('box2');
-                dd1 = myCalendar1.getFormatedDate(null,d);
-				datefn.CustomValidation.checkInput();
-                //element.classList.remove('valid');
-                //element.classList.add('invalid');
-                //var message = "holaa";
-                //elementt.setCustomValidity(dd);
-                
-                //alert(dd);
-                
-                /*var elementt = document.querySelector('input[type="date"]');
-                elementt.classList.remove('valid');
-                elementt.classList.add('invalid');*/
-                //alert("funciona");
-			});
-
-			
-
-		}

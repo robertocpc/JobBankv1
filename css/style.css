@@ -841,6 +841,7 @@ th, td {
 }
 .linkdirec{
     color: black;
+    text-decoration: none;
     width:100%;
     font-weight: bold;
 }
@@ -873,6 +874,9 @@ th, td {
 }
 .spans{ /*Estilo Span Filtro*/
     font-weight: bold;    
+}
+.spanss{
+    font-weight:none;
 }
 .filtro-input{
     width: 80%;
@@ -1035,9 +1039,8 @@ label:hover:before {
 }
 /*VENTANA ADD-OFTRABAJO*/
 .add-oftrabajo{
-    margin-top:3%;
+
     border-radius:4px;
-    padding: 2%;
     background-color:white;
 }
 

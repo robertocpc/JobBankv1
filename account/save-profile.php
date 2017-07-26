@@ -39,14 +39,14 @@ $result = $mysqli->query("SELECT * FROM tbl_egresado WHERE cod_alumno='$_SESSION
 $user = $result->fetch_assoc();
 if ( $result->num_rows == 0 ){ // User doesn't exist
     $mysqli->query("INSERT INTO tbl_egresado(cod_alumno,psw_alumno,col_nombre,col_apellido,col_email,col_telf,
-    col_fechanac,col_tipodoc,col_numide,col_ciudadorigen,col_genero,'col_direccion','col_cabecera','col_posactual')
+    col_fechanac,col_tipodoc,col_numide,col_ciudadactual,col_genero,'col_direccion','col_cabecera','col_posactual')
     VALUES('$_SESSION[cod]','$_SESSION[pass]','$nombre','$apellido','$email','$telefono',
     '$date','$tipodoc','$numide','$ciudadorigen','$genero','$direccion','$cabecera','posactual')");
     echo "CASO 1";
 }else{
     $sentence="UPDATE tbl_egresado SET  col_nombre='$nombre', col_apellido='$apellido', 
     col_email='$email',col_telf='$telefono',col_fechanac='$date',col_tipodoc='$tipodoc',
-    col_numide='$numide',col_ciudadorigen='$ciudadorigen',col_genero='$genero',col_direccion='$direccion',
+    col_numide='$numide',col_ciudadactual='$ciudadorigen',col_genero='$genero',col_direccion='$direccion',
     col_cabecera='$cabecera',col_posactual='$posactual' 
     WHERE cod_alumno='$_SESSION[cod]'"; 
     $mysqli->query($sentence);

@@ -6,5 +6,5 @@ include '../db.php';
 
     $mysqli->query("UPDATE tbl_egresado SET col_imgperfil='$imagen' WHERE cod_alumno='$_SESSION[cod]'");
 
-    header ("location: ../session.php");
+    header ("location: ../session-index-s.php");
 ?>

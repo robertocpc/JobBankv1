@@ -9,7 +9,7 @@ include './header.php';
     <Script src="./jquery.js"></Script>
     <div id="showcase" class="white" >
         <div class="container" id="cuadro-resultado">
-            <button class='buttonefex1' onclick="goBack()" style='margin-top:20px;margin-left:10px;;'>Go Back</button>
+            <button class='buttonefex1' onclick="goBack()" style='margin-top:20px;margin-left:10px;;'>Volver</button>
             <div class="resultado shadow">
                 <div id="result" >
 
@@ -29,7 +29,7 @@ include './header.php';
                                 ?>
                             </td>
                             <td style='width:65%;font-size:14px;'>
-                                <span style="font-size:28px"><?php echo $user['col_nombre']?></span>
+                                <span style="font-size:28px"><?php echo $user['col_nombre']." ".$user['col_apellido']?></span>
                                 <hr>
                                 <span style="color: #;"><?php if(isset($user['col_posactual'])){
                                     echo $user['col_posactual'];
@@ -75,7 +75,7 @@ include './header.php';
                                         echo "<span style='font-size:16px;color: #929292'>EXPERIENCIA LABORAL</span>
                                         <hr style='border-color: #929292'>";
                                         while($user=$result->fetch_assoc()){
-                                            echo "<span style='font-size:14px;font-weight:bold;color: #464545;'>".strtoupper($user['col_cargo'])."</span><br>";
+                                            echo "<span style='font-size:14px;font-weight:bold;color: #464545;'>".$user['col_cargo']."</span><br>";
                                             echo "<span style='font-size:14px;color: #464545'>".$user['col_empresa']."</span><br>";
                                             if(isset($user['col_fechain'])||isset($user['col_fechafin'])){
                                                 echo "<span style='font-size:14px;color: #464545'>".date("d/m/Y",strtotime($user['col_fechain']))." - "; 
@@ -101,7 +101,7 @@ include './header.php';
                                         echo "<span style='font-size:16px;color: #929292'>ESTUDIOS</span>
                                         <hr style='border-color: #929292'>";
                                         while($user=$result->fetch_assoc()){
-                                            echo "<span style='font-size:14px;font-weight:bold;color: #464545;'>".strtoupper($user['col_school'])."</span><br>";
+                                            echo "<span style='font-size:14px;font-weight:bold;color: #464545;'>".$user['col_school']."</span><br>";
                                             echo "<span style='font-size:14px;color: #464545'>".$user['col_grado']."</span><br>";
                                             if(isset($user['col_fechain'])||isset($user['col_fechafin'])){
                                                 echo "<span style='font-size:14px;color: #464545'>".date("d/m/Y",strtotime($user['col_fechain']))." - "; 
@@ -127,14 +127,14 @@ include './header.php';
                                         echo "<span style='font-size:16px;color: #929292'>PUBLICACIONES</span>
                                         <hr style='border-color: #929292'>";
                                         while($user=$result->fetch_assoc()){
-                                            echo "<span style='font-size:14px;font-weight:bold;color:#464545;'>".strtoupper($user['col_titulo'])."</span>";
-                                            if(isset($user['col_editor'])){
-                                                echo "<span style='font-size:14px;font-weight:bold;'>".$user['col_editor']."</span><br>";
+                                            echo "<span style='font-size:14px;color: #464545'>Nombre de Publicación: </span><span style='font-size:14px;font-weight:bold;color:#464545;'>".$user['col_titulo']."</span><br>";
+                                            if(!empty($user['col_editor'])){
+                                                echo "<span style='font-size:14px;font-weight:bold;'>Editorial: ".$user['col_editor']."</span><br>";
                                             }
-                                            if(isset($user['col_fecha'])){
-                                                echo "<span style='font-size:14px;color: #464545'>".date("d/m/Y",strtotime($user['col_fecha']))."</span><br>"; 
+                                            if(!empty($user['col_fecha'])){
+                                                echo "<span style='font-size:14px;color: #464545'>Fecha de Publicación: ".date("d/m/Y",strtotime($user['col_fecha']))."</span><br>"; 
                                             }
-                                            echo "<br>";
+                                            echo "<br><br>";
 
                                         }
                                     }

@@ -19,10 +19,10 @@ echo "
                            <tr>
                               <td style='width:35%;padding-top:15px;text-align:left;'>
                                  <span style='margin-top:20px;' class='spans'>Centro de Estudio: </span><br>
+                                 <span style='color: gray'>* Ej: Instituto, Universidad ...</span>
                               </td>
                               <td style='width:65%;'>
                                  <span><input name='esnombre' id='esnombre' type='text' class='btn-st1' required></span>
-                                 <span style='color: gray'>* Ej: Instituto, Universidad ...</span>
                               </td>
                            </tr>
                            
@@ -60,7 +60,7 @@ echo "
                                  <span style='color: gray'>* Ejemplo: 02/08/2017</span>
                               </td>
                               <td style='width:65%;'>
-                                 <input name='fecha2' id='box2' type='text' class='btn-st1' disabled  required>
+                                 <input name='fecha2' id='box2' type='text' class='btn-st1'  required>
                               </td>
                            </tr>
                           
@@ -95,7 +95,19 @@ echo "
                 document.getElementById('inputpost').value='';
             }
         }  
+$(document).ready(function(){    
+   
 
+		
+	 var myCalendar1 = new dhtmlXCalendarObject("box");
+    myCalendar1.setDateFormat("%d/%m/%Y");
+    var myEvent = myCalendar1.attachEvent("onClick", function(){
+        datein.CustomValidation.checkInput();
+        document.getElementById('box2').disabled=false;
+         if(document.getElementById('box2').value!='')
+            alert('dfsdf');//datefn.CustomValidation.checkInput();
+    });
+    })
 </script>
 
     

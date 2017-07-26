@@ -3,10 +3,10 @@
 	$n=$mysqli->query("SELECT MAX(cod_oftrabajo)+1 as col_max FROM tbl_oftrabajo");
 	$user = $n->fetch_assoc();
    echo "
-      <div class='container' > 
-         <div class='add-oftrabajo shadow'>
+
+         <div class='add-oftrabajo'>
                   <span class='spans'>Registro de administradores : </span>
-                  <input id='listadmin' style='float:right;cursor:pointer;font-size:10px;width:100px;' type='text' class='buttonefex1' value='Listar Admins'>
+                  
                   <div class='line' style='width:100%;'><hr></div>
             <form id='oftrabajo' method='POST' action='./account/add-admin-user.php'>
                <table class='tbl-oftrabajo' style='font-size:12px;width:100%;border-collapse: collapse;'>
@@ -51,24 +51,28 @@
                <input type='submit' class='buttonefex1' value='Guardar Cambios'>
             </form>
 			</div>
-      </div>";
+     ";
+
+    
+
 ?>
+
 <script>
    $(document).ready(function(){
       
-      $('#ofnombre').keypress(function(e) {
+      $('#ofnombre').keyup(function(e) {
          var txt =document.getElementById('ofnombre');
          if(txt.value.length>80){
             return this.value = this.value.substring(0, 80);
          }
       })
-      $('#ofapellido').keypress(function(e) {
+      $('#ofapellido').keyup(function(e) {
          var txt =document.getElementById('ofapellido');
          if(txt.value.length>80){
             return this.value = this.value.substring(0, 80);
          }
       })
-      $('#ofusername').keypress(function(e) {
+      $('#ofusername').keyup(function(e) {
          var txt =document.getElementById('ofusername');
          if(txt.value.length>=15){
             return this.value = this.value.substring(0, 15);
@@ -80,6 +84,7 @@
             return this.value = this.value.substring(0, 22);
          }
       })*/
+      
       $('#listadmin').click(function(){
             $('#cuadroresultado').load("./list-admin.php",function(){
                 var txt =document.getElementById('ofusername');
@@ -88,6 +93,8 @@
                 }
             });
         })
+        
+    
 
 
    
@@ -98,5 +105,3 @@
 
 </script>
 <script src='./scriptadmin.js'></script>
-
- 

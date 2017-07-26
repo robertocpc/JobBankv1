@@ -15,7 +15,7 @@ include './header.php';
                 <div class="tag-ad" id="ofertas">
                     <span>Ofertas Laborales</span>
                 </div>
-                <div class="tag-ad" id="becas">
+                <div class="tag-ad" id="admin">
                     <span>Añadir Administradores</span><br>
                 </div>
             </div>
@@ -94,10 +94,10 @@ include './header.php';
             document.getElementById('ofertas').style.color="";
             document.getElementById('ofertas').style.fontWeight="";    
             
-            document.getElementById('becas').style.backgroundColor="";
-            document.getElementById('becas').style.borderBottom="";
-            document.getElementById('becas').style.color="";
-            document.getElementById('becas').style.fontWeight="";
+            document.getElementById('admin').style.backgroundColor="";
+            document.getElementById('admin').style.borderBottom="";
+            document.getElementById('admin').style.color="";
+            document.getElementById('admin').style.fontWeight="";
         })
         $('#ofertas').click(function(){
             $('#cuadroresultado').load("./oftrabajo.php");
@@ -111,23 +111,23 @@ include './header.php';
             document.getElementById('egresado').style.color="";
             document.getElementById('egresado').style.fontWeight=""; 
             
-            document.getElementById('becas').style.backgroundColor="";
-            document.getElementById('becas').style.borderBottom="";
-            document.getElementById('becas').style.color="";
-            document.getElementById('becas').style.fontWeight=""; 
+            document.getElementById('admin').style.backgroundColor="";
+            document.getElementById('admin').style.borderBottom="";
+            document.getElementById('admin').style.color="";
+            document.getElementById('admin').style.fontWeight=""; 
         })
 
-        $('#becas').click(function(){
-            $('#cuadroresultado').load("./add-admin.php",function(){
-                var txt =document.getElementById('ofusername');
-                if(txt.value.length!=11){
-                    txt.setCustomValidity('sdfsdfsdf');
-                }
+        $('#admin').click(function(){
+            $('#cuadroresultado').load("./panel-admin.php",function(){
+                $('#result').load("./add-admi.php",function(){
+                    
+                });
+                
             });
-            document.getElementById('becas').style.backgroundColor="#0177B1";
-            document.getElementById('becas').style.borderBottom="2px solid white";
-            document.getElementById('becas').style.color="white";
-            document.getElementById('becas').style.fontWeight="bold";
+            document.getElementById('admin').style.backgroundColor="#0177B1";
+            document.getElementById('admin').style.borderBottom="2px solid white";
+            document.getElementById('admin').style.color="white";
+            document.getElementById('admin').style.fontWeight="bold";
 
             document.getElementById('egresado').style.backgroundColor="";
             document.getElementById('egresado').style.borderBottom="";

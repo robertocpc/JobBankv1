@@ -118,7 +118,11 @@ include './header.php';
             document.getElementById('miperfil').style.fontWeight="";    
         })
         $('#miperfil').click(function(){
-            $('#cuadroresultado').load("./miperfil.php");
+            $('#cuadroresultado').load("./miperfil.php",function(){
+                $('#result').load("./miperfil-dt-prs.php",function(){
+           
+                });
+            });
             document.getElementById('miperfil').style.backgroundColor="#0177B1";
             document.getElementById('miperfil').style.borderBottom="2px solid white";
             document.getElementById('miperfil').style.color="white";

@@ -169,7 +169,7 @@ include './db.php';
 
     if($searchq!=''){
         if($searchq!='todos'){
-            echo $query="SELECT  *,MATCH(col_ofnombre,col_empresa) AGAINST ('".$querysel."') as relevance 
+            $query="SELECT  *,MATCH(col_ofnombre,col_empresa) AGAINST ('".$querysel."') as relevance 
             FROM tbl_oftrabajo WHERE ((match(col_ofnombre,col_empresa) AGAINST ('".$querysel."') )
             ".$querylike.")".$cargoquery.$empresaquery.$ciudadquery.$idiomaquery.$fechaquery.
             $tipemquery.$tippoquery.$disquery.$disvquery.$disrquery."    
@@ -191,13 +191,12 @@ include './db.php';
                     $i++;
                     $output.="<tr>
                     
-                    <th>";
+                    <td width='5%' style='vertical-align:top;'>";
                     if($_SESSION['window']==5){
-                    echo"<p><input class='checkopt' type='checkbox' id='ck".$i."' value='".$row['cod_oftrabajo']."'/><label for='ck".$i."'></label></p>";
-
+                        $output.="<p><input class='checkopt' type='checkbox' id='ck".$i."' value='".$row['cod_oftrabajo']."'/><label for='ck".$i."'></label></p>";
                     }            
-                    $output .= "</th>
-                    <td width='95%'>
+                    $output .= "</td>
+                    <td width='90%'>
                         <a class='result-a' style='cursor:pointer' data-code='".$row['cod_oftrabajo']."'>".$row['col_ofnombre']."</a><br>
                         ";
                     /*if(isset($row['col_cabecera'])){*/

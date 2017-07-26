@@ -7,8 +7,8 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="./css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
         <title>Esis</title>
     </head>
     <body onload='doOnLoad();'>
@@ -42,7 +42,7 @@ session_start();
                                 }else{
                                     echo "<li><a href='index.php'>Inicio</a></li>
                                     <li><a href='./web_login.php'>Log in</a></li>
-                                    <li><a href='./blog.php'>Blog</a></li>";
+                                    <li><a href='https://www.facebook.com/Ingenier%C3%ADa-en-Inform%C3%A1tica-y-Sistemas-UNJBG-1933587416925656/'>Blog</a></li>";
 
                                 }
                             ?>

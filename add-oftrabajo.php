@@ -4,7 +4,7 @@
 	$user = $n->fetch_assoc();
    echo "
       <div class='container' > 
-         <div class='add-oftrabajo shadow'>
+         <div class='add-oftrabajo shadow' style='padding:20px;margin-top:20px;'>
                   <span class='spans'>Registro de Oferta Laboral : ".$user['col_max']."</span>
                   <div class='line' style='width:100%;'><hr></div>
             <form id='oftrabajo' method='POST' action='./account/save-oftrabajo.php'>

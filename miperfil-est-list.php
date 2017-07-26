@@ -5,7 +5,7 @@ session_start();
 	
    echo "
       
-         <div class='add-oftrabajo' style='border: 1.5px solid gray'>
+         <div class='add-oftrabajo'>
                   <span class='spans'>Listado de Estudios : </span>
                   <div class='line' style='width:100%;'><hr></div>
             <form id='oftrabajo' method='POST' action='./account/add-admin-user.php'>
@@ -35,20 +35,20 @@ session_start();
                   ECHO "
                   <tr>
                      <td style='width:20%;padding-top:15px;text-align:left;'>
-                        <span style='margin-top:20px;' class='spans'>".$user['col_school']." </span><br>
+                        <span style='margin-top:20px;' class='spanss'>".$user['col_school']." </span><br>
                         
                      </td>
                      <td style='width:20%;'>
-                        <span style='margin-top:20px;' class='spans'>".$user['col_grado']."</span><br>
+                        <span style='margin-top:20px;' class='spanss'>".$user['col_grado']."</span><br>
                      </td>
                      <td style='width:20%;'>
-                        <span style='margin-top:20px;' class='spans'>".$user['col_campest']."</span><br>
+                        <span style='margin-top:20px;' class='spanss'>".$user['col_campest']."</span><br>
                      </td>
                      <td style='width:15%;'>
-                        <span style='margin-top:20px;' class='spans'>".$user['col_fechain']."</span><br>
+                        <span style='margin-top:20px;' class='spanss'>".$user['col_fechain']."</span><br>
                      </td>
                      <td style='width:15%;'>
-                        <span style='margin-top:20px;' class='spans'>".$user['col_fechafin']."</span><br>
+                        <span style='margin-top:20px;' class='spanss'>".$user['col_fechafin']."</span><br>
                      </td>
                      <td style='width:5%;'>
                         <li style='list-style: none;

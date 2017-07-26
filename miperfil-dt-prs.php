@@ -1,7 +1,7 @@
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" type="text/css"> 
+
     <!--script src="./dhtmlx.css"></script-->
 <script src="jquery-3.2.1.min.js"></script>
 <?php
@@ -95,8 +95,21 @@ echo "
                                  <span style='margin-top:20px;' class='spans'>Fecha de Nacimiento: </span><br>
                                  <span style='color: gray'>* Ejemplo: 02/08/2017</span>
                               </td>
-                              <td style='width:65%;'>
-                                 <input name='fecha' id='box' type='text' class='btn-st1' value='".$user['col_fechanac']."'  required>
+                              <td style='width:65%;'>";
+                              if(!empty($user['col_fechanac'])){
+                                $sorderdate = explode('-', $user['col_fechanac']);
+                                $smonth = $sorderdate[1];
+                                $sday   = $sorderdate[0];
+                                $syear  = $sorderdate[2];
+
+                                $date=$syear."/".$smonth."/".$sday;
+
+                              }
+                              else{
+                                  $date='';
+                              }
+
+                                 echo "<input name='fecha' id='boxs' type='text' class='btn-st1' value='".$date."'  required>
                               </td>
                            </tr>
                            <tr>
@@ -127,7 +140,7 @@ echo "
                                  <span style='color: gray'>* Ciudad en la que reside actualmente</span>
                               </td>
                               <td style='width:65%;'>
-                                 <span><input id='autocomplete' class='btn-st1'  value='".$user['col_ciudadorigen']."' 
+                                 <span><input id='autocomplete' class='btn-st1'  value='".$user['col_ciudadactual']."' 
                                     onFocus='geolocate()' type='text' name='ciudadorigen'></span>
                               </td>
                            </tr>
@@ -170,7 +183,7 @@ echo "
       ";
                 
 
-?><link rel="stylesheet" href="http://cdn.dhtmlx.com/edge/dhtmlx.css" type="text/css"> 
+?>
     <!--script src="./dhtmlx.css"></script-->
 
 <script>
@@ -188,11 +201,10 @@ echo "
                 document.getElementById('inputpost').value='';
             }
         }  
-
 </script>
 
     
-<script src="./codebase/dhtmlxcalendar.js"></script>
+
 <script src="./script.js"></script>
 <script src="./scriptsession.js"></script>
  

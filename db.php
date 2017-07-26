@@ -1,9 +1,9 @@
 <?php
 //$host = 'mysql.hostinger.es';
 //$user = 'u264771524_root';
-$pass = '4kegezvc';
 //$db = 'u264771524_iswk';
 
+$pass = '4kegezvc';
 
 $host='127.0.0.1';
 $user='root';

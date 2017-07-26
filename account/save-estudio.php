@@ -37,4 +37,4 @@ $mysqli->query($sentence);
 
 
 
-header("location: ../session-admi.php");
+header("location: ../session-index-s.php");
