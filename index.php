@@ -2,6 +2,9 @@
 session_start();
 $_SESSION['windows']=5;
 include './header.php';
+$myfile = fopen("test.txt", "r") or die("Unable to open file!");
+$post=fread($myfile,filesize("test.txt"));
+fclose($myfile);
 ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <Script src="./jquery.js"></Script>
@@ -16,11 +19,11 @@ include './header.php';
             <div style='width:60%;float:left;'>
                 <img src='imglogo/esis-bg.jpg' height='320' style='float:right'>
             </div>
+            
         </div>
-        <div id="newsletter" style='float:left;width:80%'>
-            <div class="font-blue"></div>
+        <div id="newsletter" style='float:left;width:56%;margin-left:4%;background:black;'>
             <div class="container searchbar">
-                    <input  name="search" id="search" type="text" placeholder="Busqueda de profesional por nombre o especialidad">
+                    <input  name="search" id="search" type="text" style='width:80%;' placeholder="Busqueda de profesional por nombre o especialidad">
                     
                     <input  type="submit" class="buscar-submit" id="buscar" value="Buscar">
                     <br><label><span style="color:white">Ejemplo: <a   class='ref' data-code='Programador' style='cursor:pointer;'>Programador</a>,
@@ -28,11 +31,15 @@ include './header.php';
                 
             </div>
         </div>
-        <div class="container" id="cuadro-resultado" style="visibility:hidden">
-            <div class="resultado shadow">
-                <div id="busqueda"></div>
-                <div id="result" ></div>
+        <div class="shadow white" style='float:left;width:56%;background:white;margin-left:4%;margin-top:20px;margin-bottom:20px;;border-radius: 8px;padding: 2%;'>
+            <div class="resultado" style='width:96%;'>
+                <span style='font-weight:bold;font-size:20px;'>¿Qué es la Bolsa de Trabajo de la ESIS?</span><br><br>
+                <span style='font-size:14px;float:left;width:46%;text-align:justify;padding-right:4%;'><?php echo $post ?></span>
+                <img src='./img/jobbank.jpg' style='float:left;width:50%;'>
             </div>
+        </div>
+        <div style='width:32%;float:right;padding:2%;background:red'>
+            <span>dfsdf</span>
         </div>
 
 

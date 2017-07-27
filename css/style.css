@@ -125,8 +125,6 @@ header .contacto{
     margin-top:30px;
      background-image:url("../img/opacity1.png");
      background-color:rgba(2, 120, 205, 0.1);
-     margin-left:10%;margin-right: 10%;
-     padding: 5px;
      height: 100px;
      border-radius: 8px;
  }
@@ -861,10 +859,10 @@ th, td {
     padding:0;
     overflow:hidden;
     height:0;
-    -webkit-transition:height 500ms ease-in;
-    -moz-transition:height 500ms ease-in;
-    -o-transition:height 500ms ease-in;
-    transition:height 500ms ease-in;
+    -webkit-transition:height 300ms ease-in;
+    -moz-transition:height 300ms ease-in;
+    -o-transition:height 300ms ease-in;
+    transition:height 300ms ease-in;
 }
 .dropdown label{
     padding-top:3.5px;

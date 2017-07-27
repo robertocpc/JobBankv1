@@ -6,8 +6,8 @@ include '../db.php';
  echo $ofusername=$_POST['ofusername'];
  echo $ofpassword=$_POST['ofpassword'];
  
- echo $query="INSERT INTO tbl_egresado (col_nombre,col_apellido,cod_alumno,psw_alumno)
+ $query="INSERT INTO tbl_egresado (col_nombre,col_apellido,cod_alumno,psw_alumno)
 VALUES ('$ofnombre','$ofapellido','$ofusername','$ofpassword')";
 $mysqli-> query($query);
-
+header("location: ../session-index-s.php");
 ?>
